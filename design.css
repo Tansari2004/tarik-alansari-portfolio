@@ -325,3 +325,19 @@ img,svg{max-width:100%}
 @media(max-width:600px){
   .hero h1,.hero .eyebrow{max-width:100%}
 }
+
+/* Small amount of supporting copy beneath each visual. */
+.project-caption{display:block;min-height:0;padding:17px 19px 19px}
+.project-heading{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+.project-heading strong{font-size:21px;line-height:1.2}
+.project-summary{display:block;margin-top:8px;color:#526b83;font-size:14px;line-height:1.42}
+.project-stack{display:block;margin-top:8px;color:#2d66ad;font-size:12px;line-height:1.35;font-weight:650}
+.project-destination{flex:none;font-size:12px}
+@media(max-width:600px){
+  .project-caption{padding:14px 15px 16px}
+  .project-heading{align-items:start;gap:10px}
+  .project-heading strong{font-size:18px}
+  .project-summary{font-size:13px;line-height:1.4;margin-top:7px}
+  .project-stack{font-size:11px;margin-top:7px}
+  .project-destination{font-size:11px;padding-top:3px}
+}
