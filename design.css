@@ -341,3 +341,10 @@ img,svg{max-width:100%}
   .project-stack{font-size:11px;margin-top:7px}
   .project-destination{font-size:11px;padding-top:3px}
 }
+
+/* The supplied artwork is the complete clickable card. */
+.projects{grid-template-columns:minmax(0,1fr);gap:16px}
+.project.image-button{border:0;border-radius:0;box-shadow:none;background:transparent;overflow:visible}
+.project.image-button>img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain;background:transparent;border-radius:0}
+.project.image-button:hover{box-shadow:none;transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){.project.image-button:hover{transform:none}}
