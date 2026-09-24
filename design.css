@@ -318,3 +318,10 @@ img,svg{max-width:100%}
   .portrait{width:70px}
   .project>img,.project>.diacare-visual{height:145px}
 }
+
+/* Headshot-free hero; the QR destination stays unchanged. */
+.hero{grid-template-columns:1fr}
+.hero-copy{max-width:720px}
+@media(max-width:600px){
+  .hero h1,.hero .eyebrow{max-width:100%}
+}
