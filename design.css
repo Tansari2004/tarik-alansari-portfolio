@@ -319,11 +319,14 @@ img,svg{max-width:100%}
   .project>img,.project>.diacare-visual{height:145px}
 }
 
-/* Headshot-free hero; the QR destination stays unchanged. */
-.hero{grid-template-columns:1fr}
+/* Compact professional headshot in the hero. */
+.hero{grid-template-columns:minmax(0,1.2fr) minmax(180px,.55fr)}
 .hero-copy{max-width:720px}
+.portrait{width:min(100%,260px);justify-self:end}
 @media(max-width:600px){
+  .hero{display:block}
   .hero h1,.hero .eyebrow{max-width:100%}
+  .portrait{width:78px;justify-self:auto}
 }
 
 /* Small amount of supporting copy beneath each visual. */
@@ -343,8 +346,12 @@ img,svg{max-width:100%}
 }
 
 /* The supplied artwork is the complete clickable card. */
-.projects{grid-template-columns:minmax(0,1fr);gap:16px}
-.project.image-button{border:0;border-radius:0;box-shadow:none;background:transparent;overflow:visible}
-.project.image-button>img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain;background:transparent;border-radius:0}
-.project.image-button:hover{box-shadow:none;transform:translateY(-2px)}
+.projects{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.project.image-button{border:1px solid #cadcf3;border-radius:14px;box-shadow:0 10px 24px -20px #20487970;background:#f7faff;overflow:hidden}
+.project.image-button>img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain;background:#f7faff;border-radius:0}
+.project.image-button:hover{border-color:#79a9ec;box-shadow:0 16px 30px -20px #20487980;transform:translateY(-2px)}
+@media(max-width:600px){
+  .projects{grid-template-columns:minmax(0,1fr);gap:12px}
+  .project.image-button{border-radius:11px}
+}
 @media(prefers-reduced-motion:reduce){.project.image-button:hover{transform:none}}
