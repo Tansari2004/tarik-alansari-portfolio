@@ -389,21 +389,29 @@ body{background:linear-gradient(135deg,#eef5ff,#e6f0ff 70%,#f5f9ff)}
 .link-copy small{display:none}
 .link .arrow{display:block;color:#7d8fab;font-size:27px}
 @media(max-width:700px){
-  .shell{padding-top:20px}
-  .hero{padding:29px 26px 22px;border-radius:23px}
-  .hero .eyebrow{font-size:10px;letter-spacing:.085em;margin-bottom:13px}
-  .hero h1{font-size:clamp(32px,7.7vw,52px);margin-bottom:10px}
-  .hero .degree{font-size:clamp(16px,3.5vw,24px)}
-  .hero .school{font-size:19px;margin-top:6px}
-  .hero .availability{font-size:10px;gap:10px;padding:11px 15px;margin-top:16px;letter-spacing:.05em}
-  .hero .availability:before{width:10px;height:10px}
+  .shell{padding-top:14px}
+  .hero{padding:19px 26px 17px;border-radius:23px}
+  .hero .eyebrow{font-size:11px;letter-spacing:.075em;line-height:1.35;margin-bottom:8px}
+  .hero h1{font-size:clamp(36px,9.5vw,40px);line-height:1.03;margin-bottom:6px}
+  .hero .degree{font-size:clamp(20px,5.2vw,22px);line-height:1.2}
+  .hero .school{font-size:16px;font-weight:400;line-height:1.25;margin-top:3px}
+  .hero .availability{font-size:10px;gap:9px;padding:7px 12px;margin-top:11px;line-height:1.2;letter-spacing:.045em}
+  .hero .availability:before{width:9px;height:9px}
   .hero:before{width:800px;height:600px;left:-350px;bottom:-160px}
   .hero:after{width:380px;height:380px;right:-240px;bottom:-200px}
-  .connect-section{padding-top:16px}
-  .links{padding:13px 3px;border-radius:17px}
-  .link{padding:3px 8px;min-height:40px;gap:7px}
+  .connect-section{padding-top:11px}
+  .links{padding:8px 3px;border-radius:17px}
+  .link{padding:2px 8px;min-height:36px;gap:7px}
   .icon,.icon.email,.icon.github{width:28px;height:28px;border-radius:8px;font-size:19px}
   .icon.github svg{width:21px;height:21px}
   .link-copy{font-size:12px}
   .link .arrow{display:none}
+  .work-section{padding-top:22px}
+}
+@media(max-width:380px){
+  .links{padding:8px 2px}
+  .link{gap:4px;padding:2px 4px}
+  .icon,.icon.email,.icon.github{width:24px;height:24px;font-size:16px}
+  .icon.github svg{width:18px;height:18px}
+  .link-copy{font-size:11px;white-space:nowrap}
 }
