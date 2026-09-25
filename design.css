@@ -386,12 +386,12 @@ body{background:linear-gradient(135deg,#eef5ff,#e6f0ff 70%,#f5f9ff)}
 .link .arrow{display:block;color:#7d8fab;font-size:27px}
 @media(max-width:700px){
   .shell{padding-top:20px}
-  .hero{padding:55px 26px 30px;border-radius:23px}
-  .hero .eyebrow{font-size:10px;letter-spacing:.085em;margin-bottom:21px}
-  .hero h1{font-size:clamp(32px,7.7vw,52px)}
+  .hero{padding:29px 26px 22px;border-radius:23px}
+  .hero .eyebrow{font-size:10px;letter-spacing:.085em;margin-bottom:13px}
+  .hero h1{font-size:clamp(32px,7.7vw,52px);margin-bottom:10px}
   .hero .degree{font-size:clamp(16px,3.5vw,24px)}
-  .hero .school{font-size:19px;margin-top:9px}
-  .hero .availability{font-size:10px;gap:10px;padding:11px 15px;margin-top:25px;letter-spacing:.05em}
+  .hero .school{font-size:19px;margin-top:6px}
+  .hero .availability{font-size:10px;gap:10px;padding:11px 15px;margin-top:16px;letter-spacing:.05em}
   .hero .availability:before{width:10px;height:10px}
   .hero:before{width:800px;height:600px;left:-350px;bottom:-160px}
   .hero:after{width:380px;height:380px;right:-240px;bottom:-200px}
