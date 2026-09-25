@@ -425,3 +425,6 @@ footer{margin-top:48px}
   .projects{gap:15px}
   footer{margin-top:33px}
 }
+
+.icon.resume{background:#cee4ff;color:#0069f7;font-size:10px;letter-spacing:-.04em}
+@media(max-width:700px){.icon.resume{font-size:8px}}
