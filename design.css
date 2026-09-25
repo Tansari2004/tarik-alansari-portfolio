@@ -350,10 +350,6 @@ img,svg{max-width:100%}
 .project.image-button{border:1px solid #cadcf3;border-radius:14px;box-shadow:0 10px 24px -20px #20487970;background:#f7faff;overflow:hidden}
 .project.image-button>img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain;background:#f7faff;border-radius:0}
 .project.image-button:hover{border-color:#79a9ec;box-shadow:0 16px 30px -20px #20487980;transform:translateY(-2px)}
-/* Show more of the white surface in the Financial Crime artwork. The image
-   is cropped proportionally; its text and illustration keep their shape. */
-.project.image-button:first-child{position:relative;aspect-ratio:1875 / 656}
-.project.image-button:first-child>img{position:absolute;top:50%;left:50%;width:102.14%;max-width:none;height:auto;transform:translate(-50%,-50%)}
 @media(max-width:600px){
   .projects{grid-template-columns:minmax(0,1fr);gap:12px}
   .project.image-button{border-radius:11px}
