@@ -23,7 +23,7 @@
     <header class="hero">
       <p class="eyebrow">A PROJECT BY TARIK ALANSARI</p>
       <h1>Financial Crime<br><span>Analytics</span></h1>
-      <p class="lead">Helping investigators find where to start. A system that ranks synthetic bank transactions and explains why each case deserves a closer look.</p>
+      <p class="lead">Helping investigators find where to start. A system that ranks simulated bank payments and transfers, explaining which records deserve a closer look.</p>
       <div class="tools" aria-label="Project tools"><span>PostgreSQL</span><span>SQL</span><span>Python</span><span>NumPy</span><span>Power BI</span></div>
       <div class="hero-actions"><a class="button" href="#report">See the results <span aria-hidden="true">↓</span></a><a class="secondary" href="https://github.com/Tansari2004/financial-crime-investigation-analytics" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">↗</span></a></div>
     </header>
@@ -36,7 +36,7 @@
 
     <section class="section" aria-labelledby="flow">
       <p class="eyebrow">HOW IT WORKS</p><h2 id="flow">A clearer starting point for review.</h2>
-      <p class="section-intro">Millions of transactions. Limited review time. The pipeline turns transaction history into a prioritized list.</p>
+      <p class="section-intro">Each transaction is a payment between accounts, with a time, amount, currency, and payment method. The records come from IBM’s simulated banking dataset—not real customers. Most are legitimate; some carry a synthetic money-laundering label for model evaluation.</p>
       <ol class="steps">
         <li><span class="number">01</span><h3>Analyze the history</h3><p>SQL builds signals from transaction amounts, payment methods, and earlier account activity.</p></li>
         <li><span class="number">02</span><h3>Rank the cases</h3><p>A logistic model learns from earlier dates and is evaluated on later transactions.</p></li>

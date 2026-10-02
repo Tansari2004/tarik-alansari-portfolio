@@ -38,6 +38,10 @@ html{-webkit-text-size-adjust:100%;scroll-padding-top:20px}
 }
 @media(max-width:360px){.page{width:calc(100% - 24px)}.hero{padding:23px 18px}.results span{font-size:11px}.viewer-bar h2{max-width:125px}}
 
+/* Plain-language context for the payment records. */
+.overview>div p{font-size:16px;line-height:1.7;color:#50637d}
+.overview>div p+p{margin-top:14px}
+
 /* A lighter overview with a direct route to the evidence. */
 .hero{background:radial-gradient(ellipse at 100% 0,#d6e8ff88,transparent 65%),linear-gradient(120deg,#fff,#f3f8ff);padding:44px 48px}
 .lead{margin-top:18px;max-width:610px}
