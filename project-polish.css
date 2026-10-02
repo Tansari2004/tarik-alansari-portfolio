@@ -1,0 +1,69 @@
+/* Shared visual language, with a quiet accent for each case study. */
+body{--accent:#2563c7;--accent-dark:#1c4f9e;--tint:#edf4ff;--line:#dce6f3;--ink:#1b2e49;--muted:#52647c;background:#f7f9fd}
+body.crime-page:not(.hospital-page):not(.maintenance-page){--accent:#4563a0;--accent-dark:#354d7c;--tint:#eef2fa}
+body.hospital-page{--accent:#177a83;--accent-dark:#125d66;--tint:#eaf7f7;--line:#d7e9e9}
+body.maintenance-page{--accent:#466b63;--accent-dark:#33554d;--tint:#eef5f1;--line:#dce8e1;background:linear-gradient(155deg,#f8fbf9,#eef5f1 55%,#f8fbf9)}
+body.nlp-page{--accent:#7258a4;--accent-dark:#58427f;--tint:#f1edf8;--line:#e6dfef;--ink:#2b2540;--muted:#655b76;background:#faf8fd}
+.page,.crime-page .page{max-width:1000px}
+.nav{padding:22px 0;color:var(--muted)}
+.nav a,.back{color:var(--accent-dark)}
+.hero,.crime-page .hero{position:relative;isolation:isolate;background:linear-gradient(115deg,#fff 48%,var(--tint));border:1px solid var(--line);box-shadow:0 16px 44px -30px #24365335;border-radius:26px;overflow:hidden}
+.hero::after{content:"";position:absolute;z-index:-1;width:330px;height:330px;right:-140px;top:-180px;border:38px solid var(--line);border-radius:50%;opacity:.45;pointer-events:none}
+.hero::before{content:"";position:absolute;left:0;top:38px;bottom:38px;width:4px;border-radius:4px;background:var(--accent);opacity:.75}
+.hero h1,.crime-page h1{color:var(--ink);line-height:1.12}
+.hero h1 span,.crime-page h1 span,.crime-page .eyebrow,.eyebrow,.crime-page .results strong,.results strong{color:var(--accent)}
+.lead,.crime-page .lead{color:var(--muted);line-height:1.7}
+.tools span,.crime-page .tools span,.chips span{background:#ffffffc9;border-color:var(--line);color:var(--accent-dark)}
+.button,.crime-page .button{background:var(--accent);border-radius:12px;box-shadow:0 5px 12px -8px var(--accent);min-height:48px}
+.button:hover,.crime-page .button:hover{background:var(--accent-dark)}
+.secondary,.crime-page .secondary,.email,.crime-page .email,.text-link{color:var(--accent-dark)}
+.results,.crime-page .results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border:0;background:none;padding:0;margin-top:22px}
+.results div,.results div:first-child,.crime-page .results div,.crime-page .results div:first-child{display:block;padding:22px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 8px 24px -22px #21394a55}
+.results div+div,.crime-page .results div+div{border-color:var(--line)}
+.results strong,.crime-page .results strong{font-size:30px;font-variant-numeric:tabular-nums;letter-spacing:-.045em}
+.results span,.crime-page .results span{display:block;color:var(--muted);font-size:13px;line-height:1.65;margin-top:8px}
+.section,.crime-page .section{border-color:var(--line);padding:38px 0}
+h2{color:var(--ink)}
+.steps li,.crime-page .steps li{background:#fff;border-color:var(--line);border-radius:16px;box-shadow:none}
+.steps .number,.crime-page .steps .number{color:var(--accent-dark);background:var(--tint);border:1px solid var(--line);border-radius:9px}
+.report,.crime-page .report{border-color:var(--line);border-radius:18px;box-shadow:0 10px 28px -24px #25364c66;overflow:hidden}
+.report a{background:#fff;display:block}
+.report a::after,.crime-page .report a::after{color:var(--accent);border-color:var(--line);width:36px;height:36px;border-radius:10px;box-shadow:0 3px 10px #14254415}
+.report figcaption{border-top:1px solid var(--line);background:#fff;padding:24px}
+.image-hint{margin-top:14px;margin-bottom:16px}
+.context,.hospital-page .context{border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--tint);border-radius:16px;padding:24px;color:var(--accent-dark)}
+.context strong{font-size:18px;line-height:1.5;display:block}
+.context p,.hospital-page .context p{color:var(--muted);font-size:16px;line-height:1.7;margin-top:12px}
+.forecast-comparison strong{font-size:27px;color:var(--accent);line-height:1.2}
+.more,.crime-page .more{background:#fff;border-color:var(--line);border-radius:14px}
+.more summary,.crime-page .more summary{color:var(--accent-dark);min-height:58px;font-size:14px}
+.more summary span{width:26px;height:26px;display:grid;place-items:center;background:var(--tint);border-radius:50%;flex-shrink:0}
+.additional-report .image-hint{margin-top:0}
+footer{margin:24px 0 16px;padding:28px;background:#fff;border:1px solid var(--line);border-radius:20px}
+.nlp-page .hero-note{background:var(--tint)}
+.nlp-page .metrics div{border-color:var(--line);box-shadow:0 8px 24px -22px #42305255}
+.nlp-page .example-card{box-shadow:0 12px 28px -24px #42305266}
+.nlp-page .example-tabs button[aria-pressed=true]{box-shadow:inset 0 0 0 1px #c9b8e1}
+.nlp-page .scope{border-radius:18px;background:var(--tint);padding:28px;gap:30px}
+.nlp-page footer{padding:28px}
+@media(max-width:700px){
+ .nav{padding:8px 0}
+ .hero,.crime-page .hero{padding:26px 22px;border-radius:22px}
+ .hero::before{top:26px;bottom:26px;width:3px}
+ .hero::after{width:240px;height:240px;right:-145px;top:-155px;border-width:30px}
+ .results,.crime-page .results,.hospital-page .results{grid-template-columns:1fr;gap:8px;margin-top:16px}
+ .results div,.results div:first-child,.crime-page .results div,.crime-page .results div:first-child,.hospital-page .results div,.hospital-page .results div:first-child{display:grid;grid-template-columns:98px 1fr;align-items:center;gap:14px;padding:17px 18px;grid-column:auto}
+ .results strong,.crime-page .results strong,.crime-page .results div:nth-child(2) strong{font-size:26px}
+ .results span,.crime-page .results span,.crime-page .results div:first-child span{margin:0;max-width:none;font-size:13px;line-height:1.6}
+ .section,.crime-page .section{padding:30px 0}
+ .crime-page .steps{border-color:var(--line)}
+ .crime-page .steps li{border-radius:0}
+ .report figcaption,.crime-page .report figcaption{padding:21px}
+ .context,.hospital-page .context{padding:20px}
+ .context strong{font-size:17px}
+ .more summary,.crime-page .more summary{font-size:14px}
+ footer,.nlp-page footer{padding:22px;margin-top:22px}
+ .nlp-page .hero-note{background:none}
+ .nlp-page .scope{padding:22px;gap:16px}
+}
+@media(max-width:360px){.results div,.results div:first-child,.crime-page .results div,.crime-page .results div:first-child{grid-template-columns:84px 1fr;gap:10px;padding:16px 14px}.results strong,.crime-page .results strong,.crime-page .results div:nth-child(2) strong{font-size:23px}}
