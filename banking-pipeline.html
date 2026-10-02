@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f3f7ff">
   <meta name="description" content="A banking data platform by Tarik Alansari. Explore how 5.08 million synthetic transactions become checked, reliable analytics with Python, PostgreSQL, dbt, Dagster and Power BI.">
   <link rel="canonical" href="https://tansari2004.github.io/tarik-alansari-portfolio/banking-pipeline.html">
@@ -12,7 +12,8 @@
   <meta property="og:url" content="https://tansari2004.github.io/tarik-alansari-portfolio/banking-pipeline.html">
   <meta property="og:image" content="https://tansari2004.github.io/tarik-alansari-portfolio/banking-transaction-platform-button.webp">
   <title>Banking Transaction Data Platform · Tarik Alansari</title>
-  <link rel="stylesheet" href="banking-pipeline.css">
+  <link rel="stylesheet" href="banking-pipeline.css?v=2">
+  <script src="banking-pipeline.js" defer></script>
 </head>
 <body>
   <main class="page">
@@ -51,6 +52,7 @@
 
     <section class="section" aria-labelledby="report">
       <div class="section-heading"><div><p class="eyebrow">SEE THE RESULT</p><h2 id="report">A simple view of the pipeline.</h2></div><span class="quiet">Actual Power BI report screenshots</span></div>
+      <p class="image-hint">Tap a screenshot to view it larger.</p>
       <figure class="report wide"><a href="banking-assets/transaction-activity.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size transaction activity screenshot"><img src="banking-assets/transaction-activity.png" width="2880" height="1635" alt="Power BI daily transaction-volume chart with a rounded 5M published-transaction total" loading="lazy" decoding="async"></a><figcaption><h3>Transaction activity</h3><p>Daily volumes show how the published transactions are distributed across the reporting period.</p></figcaption></figure>
       <figure class="report health"><a href="banking-assets/pipeline-health.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size pipeline health screenshot"><img src="banking-assets/pipeline-health.png" width="1700" height="340" alt="Pipeline health table: 5,078,345 source rows, 5,078,336 accepted rows, 9 duplicate candidates, zero rejected rows and zero currency imbalances" loading="lazy" decoding="async"></a><figcaption><h3>Checks passed before publication</h3><p>The full run published 5,078,336 accepted rows, retained 9 duplicate candidates, and recorded zero invalid rejects or currency imbalances.</p></figcaption></figure>
       <details class="more"><summary>Explore two more report views <span aria-hidden="true">+</span></summary><div class="report-grid">
@@ -68,5 +70,10 @@
 
     <footer><div><h2>Interested in the work?</h2><p>Explore the code, or get in touch.</p></div><div class="footer-links"><a class="button" href="https://github.com/Tansari2004/financial-crime-investigation-analytics/tree/main/pipeline" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="email" href="mailto:tansari7@uwo.ca">Email Tarik ↗</a></div></footer>
   </main>
+  <dialog class="image-viewer" aria-labelledby="viewer-title">
+    <div class="viewer-bar"><h2 id="viewer-title">Report screenshot</h2><div class="viewer-controls"><button type="button" class="zoom-button" aria-pressed="false">Zoom in</button><button type="button" class="close-viewer" aria-label="Close screenshot">✕</button></div></div>
+    <div class="viewer-image"><img alt=""></div>
+    <p class="viewer-hint">Use Zoom in, then scroll to explore the report.</p>
+  </dialog>
 </body>
 </html>
