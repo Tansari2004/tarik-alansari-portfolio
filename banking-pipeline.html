@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://tansari2004.github.io/tarik-alansari-portfolio/banking-pipeline.html">
   <meta property="og:image" content="https://tansari2004.github.io/tarik-alansari-portfolio/banking-transaction-platform-button.webp">
   <title>Banking Transaction Data Platform · Tarik Alansari</title>
-  <link rel="stylesheet" href="banking-pipeline.css?v=2">
+  <link rel="stylesheet" href="banking-pipeline.css?v=3">
   <script src="banking-pipeline.js" defer></script>
 </head>
 <body>
@@ -23,11 +23,10 @@
     </nav>
     <header class="hero">
       <p class="eyebrow">DATA ENGINEERING · BANKING</p>
-      <h1>Reliable banking data.<br><span>From source to insight.</span></h1>
-      <p class="project-name">Banking Transaction Data Platform</p>
-      <p class="lead">I built a pipeline that turns millions of synthetic banking transactions into checked, organized data and clear reports.</p>
+      <h1>Banking Transaction<br><span>Data Platform</span></h1>
+      <p class="lead">From millions of transactions to reliable reports. I built a data pipeline that checks, organizes, and publishes synthetic banking data.</p>
       <div class="tools" aria-label="Project tools"><span>Python</span><span>PostgreSQL</span><span>dbt</span><span>Dagster</span><span>Power BI</span></div>
-      <a class="button" href="https://github.com/Tansari2004/financial-crime-investigation-analytics/tree/main/pipeline" target="_blank" rel="noopener noreferrer">View project on GitHub <span aria-hidden="true">↗</span></a>
+      <div class="hero-actions"><a class="button" href="#report">See the results <span aria-hidden="true">↓</span></a><a class="secondary" href="https://github.com/Tansari2004/financial-crime-investigation-analytics/tree/main/pipeline" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">↗</span></a></div>
     </header>
 
     <section class="results" aria-label="Verified project results">
@@ -37,21 +36,21 @@
     </section>
 
     <section class="section overview" aria-labelledby="overview">
-      <div><p class="eyebrow">THE IDEA</p><h2 id="overview">Make the data trustworthy<br>before it reaches a report.</h2></div>
-      <p>Banking reports depend on accurate, traceable data. This project preserves the original records, checks incoming files, handles duplicate candidates, and confirms that transaction counts and amounts match before publishing the results.</p>
+      <div><p class="eyebrow">WHY IT MATTERS</p><h2 id="overview">Good reports start<br>with trustworthy data.</h2></div>
+      <p>A report is only as reliable as its data. This pipeline checks that every accepted transaction is accounted for and that amounts match across all 15 currencies before the results are published.</p>
     </section>
 
     <section class="section" aria-labelledby="flow">
-      <p class="eyebrow">HOW IT WORKS</p><h2 id="flow">One clear path from file to report.</h2>
+      <p class="eyebrow">WHAT I BUILT</p><h2 id="flow">Three steps. One reliable pipeline.</h2>
       <ol class="steps">
-        <li><span class="number">01</span><h3>Collect & check</h3><p>Load source files, preserve the original records, and flag invalid rows or duplicate candidates.</p></li>
-        <li><span class="number">02</span><h3>Organize & reconcile</h3><p>Build structured banking tables and check transaction counts and amounts within each currency.</p></li>
-        <li><span class="number">03</span><h3>Publish & explore</h3><p>Release the checked data for reporting and present activity, quality, and review alerts in Power BI.</p></li>
+        <li><span class="number">01</span><h3>Collect</h3><p>Load transactions with Python, preserve the originals, and flag data issues.</p></li>
+        <li><span class="number">02</span><h3>Check</h3><p>Organize the data in PostgreSQL and verify counts and currency amounts.</p></li>
+        <li><span class="number">03</span><h3>Share</h3><p>Coordinate the workflow with Dagster, test with dbt, and report in Power BI.</p></li>
       </ol>
     </section>
 
     <section class="section" aria-labelledby="report">
-      <div class="section-heading"><div><p class="eyebrow">SEE THE RESULT</p><h2 id="report">A simple view of the pipeline.</h2></div><span class="quiet">Actual Power BI report screenshots</span></div>
+      <div class="section-heading"><div><p class="eyebrow">THE RESULTS</p><h2 id="report">The data, made visible.</h2></div><span class="quiet">Power BI report</span></div>
       <p class="image-hint">Tap a screenshot to view it larger.</p>
       <figure class="report wide"><a href="banking-assets/transaction-activity.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size transaction activity screenshot"><img src="banking-assets/transaction-activity.png" width="2880" height="1635" alt="Power BI daily transaction-volume chart with a rounded 5M published-transaction total" loading="lazy" decoding="async"></a><figcaption><h3>Transaction activity</h3><p>Daily volumes show how the published transactions are distributed across the reporting period.</p></figcaption></figure>
       <figure class="report health"><a href="banking-assets/pipeline-health.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size pipeline health screenshot"><img src="banking-assets/pipeline-health.png" width="1700" height="340" alt="Pipeline health table: 5,078,345 source rows, 5,078,336 accepted rows, 9 duplicate candidates, zero rejected rows and zero currency imbalances" loading="lazy" decoding="async"></a><figcaption><h3>Checks passed before publication</h3><p>The full run published 5,078,336 accepted rows, retained 9 duplicate candidates, and recorded zero invalid rejects or currency imbalances.</p></figcaption></figure>
@@ -61,12 +60,6 @@
       </div></details>
       <p class="note">Built with IBM’s synthetic AML data. The Power BI report displays an exported snapshot of the verified data.</p>
     </section>
-
-    <section class="section skills" aria-labelledby="built"><p class="eyebrow">WHAT THIS PROJECT DEMONSTRATES</p><h2 id="built">Engineering with reliability in mind.</h2><div class="skills-grid">
-      <div><h3>Data engineering</h3><p>Python ingestion and PostgreSQL modeling at a scale of more than five million records.</p></div>
-      <div><h3>Quality & traceability</h3><p>Safe reruns, preserved source records, explicit corrections, and checks before publication.</p></div>
-      <div><h3>Automation & reporting</h3><p>Dagster workflow orchestration, independent dbt checks, and Power BI reporting.</p></div>
-    </div></section>
 
     <footer><div><h2>Interested in the work?</h2><p>Explore the code, or get in touch.</p></div><div class="footer-links"><a class="button" href="https://github.com/Tansari2004/financial-crime-investigation-analytics/tree/main/pipeline" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="email" href="mailto:tansari7@uwo.ca">Email Tarik ↗</a></div></footer>
   </main>
