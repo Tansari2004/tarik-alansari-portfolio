@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6fc">
+  <title>DiaCare NLP Triage · Tarik Alansari</title>
+  <meta name="description" content="A closer look at Tarik Alansari’s DiaCare NLP project: classifying support messages, assigning urgency, and explaining routing decisions.">
+  <link rel="canonical" href="https://tansari2004.github.io/tarik-alansari-portfolio/diacare-nlp.html">
+  <meta property="og:title" content="DiaCare NLP Triage · Tarik Alansari">
+  <meta property="og:description" content="Turning support messages into clearer priorities for human review.">
+  <meta property="og:image" content="https://tansari2004.github.io/tarik-alansari-portfolio/diacare-nlp-button.webp">
+  <link rel="stylesheet" href="diacare-nlp.css">
+  <script src="diacare-nlp.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <nav class="nav" aria-label="Project navigation"><a href="./">← Portfolio</a><span>Tarik Alansari</span></nav>
+    <header class="hero">
+      <div class="hero-copy"><p class="eyebrow">LANGUAGE → ACTION</p><h1>A clearer queue.<br><span>A human decision.</span></h1><p class="lead">DiaCare NLP Triage turns patient-support messages into a category and urgency level, helping a reviewer understand what needs attention.</p><div class="actions"><a class="button" href="#examples">Explore an example ↓</a><a class="text-link" href="https://github.com/Tansari2004/diacare-nlp" target="_blank" rel="noopener noreferrer">View GitHub ↗</a></div></div>
+      <aside class="hero-note"><span class="small-label">DIACARE NLP TRIAGE</span><div class="message-mark" aria-hidden="true">Aa<span>→</span></div><p>Understand the message.<br>Suggest a route.<br>Keep a person in the loop.</p><div class="chips"><span>Python</span><span>scikit-learn</span><span>FastAPI</span><span>Docker</span></div></aside>
+    </header>
+    <section class="metrics" aria-label="Synthetic holdout results"><div><strong>92.9%</strong><span>support-category accuracy</span></div><div><strong>80.2%</strong><span>priority-level accuracy</span></div><div><strong>126</strong><span>held-out synthetic messages</span></div></section>
+    <p class="metric-note">Results on synthetic data—not a measure of clinical safety or real-world performance.</p>
+
+    <section class="section" id="examples" aria-labelledby="example-title"><p class="eyebrow">SEE THE IDEA</p><h2 id="example-title">One message. A useful starting point.</h2><p class="intro">Switch between two documented examples to see how the service responds.</p>
+      <div class="example-tabs" role="group" aria-label="Choose a documented example"><button type="button" data-example="billing" aria-pressed="true">Billing question</button><button type="button" data-example="gate" aria-pressed="false">Keyword escalation</button></div>
+      <div class="example-card" aria-live="polite" aria-atomic="true"><div class="input"><span class="small-label">SUPPORT MESSAGE</span><blockquote id="message">“I was charged twice for my subscription.”</blockquote><p class="example-label">Saved example from the repository—not a live prediction.</p></div><div class="output"><span class="small-label">SUGGESTED ROUTING</span><div class="routing"><span id="category">Billing</span><span id="priority">Priority 3 / 5</span></div><p id="explanation">The model identifies a billing request. Weighted terms such as “charged” and “subscription” help explain its response.</p><div class="review"><span aria-hidden="true">→</span> Human review</div></div></div>
+    </section>
+
+    <section class="section" aria-labelledby="approach-title"><p class="eyebrow">THE APPROACH</p><h2 id="approach-title">Small, focused, and explainable.</h2><div class="approach-grid"><article><span class="step">01</span><h3>Check high-risk phrases</h3><p>A keyword gate runs first. Matching phrases bypass the models and trigger a priority-5 medical escalation.</p></article><article><span class="step">02</span><h3>Classify the request</h3><p>Two calibrated linear SVM models predict the support category and priority from TF-IDF text features.</p></article><article><span class="step">03</span><h3>Return a clear response</h3><p>FastAPI returns the category, priority, confidence field, and reason phrases for review by a person.</p></article></div></section>
+
+    <section class="section" aria-labelledby="scope-title"><div class="scope"><div><p class="eyebrow">WHAT IT COVERS</p><h2 id="scope-title">Support routing.<br>Not diagnosis.</h2></div><div><p>Five categories: appointment, billing, medical, technical issue, and other. Priority runs from 1 (low) to 5 (emergency).</p><p>The project uses 630 synthetic messages. It contains no patient records or personal health information. The keyword gate covers only a small set of phrases and cannot replace clinical assessment.</p></div></div>
+      <details><summary>Explore the evaluation & technical details <span aria-hidden="true">+</span></summary><div class="details-content"><h3>How it was evaluated</h3><p>A stratified 20% holdout leaves 126 messages for testing. Five-fold stratified cross-validation is performed on the remaining training pool, using random seed 42. Features include TF-IDF unigrams and bigrams, with up to 20,000 features. The linear SVM models use sigmoid probability calibration; priority uses balanced class weights.</p><div class="table-wrap"><table><thead><tr><th scope="col">Measure</th><th scope="col">Category</th><th scope="col">Priority</th></tr></thead><tbody><tr><th scope="row">Holdout accuracy</th><td>92.9%</td><td>80.2%</td></tr><tr><th scope="row">Holdout macro F1</th><td>0.927</td><td>0.808</td></tr><tr><th scope="row">5-fold CV macro F1</th><td>0.934 ± 0.033</td><td>0.816 ± 0.022</td></tr></tbody></table></div><p>Macro F1 weights each class equally. The technical-issue category has lower recall (80%) than the other categories. Priority 5 has only seven holdout examples, so conclusions about rare urgent cases need particular care.</p><h3>What the API provides</h3><p><code>POST /triage</code> accepts message text. <code>GET /health</code> reports service status and whether the models loaded. The repository includes training code, model artifacts, Docker packaging, and API and safety-gate tests.</p><p>For model predictions, the returned confidence field is the larger of the category and priority model’s maximum probabilities—not a joint certainty score. The gate’s 0.99 value is fixed by code, not an estimated clinical probability.</p><h3>Before real-world use</h3><p>The category-balanced synthetic dataset does not represent real support traffic. Representative validation and review by qualified professionals would be required before real-world use.</p><div class="sources"><a href="https://github.com/Tansari2004/diacare-nlp/blob/main/results/metrics.json" target="_blank" rel="noopener noreferrer">Full evaluation metrics ↗</a><a href="https://github.com/Tansari2004/diacare-nlp/blob/main/triage_api.py" target="_blank" rel="noopener noreferrer">API implementation ↗</a><a href="https://github.com/Tansari2004/diacare-nlp/blob/main/data/DATASET_INFO.md" target="_blank" rel="noopener noreferrer">Dataset notes ↗</a></div></div></details>
+    </section>
+    <footer><div><p class="eyebrow">LET’S CONNECT</p><h2>Interested in the work?</h2></div><div class="actions"><a class="button" href="https://github.com/Tansari2004/diacare-nlp" target="_blank" rel="noopener noreferrer">Explore GitHub ↗</a><a class="text-link" href="mailto:tansari7@uwo.ca">Email Tarik ↗</a></div></footer>
+    <p class="disclaimer">Portfolio project, not a medical device. Examples explain the software; they are not medical advice.</p>
+  </main>
+</body>
+</html>
