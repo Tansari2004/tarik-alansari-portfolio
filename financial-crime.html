@@ -23,24 +23,24 @@
     <header class="hero">
       <p class="eyebrow">A PROJECT BY TARIK ALANSARI</p>
       <h1>Financial Crime<br><span>Analytics</span></h1>
-      <p class="lead">Helping investigators find where to start. A system that ranks simulated bank payments and transfers, explaining which records deserve a closer look.</p>
+      <p class="lead">Which bank payments should an investigator check first? I built a system that puts potentially suspicious payments at the top of a review list—and explains why.</p>
       <div class="tools" aria-label="Project tools"><span>PostgreSQL</span><span>SQL</span><span>Python</span><span>NumPy</span><span>Power BI</span></div>
       <div class="hero-actions"><a class="button" href="#report">See the results <span aria-hidden="true">↓</span></a><a class="secondary" href="https://github.com/Tansari2004/financial-crime-investigation-analytics" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">↗</span></a></div>
     </header>
 
     <section class="results" aria-label="Verified project results">
-      <div><strong>5.08M</strong><span>synthetic transactions scored</span></div>
-      <div><strong>199</strong><span>labelled cases found in the top 1,000 test transactions</span></div>
-      <div><strong>10,000</strong><span>ranked test cases in the Power BI report</span></div>
+      <div><strong>5.08M</strong><span>simulated payments analyzed</span></div>
+      <div><strong>199</strong><span>payments marked as money laundering in the first 1,000 test results</span></div>
+      <div><strong>10,000</strong><span>payments ordered for review in the dashboard</span></div>
     </section>
 
     <section class="section" aria-labelledby="flow">
       <p class="eyebrow">HOW IT WORKS</p><h2 id="flow">A clearer starting point for review.</h2>
       <p class="section-intro">Each transaction is a payment between accounts, with a time, amount, currency, and payment method. The records come from IBM’s simulated banking dataset—not real customers. Most are legitimate; some carry a synthetic money-laundering label for model evaluation.</p>
       <ol class="steps">
-        <li><span class="number">01</span><h3>Analyze the history</h3><p>SQL builds signals from transaction amounts, payment methods, and earlier account activity.</p></li>
-        <li><span class="number">02</span><h3>Rank the cases</h3><p>A logistic model learns from earlier dates and is evaluated on later transactions.</p></li>
-        <li><span class="number">03</span><h3>Show the reasons</h3><p>Power BI presents the ranked cases with the model factors that increased each score.</p></li>
+        <li><span class="number">01</span><h3>Look at the payments</h3><p>Use SQL to examine amounts, payment methods, and the account’s earlier activity.</p></li>
+        <li><span class="number">02</span><h3>Choose what to check first</h3><p>A machine-learning model learns from older payments, then orders newer ones by how suspicious they look.</p></li>
+        <li><span class="number">03</span><h3>Explain each flag</h3><p>The dashboard shows the payment details and which factors raised its score. A person decides what to investigate.</p></li>
       </ol>
     </section>
 
@@ -51,7 +51,7 @@
       <details class="more additional-report"><summary>See the currency dashboard <span aria-hidden="true">+</span></summary>
       <figure class="report"><a href="crime-assets/currency-dashboard.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size case counts by currency screenshot"><img src="crime-assets/currency-dashboard.png" width="2880" height="1800" alt="Power BI dashboard chart showing ranked review cases by payment currency" loading="lazy" decoding="async"></a><figcaption><h3>Cases by currency</h3><p>A simple dashboard view helps investigators understand how the ranked sample is distributed across payment currencies.</p></figcaption></figure>
       </details>
-      <aside class="context"><strong>What the result means</strong><p>Reviewing the first 1,000 ranked test transactions would surface 199 labelled cases. That is 19.9% precision and captures 12.35% of all 1,611 positive labels in the test period.</p></aside>
+      <aside class="context"><strong>The result, in plain language</strong><p>Of the first 1,000 payments the model suggested checking, 199 were marked as money laundering in the simulated dataset. The other 801 were not.</p><p>The test period contained 1,611 marked payments in total, so this first 1,000-payment review list found about 12% of them. It helps prioritize review; it does not catch everything or prove a crime occurred.</p></aside>
       <details class="more evaluation"><summary>Model details & verified results <span aria-hidden="true">+</span></summary>
         <div class="detail-content">
           <h3>Tested on later dates</h3><p>The class-weighted logistic regression was built with NumPy. Training uses dates before September 8, 2022; validation uses September 8; testing uses September 9 onward. Historical features use earlier calendar days, and laundering labels are excluded from model inputs.</p>

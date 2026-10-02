@@ -1,6 +1,6 @@
 const examples = {
-  billing: {message:'“I was charged twice for my subscription.”',category:'Billing',priority:'Priority 3 / 5',explanation:'The model identifies a billing request. Weighted terms such as “charged” and “subscription” help explain its response.'},
-  gate: {message:'“I have chest pain and feel faint.”',category:'Medical',priority:'Priority 5 / 5',explanation:'The phrases “chest pain” and “faint” trigger the keyword gate. This bypasses the models and returns an escalation flag for human review—not a diagnosis.'}
+  billing: {message:'“I was charged twice for my subscription.”',category:'Billing',priority:'Priority 3 / 5',explanation:'Suggested topic: a billing issue. Words such as “charged” and “subscription” help explain the choice. The suggested urgency is 3 out of 5.'},
+  gate: {message:'“I have chest pain and feel faint.”',category:'Medical',priority:'Priority 5 / 5',explanation:'The phrases “chest pain” and “faint” match a built-in rule. The service skips the models and flags the message at urgency 5 out of 5 for human review. This is not a diagnosis.'}
 };
 document.querySelectorAll('[data-example]').forEach(button => {
   button.addEventListener('click', () => {
