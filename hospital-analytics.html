@@ -14,7 +14,7 @@
   <title>Hospital Patient Flow & Capacity Analytics · Tarik Alansari</title>
   <link rel="stylesheet" href="banking-pipeline.css?v=3">
   <link rel="stylesheet" href="financial-crime.css?v=3">
-  <link rel="stylesheet" href="hospital-analytics.css?v=2">
+  <link rel="stylesheet" href="hospital-analytics.css?v=3">
   <script src="banking-pipeline.js" defer></script>
 </head>
 <body class="crime-page hospital-page">
@@ -23,7 +23,7 @@
     <header class="hero">
       <p class="eyebrow">HEALTHCARE ANALYTICS · A PROJECT BY TARIK ALANSARI</p>
       <h1>Hospital Patient Flow<br><span>& Capacity Analytics</span></h1>
-      <p class="lead">How many people need hospital care—and how full are the beds? I used public NHS England data to show emergency admissions, long waits, and bed use in one dashboard.</p>
+      <p class="lead">I built a dashboard to show how busy hospitals are: how many emergency patients are admitted, how long some wait, and how many beds are in use. I also tested ways to estimate next month’s admissions.</p>
       <div class="tools" aria-label="Project tools"><span>Python</span><span>SQL · SQLite</span><span>Forecasting</span><span>Power BI</span></div>
       <div class="hero-actions"><a class="button" href="#report">See the reports <span aria-hidden="true">↓</span></a><a class="secondary" href="https://github.com/Tansari2004/nhs-emergency-demand-analytics" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">↗</span></a></div>
     </header>
@@ -36,26 +36,27 @@
 
     <section class="section" aria-labelledby="flow">
       <p class="eyebrow">WHAT I BUILT</p><h2 id="flow">Three questions. One clear report.</h2>
-      <p class="section-intro">How many people are admitted? How full are the beds? Can past admissions help estimate next month’s demand?</p>
+      <p class="section-intro">The report uses public totals from NHS England, not individual patient records. Here is what each part tells you:</p>
       <ol class="steps">
-        <li><span class="number">01</span><h3>Bring the numbers together</h3><p>Collect public NHS spreadsheets, check the source files, and organize the data with SQL.</p></li>
-        <li><span class="number">02</span><h3>Find the patterns</h3><p>Use Python to compare admissions and bed use over time, then test two ways to predict next month’s admissions.</p></li>
-        <li><span class="number">03</span><h3>Show the findings</h3><p>Build a Power BI dashboard so someone can explore admissions, waits, bed use, and prediction errors.</p></li>
+        <li><span class="number">01</span><h3>How many patients are admitted?</h3><p>An admission means someone is taken into hospital for care—not simply that they visited the emergency department. The report tracks these totals each month.</p></li>
+        <li><span class="number">02</span><h3>How full are the beds?</h3><p>Bed occupancy means the share of available beds being used. Around 91% means roughly 91 out of every 100 general-and-acute overnight beds were occupied, on average.</p></li>
+        <li><span class="number">03</span><h3>Can we estimate next month?</h3><p>I compare two methods for predicting the number of admissions, then check how far each prediction was from the actual total.</p></li>
       </ol>
     </section>
 
     <section class="section" id="report" aria-labelledby="report-title">
-      <div class="section-heading"><div><p class="eyebrow">THE REPORT</p><h2 id="report-title">Hospital pressure, made visible.</h2></div><span class="quiet">Completed Power BI report</span></div>
+      <div class="section-heading"><div><p class="eyebrow">THE REPORT</p><h2 id="report-title">See the hospital numbers over time.</h2></div><span class="quiet">Three-page Power BI dashboard</span></div>
       <p class="image-hint">Tap a screenshot to view it larger.</p>
       <figure class="report wide"><a href="hospital-assets/emergency-demand.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size emergency demand report"><img src="hospital-assets/emergency-demand.png" alt="Power BI emergency demand report showing monthly emergency admissions and waits after a decision to admit" loading="lazy" decoding="async"></a><figcaption><h3>How many people need care?</h3><p>See emergency hospital admissions each month and how many patients waited over 12 hours after staff decided to admit them. This is not the total time spent in the emergency department.</p></figcaption></figure>
       <details class="more additional-report"><summary>See bed use & next-month predictions <span aria-hidden="true">+</span></summary>
-        <figure class="report"><a href="hospital-assets/bed-pressure.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size bed pressure report"><img src="hospital-assets/bed-pressure.png" alt="Power BI bed pressure report showing quarterly general-and-acute occupancy and a trust-level bed snapshot" loading="lazy" decoding="async"></a><figcaption><h3>Bed pressure</h3><p>Explore quarterly occupancy and the latest available bed snapshot across 153 trusts.</p></figcaption></figure>
-        <figure class="report"><a href="hospital-assets/admissions-forecast.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size admission forecast report"><img src="hospital-assets/admissions-forecast.png" alt="Power BI admission forecast report comparing actual admissions, seasonal baseline forecasts, random forest forecasts and forecast error" loading="lazy" decoding="async"></a><figcaption><h3>Admission forecasting</h3><p>Compare predicted and actual admissions, including the error of each forecasting method.</p></figcaption></figure>
+        <figure class="report"><a href="hospital-assets/bed-pressure.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size bed pressure report"><img src="hospital-assets/bed-pressure.png" alt="Power BI bed pressure report showing quarterly general-and-acute occupancy and a trust-level bed snapshot" loading="lazy" decoding="async"></a><figcaption><h3>How full are the beds?</h3><p>See how bed use changes over time and compare the latest figures across 153 NHS trusts—organisations that run hospital services.</p></figcaption></figure>
+        <figure class="report"><a href="hospital-assets/admissions-forecast.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size admission forecast report"><img src="hospital-assets/admissions-forecast.png" alt="Power BI admission forecast report comparing actual admissions, seasonal baseline forecasts, random forest forecasts and forecast error" loading="lazy" decoding="async"></a><figcaption><h3>How close were the predictions?</h3><p>Compare each predicted monthly admission total with what actually happened. A smaller gap means a more accurate prediction.</p></figcaption></figure>
       </details>
 
       <aside class="context"><strong>The main finding: a simpler prediction was more accurate.</strong><p>I compared a machine-learning model with a simple rule: use the number of admissions from the same month last year. Across 24 test months, the simple rule was closer to the actual number.</p><div class="forecast-comparison"><div><span>Same month last year</span><strong>9,874</strong><small>admissions off, on average</small></div><div><span>Machine-learning model</span><strong>15,501</strong><small>admissions off, on average</small></div></div><p>Lower error is better. A more complex model did not improve this forecast.</p></aside>
 
       <details class="more evaluation"><summary>Data, methods & sources <span aria-hidden="true">+</span></summary><div class="detail-content">
+        <h3>How I built it</h3><p>I collected public NHS spreadsheets, checked the source files, and organized the data in SQLite. SQL and Python support the analysis and prediction tests; Power BI presents the findings.</p>
         <h3>Published aggregate data</h3><p>Monthly emergency demand covers February 2016–August 2026. Overnight bed data covers 45 quarters from June 2015–June 2026. The latest trust snapshot is April–June 2026. Source URLs and file hashes are pinned so the analysis can be reproduced.</p>
         <h3>A fair forecast comparison</h3><p>The random forest uses calendar features and admissions from previous months. It is compared with a seasonal baseline over September 2024–August 2026, updating one month ahead using observed prior admissions. Mean absolute error is 9,874.21 admissions per month for the baseline and 15,501.42 for the random forest.</p>
         <p>The preferred baseline forecast was 535,580 admissions for September 2026, using information through August 2026. This is a historical forecast from that point in time.</p>

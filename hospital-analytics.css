@@ -12,3 +12,10 @@
 .hospital-page .report img{aspect-ratio:2880/1635}
 @media(max-width:650px){.hospital-page h1{font-size:clamp(27px,7.3vw,33px)}.hospital-page .results strong,.hospital-page .results div:nth-child(2) strong{font-size:23px}.hospital-page .results span{font-size:11px}.forecast-comparison{gap:10px}.forecast-comparison>div{padding:13px}.forecast-comparison span,.forecast-comparison small{font-size:12px}}
 @media(max-width:360px){.hospital-page .results strong,.hospital-page .results div:nth-child(2) strong{font-size:20px}.hospital-page .results span{font-size:11px}}
+/* Give the explanations room to read on a phone. */
+@media(max-width:650px){
+ .hospital-page .results{grid-template-columns:1fr;gap:8px}
+ .hospital-page .results div,.hospital-page .results div:first-child{display:grid;grid-template-columns:100px 1fr;gap:14px;align-items:center;padding:16px}
+ .hospital-page .results span,.hospital-page .results div:first-child span{margin:0;max-width:none;font-size:13px;line-height:1.6}
+ .hospital-page .forecast-comparison{grid-template-columns:1fr}
+}
