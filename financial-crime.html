@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://tansari2004.github.io/tarik-alansari-portfolio/financial-crime-button.webp">
   <title>Financial Crime Analytics · Tarik Alansari</title>
   <link rel="stylesheet" href="banking-pipeline.css?v=3">
-  <link rel="stylesheet" href="financial-crime.css?v=1">
+  <link rel="stylesheet" href="financial-crime.css?v=2">
   <script src="banking-pipeline.js" defer></script>
 </head>
 <body class="crime-page">
@@ -23,28 +23,28 @@
     <header class="hero">
       <p class="eyebrow">MACHINE LEARNING · FINANCIAL SERVICES</p>
       <h1>Financial Crime<br><span>Analytics</span></h1>
-      <p class="lead">I built a system that analyzes millions of synthetic transactions and ranks the strongest signals for human investigation.</p>
-      <div class="tools" aria-label="Project tools"><span>PostgreSQL</span><span>SQL</span><span>Python</span><span>scikit-learn</span><span>Power BI</span></div>
+      <p class="lead">I built a system that ranks synthetic bank transactions for review, helping investigators decide where to start.</p>
+      <div class="tools" aria-label="Project tools"><span>PostgreSQL</span><span>SQL</span><span>Python</span><span>NumPy</span><span>Power BI</span></div>
       <div class="hero-actions"><a class="button" href="#report">See the results <span aria-hidden="true">↓</span></a><a class="secondary" href="https://github.com/Tansari2004/financial-crime-investigation-analytics" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">↗</span></a></div>
     </header>
 
     <section class="results" aria-label="Verified project results">
-      <div><strong>5.08M</strong><span>transactions analyzed</span></div>
-      <div><strong>19.9%</strong><span>precision in the top 1,000</span></div>
-      <div><strong>107×</strong><span>lift over the test-period base rate</span></div>
+      <div><strong>5.08M</strong><span>synthetic transactions scored</span></div>
+      <div><strong>199 / 1,000</strong><span>labelled cases in the first 1,000 ranked test transactions</span></div>
+      <div><strong>10,000</strong><span>ranked test cases in the Power BI report</span></div>
     </section>
 
     <section class="section overview" aria-labelledby="overview">
-      <div><p class="eyebrow">WHY IT MATTERS</p><h2 id="overview">Help investigators focus<br>on the right cases first.</h2></div>
-      <p>Positive labels make up only a tiny share of the synthetic data. Instead of relying on accuracy, this project measures how many labelled cases appear near the top of a limited review queue.</p>
+      <div><p class="eyebrow">WHY IT MATTERS</p><h2 id="overview">Millions of transactions.<br>Limited time to review.</h2></div>
+      <p>Only about 1 in 1,000 transactions carries a simulated laundering label. The goal is to bring more of those cases to the top of the queue, with reasons a reviewer can inspect.</p>
     </section>
 
     <section class="section" aria-labelledby="flow">
-      <p class="eyebrow">WHAT I BUILT</p><h2 id="flow">From transaction history to a clear review queue.</h2>
+      <p class="eyebrow">WHAT I BUILT</p><h2 id="flow">Analyze. Rank. Explain.</h2>
       <ol class="steps">
-        <li><span class="number">01</span><h3>Build signals</h3><p>Use SQL to create transaction features from information available before each scoring date.</p></li>
-        <li><span class="number">02</span><h3>Rank cases</h3><p>Train on earlier dates, test on later dates, and assign every transaction a review score.</p></li>
-        <li><span class="number">03</span><h3>Explain results</h3><p>Show ranked cases, model reasons, amounts, currencies, and transaction details in Power BI.</p></li>
+        <li><span class="number">01</span><h3>Analyze the history</h3><p>SQL builds signals from transaction amounts, payment methods, and earlier account activity.</p></li>
+        <li><span class="number">02</span><h3>Rank the cases</h3><p>A logistic model learns from earlier dates and is evaluated on later transactions.</p></li>
+        <li><span class="number">03</span><h3>Show the reasons</h3><p>Power BI presents the ranked cases with the model factors that increased each score.</p></li>
       </ol>
     </section>
 
@@ -53,7 +53,18 @@
       <p class="image-hint">Tap a screenshot to view it larger.</p>
       <figure class="report wide"><a href="crime-assets/review-queue.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size ranked review queue screenshot"><img src="crime-assets/review-queue.png" width="2880" height="1800" alt="Power BI financial crime review queue showing ranked synthetic transactions, model scores, explanations, amounts and currencies" loading="lazy" decoding="async"></a><figcaption><h3>Ranked review queue</h3><p>The top 10,000 later-period cases include review rank, model score, transaction details, and a plain-language reason for prioritization.</p></figcaption></figure>
       <figure class="report"><a href="crime-assets/currency-dashboard.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size case counts by currency screenshot"><img src="crime-assets/currency-dashboard.png" width="2880" height="1800" alt="Power BI dashboard chart showing ranked review cases by payment currency" loading="lazy" decoding="async"></a><figcaption><h3>Cases by currency</h3><p>A simple dashboard view helps investigators understand how the ranked sample is distributed across payment currencies.</p></figcaption></figure>
-      <aside class="context"><strong>How to read the result</strong><p>Among the top 1,000 later-period cases, 199 of 1,611 positive synthetic labels were surfaced. That is 19.9% precision and 12.35% recall at that review capacity.</p></aside>
+      <aside class="context"><strong>What the result means</strong><p>Reviewing the first 1,000 ranked test transactions would surface 199 labelled cases. That is 19.9% precision and captures 12.35% of all 1,611 positive labels in the test period.</p></aside>
+      <details class="more evaluation"><summary>Model details & verified results <span aria-hidden="true">+</span></summary>
+        <div class="detail-content">
+          <h3>Tested on later dates</h3><p>The class-weighted logistic regression was built with NumPy. Training uses dates before September 8, 2022; validation uses September 8; testing uses September 9 onward. Historical features use earlier calendar days, and laundering labels are excluded from model inputs.</p>
+          <h3>Results at different review capacities</h3>
+          <div class="table-scroll"><table><caption>Later-period test results</caption><thead><tr><th scope="col">Cases reviewed</th><th scope="col">Labels found</th><th scope="col">Precision</th><th scope="col">Recall</th></tr></thead><tbody><tr><th scope="row">100</th><td>35</td><td>35.0%</td><td>2.17%</td></tr><tr><th scope="row">500</th><td>103</td><td>20.6%</td><td>6.39%</td></tr><tr><th scope="row">1,000</th><td>199</td><td>19.9%</td><td>12.35%</td></tr><tr><th scope="row">5,000</th><td>592</td><td>11.84%</td><td>36.75%</td></tr></tbody></table></div>
+          <p>The test set contains 863,900 transactions, with 0.1865% positive labels. Precision at 1,000 is about 107× that base rate. PR-AUC is 0.1016 and ROC-AUC is 0.9330.</p>
+          <h3>Data & reporting scope</h3><p>The IBM HI-Small dataset contains 5,078,345 synthetic transactions, 5,177 positive labels, 15 currencies, and 7 payment formats across September 1–18, 2022. The Power BI report shows the top 10,000 test cases; the currency chart is also saved as a dashboard tile. A separate local browser dashboard supports case filters and explanations.</p>
+          <h3>Current limits</h3><p>Results describe an 18-day synthetic dataset. Later dates have a higher positive-label rate. The model has no external validation, probability calibration, or real investigator feedback. The screenshots show a saved report in a private workspace.</p>
+          <nav class="sources" aria-label="Project evidence"><a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/blob/main/reports/model_report.md" target="_blank" rel="noopener noreferrer">Model report ↗</a><a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/blob/main/docs/findings.md" target="_blank" rel="noopener noreferrer">Data findings ↗</a><a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/blob/main/docs/power_bi_build.md" target="_blank" rel="noopener noreferrer">Power BI details ↗</a></nav>
+        </div>
+      </details>
       <p class="note">The data and labels are synthetic. Review scores rank cases for human attention; they are not calibrated probabilities or proof of financial crime.</p>
     </section>
 
