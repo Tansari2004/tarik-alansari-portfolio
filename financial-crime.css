@@ -29,3 +29,29 @@ table{width:100%;border-collapse:collapse;font-size:14px;text-align:left;font-va
  .crime-page h2{font-size:24px}.crime-page .eyebrow{letter-spacing:.1em;line-height:1.7}
  .crime-page .more summary{font-size:14px}.detail-content p{font-size:16px}table{font-size:12px}th,td{padding:11px 9px}.sources{display:grid;gap:2px}.context strong{font-size:16px}
 }
+
+/* Quiet blue surfaces and a shorter first read. */
+.crime-page{background:linear-gradient(155deg,#f7faff,#eef4ff 55%,#f7faff)}
+.crime-page .page{max-width:920px}
+.crime-page .hero{background:radial-gradient(ellipse at 100% 0,#c9dfff99,transparent 65%),linear-gradient(130deg,#fff,#f2f7ff);border-color:#d7e4f7;padding:42px}
+.crime-page h1{font-size:clamp(34px,5vw,52px);letter-spacing:-.05em}
+.crime-page h1 span,.crime-page .eyebrow,.crime-page .results strong{color:#2863b8}
+.crime-page .button{background:#2266d1}.crime-page .button:hover{background:#1957b9}
+.crime-page .secondary,.crime-page .back,.crime-page .email,.crime-page .more summary,.sources a{color:#315e9c}
+.crime-page .tools span{border-color:#dbe6f5;background:#ffffffb3;color:#506784}
+.crime-page .results{gap:12px}.crime-page .results div,.crime-page .results div:first-child{border-color:#dbe5f3;box-shadow:0 7px 22px -18px #315b9244}
+.crime-page .results div+div{border-color:#dbe5f3}
+.crime-page .section{border-color:#dce5f2}.crime-page .steps li,.crime-page .report{border-color:#dce6f4}
+.crime-page .steps .number{background:#edf4ff;color:#3268b2}
+.crime-page .report figcaption h3{color:#233b5a}.crime-page .report a::after{color:#3268b2;border-color:#dbe6f4}
+.crime-page .more{background:#ffffffb8;border-color:#d7e3f4}.additional-report{padding-bottom:0}.additional-report[open]{padding-bottom:20px}.additional-report .report{margin-top:0}
+.context{background:#eaf2ff;border:1px solid #d5e3f9;border-radius:14px;color:#284770;padding:22px}.context p{color:#455d7c}
+.section-intro{font-size:16px;line-height:1.7;color:#50637d;max-width:600px;margin-top:13px}
+.crime-page table caption,.crime-page thead{background:#f1f6ff}.crime-page .table-scroll{border-color:#dce5f2}.crime-page th,.crime-page td{border-color:#e4ebf5}
+@media(max-width:650px){
+ .crime-page .hero{padding:27px 24px}.crime-page h1{font-size:34px}.crime-page .lead{font-size:16px;line-height:1.6}
+ .crime-page .results{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.crime-page .results div,.crime-page .results div:first-child{grid-column:auto;display:block;padding:16px 11px}.crime-page .results div:first-child span{max-width:none;margin-top:8px}.crime-page .results strong,.crime-page .results div:nth-child(2) strong{font-size:25px}.crime-page .results span{font-size:12px;line-height:1.55}
+ .crime-page .section{padding:30px 0}.crime-page .steps{gap:0;border:1px solid #dbe5f4;border-radius:16px;background:white;overflow:hidden}.crime-page .steps li{border:0;border-radius:0;box-shadow:none;padding:21px 19px 21px 60px}.crime-page .steps li+li{border-top:1px solid #edf1f7}.crime-page .steps .number{top:21px}
+ .context{padding:20px}.crime-page .report figcaption{padding:20px}.crime-page .eyebrow{font-size:10px;letter-spacing:.13em}
+}
+@media(max-width:360px){.crime-page .results div,.crime-page .results div:first-child{padding:14px 9px}.crime-page .results strong,.crime-page .results div:nth-child(2) strong{font-size:23px}.crime-page .results span{font-size:11px}}

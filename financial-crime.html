@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f7f3f6">
+  <meta name="theme-color" content="#f2f6ff">
   <meta name="description" content="Financial Crime Analytics by Tarik Alansari. A case-ranking system built across 5.08 million synthetic transactions with PostgreSQL, Python, machine learning and Power BI.">
   <link rel="canonical" href="https://tansari2004.github.io/tarik-alansari-portfolio/financial-crime.html">
   <meta property="og:title" content="Financial Crime Analytics · Tarik Alansari">
@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://tansari2004.github.io/tarik-alansari-portfolio/financial-crime-button.webp">
   <title>Financial Crime Analytics · Tarik Alansari</title>
   <link rel="stylesheet" href="banking-pipeline.css?v=3">
-  <link rel="stylesheet" href="financial-crime.css?v=2">
+  <link rel="stylesheet" href="financial-crime.css?v=3">
   <script src="banking-pipeline.js" defer></script>
 </head>
 <body class="crime-page">
@@ -21,26 +21,22 @@
     <nav class="nav" aria-label="Project navigation"><a href="./" class="back">← Back to portfolio</a><span>Tarik Alansari</span></nav>
 
     <header class="hero">
-      <p class="eyebrow">MACHINE LEARNING · FINANCIAL SERVICES</p>
+      <p class="eyebrow">A PROJECT BY TARIK ALANSARI</p>
       <h1>Financial Crime<br><span>Analytics</span></h1>
-      <p class="lead">I built a system that ranks synthetic bank transactions for review, helping investigators decide where to start.</p>
+      <p class="lead">Helping investigators find where to start. A system that ranks synthetic bank transactions and explains why each case deserves a closer look.</p>
       <div class="tools" aria-label="Project tools"><span>PostgreSQL</span><span>SQL</span><span>Python</span><span>NumPy</span><span>Power BI</span></div>
       <div class="hero-actions"><a class="button" href="#report">See the results <span aria-hidden="true">↓</span></a><a class="secondary" href="https://github.com/Tansari2004/financial-crime-investigation-analytics" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">↗</span></a></div>
     </header>
 
     <section class="results" aria-label="Verified project results">
       <div><strong>5.08M</strong><span>synthetic transactions scored</span></div>
-      <div><strong>199 / 1,000</strong><span>labelled cases in the first 1,000 ranked test transactions</span></div>
+      <div><strong>199</strong><span>labelled cases found in the top 1,000 test transactions</span></div>
       <div><strong>10,000</strong><span>ranked test cases in the Power BI report</span></div>
     </section>
 
-    <section class="section overview" aria-labelledby="overview">
-      <div><p class="eyebrow">WHY IT MATTERS</p><h2 id="overview">Millions of transactions.<br>Limited time to review.</h2></div>
-      <p>Only about 1 in 1,000 transactions carries a simulated laundering label. The goal is to bring more of those cases to the top of the queue, with reasons a reviewer can inspect.</p>
-    </section>
-
     <section class="section" aria-labelledby="flow">
-      <p class="eyebrow">WHAT I BUILT</p><h2 id="flow">Analyze. Rank. Explain.</h2>
+      <p class="eyebrow">HOW IT WORKS</p><h2 id="flow">A clearer starting point for review.</h2>
+      <p class="section-intro">Millions of transactions. Limited review time. The pipeline turns transaction history into a prioritized list.</p>
       <ol class="steps">
         <li><span class="number">01</span><h3>Analyze the history</h3><p>SQL builds signals from transaction amounts, payment methods, and earlier account activity.</p></li>
         <li><span class="number">02</span><h3>Rank the cases</h3><p>A logistic model learns from earlier dates and is evaluated on later transactions.</p></li>
@@ -51,8 +47,10 @@
     <section class="section" id="report" aria-labelledby="report-title">
       <div class="section-heading"><div><p class="eyebrow">THE RESULTS</p><h2 id="report-title">A queue built for investigation.</h2></div><span class="quiet">Power BI report</span></div>
       <p class="image-hint">Tap a screenshot to view it larger.</p>
-      <figure class="report wide"><a href="crime-assets/review-queue.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size ranked review queue screenshot"><img src="crime-assets/review-queue.png" width="2880" height="1800" alt="Power BI financial crime review queue showing ranked synthetic transactions, model scores, explanations, amounts and currencies" loading="lazy" decoding="async"></a><figcaption><h3>Ranked review queue</h3><p>The top 10,000 later-period cases include review rank, model score, transaction details, and a plain-language reason for prioritization.</p></figcaption></figure>
+      <figure class="report wide"><a href="crime-assets/review-queue.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size ranked review queue screenshot"><img src="crime-assets/review-queue.png" width="2880" height="1800" alt="Power BI financial crime review queue showing ranked synthetic transactions, model scores, explanations, amounts and currencies" loading="lazy" decoding="async"></a><figcaption><h3>Every case, with a reason.</h3><p>Explore 10,000 ranked test cases with scores, transaction details, and model explanations.</p></figcaption></figure>
+      <details class="more additional-report"><summary>See the currency dashboard <span aria-hidden="true">+</span></summary>
       <figure class="report"><a href="crime-assets/currency-dashboard.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size case counts by currency screenshot"><img src="crime-assets/currency-dashboard.png" width="2880" height="1800" alt="Power BI dashboard chart showing ranked review cases by payment currency" loading="lazy" decoding="async"></a><figcaption><h3>Cases by currency</h3><p>A simple dashboard view helps investigators understand how the ranked sample is distributed across payment currencies.</p></figcaption></figure>
+      </details>
       <aside class="context"><strong>What the result means</strong><p>Reviewing the first 1,000 ranked test transactions would surface 199 labelled cases. That is 19.9% precision and captures 12.35% of all 1,611 positive labels in the test period.</p></aside>
       <details class="more evaluation"><summary>Model details & verified results <span aria-hidden="true">+</span></summary>
         <div class="detail-content">
