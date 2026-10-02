@@ -1,0 +1,11 @@
+.crime-page{background:linear-gradient(145deg,#fbf8fa,#f5eff4 52%,#f7f4f9)}
+.crime-page .hero{background:radial-gradient(ellipse at 100% 0,#f4dce688,transparent 65%),linear-gradient(120deg,#fff,#fbf4f7);border-color:#eadce4}
+.crime-page h1 span,.crime-page .eyebrow,.crime-page .results strong{color:#9b3e63}
+.crime-page .button{background:#963b60}.crime-page .button:hover{background:#7c2e4e}
+.crime-page .secondary,.crime-page .back,.crime-page .email{color:#8a3a5b}
+.crime-page .tools span{border-color:#eadbe3;color:#704b5d;background:#fffafb}
+.crime-page .results{border-color:#eadde5;background:#ffffffb3}.crime-page .results div+div{border-color:#e5d7df}
+.crime-page .steps li,.crime-page .report{border-color:#e9dce4}.crime-page .steps .number{background:#faedf3;color:#9b3e63}
+.crime-page .report a::after{color:#963b60;border-color:#ead9e2}
+.context{margin-top:22px;padding:20px 22px;border-left:4px solid #a34267;border-radius:4px 12px 12px 4px;background:#fff8fb;color:#563d49}.context strong{font-size:15px}.context p{font-size:14px;line-height:1.7;margin-top:7px;color:#705a66}
+@media(max-width:650px){.crime-page h1{font-size:clamp(31px,9vw,39px)}.context{padding:18px}.crime-page .results strong{font-size:24px}.crime-page .results span{font-size:11px}}
