@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f0f8fa">
+  <meta name="description" content="Hospital Patient Flow & Capacity Analytics by Tarik Alansari. Explore NHS England emergency demand, admission delays, bed occupancy and forecasting through a three-page Power BI report.">
+  <link rel="canonical" href="https://tansari2004.github.io/tarik-alansari-portfolio/hospital-analytics.html">
+  <meta property="og:title" content="Hospital Patient Flow & Capacity Analytics · Tarik Alansari">
+  <meta property="og:description" content="Making NHS England demand, bed pressure and forecast results easier to understand.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tansari2004.github.io/tarik-alansari-portfolio/hospital-analytics.html">
+  <meta property="og:image" content="https://tansari2004.github.io/tarik-alansari-portfolio/hospital-patient-flow-button.webp">
+  <title>Hospital Patient Flow & Capacity Analytics · Tarik Alansari</title>
+  <link rel="stylesheet" href="banking-pipeline.css?v=3">
+  <link rel="stylesheet" href="financial-crime.css?v=3">
+  <link rel="stylesheet" href="hospital-analytics.css?v=1">
+  <script src="banking-pipeline.js" defer></script>
+</head>
+<body class="crime-page hospital-page">
+  <main class="page">
+    <nav class="nav" aria-label="Project navigation"><a href="./" class="back">← Back to portfolio</a><span>Tarik Alansari</span></nav>
+    <header class="hero">
+      <p class="eyebrow">HEALTHCARE ANALYTICS · A PROJECT BY TARIK ALANSARI</p>
+      <h1>Hospital Patient Flow<br><span>& Capacity Analytics</span></h1>
+      <p class="lead">A clearer picture of hospital pressure. I analyzed NHS England data to explore emergency demand, admission delays, and available beds.</p>
+      <div class="tools" aria-label="Project tools"><span>Python</span><span>SQL · SQLite</span><span>Forecasting</span><span>Power BI</span></div>
+      <div class="hero-actions"><a class="button" href="#report">See the reports <span aria-hidden="true">↓</span></a><a class="secondary" href="https://github.com/Tansari2004/nhs-emergency-demand-analytics" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">↗</span></a></div>
+    </header>
+
+    <section class="results" aria-label="Selected NHS England results">
+      <div><strong>517,868</strong><span>emergency admissions<br>August 2026</span></div>
+      <div><strong>44,951</strong><span>waits over 12 hours after a decision to admit<br>August 2026</span></div>
+      <div><strong>90.85%</strong><span>general-and-acute overnight bed occupancy<br>April–June 2026</span></div>
+    </section>
+
+    <section class="section" aria-labelledby="flow">
+      <p class="eyebrow">HOW IT WORKS</p><h2 id="flow">From public statistics to useful insights.</h2>
+      <p class="section-intro">The project brings demand trends, bed pressure, and forecast comparisons into one report, with each measure kept at its own reporting period.</p>
+      <ol class="steps">
+        <li><span class="number">01</span><h3>Collect the data</h3><p>Import published NHS England workbooks and CSVs into SQLite, with source-file checks.</p></li>
+        <li><span class="number">02</span><h3>Analyze & compare</h3><p>Use SQL and Python to study demand and occupancy, then test next-month admission forecasts.</p></li>
+        <li><span class="number">03</span><h3>Make it readable</h3><p>Build a three-page Power BI report for emergency demand, bed pressure, and forecasting.</p></li>
+      </ol>
+    </section>
+
+    <section class="section" id="report" aria-labelledby="report-title">
+      <div class="section-heading"><div><p class="eyebrow">THE REPORT</p><h2 id="report-title">Hospital pressure, made visible.</h2></div><span class="quiet">Completed Power BI report</span></div>
+      <p class="image-hint">Tap a screenshot to view it larger.</p>
+      <figure class="report wide"><a href="hospital-assets/emergency-demand.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size emergency demand report"><img src="hospital-assets/emergency-demand.png" alt="Power BI emergency demand report showing monthly emergency admissions and waits after a decision to admit" loading="lazy" decoding="async"></a><figcaption><h3>Emergency demand</h3><p>Track monthly admissions and the number of patients waiting over 12 hours after a decision to admit.</p></figcaption></figure>
+      <details class="more additional-report"><summary>See bed pressure & forecasting <span aria-hidden="true">+</span></summary>
+        <figure class="report"><a href="hospital-assets/bed-pressure.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size bed pressure report"><img src="hospital-assets/bed-pressure.png" alt="Power BI bed pressure report showing quarterly general-and-acute occupancy and a trust-level bed snapshot" loading="lazy" decoding="async"></a><figcaption><h3>Bed pressure</h3><p>Explore quarterly occupancy and the latest available bed snapshot across 153 trusts.</p></figcaption></figure>
+        <figure class="report"><a href="hospital-assets/admissions-forecast.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size admission forecast report"><img src="hospital-assets/admissions-forecast.png" alt="Power BI admission forecast report comparing actual admissions, seasonal baseline forecasts, random forest forecasts and forecast error" loading="lazy" decoding="async"></a><figcaption><h3>Admission forecasting</h3><p>Compare predicted and actual admissions, including the error of each forecasting method.</p></figcaption></figure>
+      </details>
+
+      <aside class="context"><strong>The simpler forecast performed better.</strong><p>Across 24 test months, using the same month’s admissions from the previous year produced a lower average error than the random forest.</p><div class="forecast-comparison"><div><span>Seasonal baseline</span><strong>9,874</strong><small>average monthly error</small></div><div><span>Random forest</span><strong>15,501</strong><small>average monthly error</small></div></div></aside>
+
+      <details class="more evaluation"><summary>Data, methods & sources <span aria-hidden="true">+</span></summary><div class="detail-content">
+        <h3>Published aggregate data</h3><p>Monthly emergency demand covers February 2016–August 2026. Overnight bed data covers 45 quarters from June 2015–June 2026. The latest trust snapshot is April–June 2026. Source URLs and file hashes are pinned so the analysis can be reproduced.</p>
+        <h3>A fair forecast comparison</h3><p>The random forest uses calendar features and admissions from previous months. It is compared with a seasonal baseline over September 2024–August 2026, updating one month ahead using observed prior admissions. Mean absolute error is 9,874.21 admissions per month for the baseline and 15,501.42 for the random forest.</p>
+        <p>The preferred baseline forecast was 535,580 admissions for September 2026, using information through August 2026. This is a historical forecast from that point in time.</p>
+        <h3>What the measures mean</h3><p>Long waits count patients crossing a threshold after the decision to admit. Bed occupancy is average occupied overnight beds divided by average available beds. These figures do not measure an individual patient’s waiting time or length of stay.</p>
+        <p>The admissions and bed datasets cover different organisations and time periods. They are displayed separately. Changes in reporting and provider coverage need care when comparing trends.</p>
+        <nav class="sources" aria-label="Project evidence"><a href="https://github.com/Tansari2004/nhs-emergency-demand-analytics" target="_blank" rel="noopener noreferrer">Project & verified results ↗</a><a href="https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/" target="_blank" rel="noopener noreferrer">NHS emergency statistics ↗</a><a href="https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/bed-data-overnight/" target="_blank" rel="noopener noreferrer">NHS bed statistics ↗</a><a href="https://github.com/Tansari2004/nhs-emergency-demand-analytics/blob/main/powerbi/NHS-Emergency-Demand-Capacity-Analytics.pdf" target="_blank" rel="noopener noreferrer">Full report PDF ↗</a></nav>
+      </div></details>
+      <p class="note">Uses published NHS England aggregate statistics, with no patient-level records. Forecast performance measures prediction error; it does not establish an improvement in hospital outcomes.</p>
+    </section>
+
+    <footer><div><h2>Interested in the work?</h2><p>Explore the code, or get in touch.</p></div><div class="footer-links"><a class="button" href="https://github.com/Tansari2004/nhs-emergency-demand-analytics" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="email" href="mailto:tansari7@uwo.ca">Email Tarik ↗</a></div></footer>
+  </main>
+  <dialog class="image-viewer" aria-labelledby="viewer-title"><div class="viewer-bar"><h2 id="viewer-title">Report screenshot</h2><div class="viewer-controls"><button type="button" class="zoom-button" aria-pressed="false">Zoom in</button><button type="button" class="close-viewer" aria-label="Close screenshot">✕</button></div></div><div class="viewer-image"><img alt=""></div><p class="viewer-hint">Use Zoom in, then scroll to explore the report.</p></dialog>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.hospital-page{background:linear-gradient(155deg,#f7fbfc,#edf7fa 55%,#f7fbfc)}
+.hospital-page .hero{background:radial-gradient(ellipse at 100% 0,#bde9ee99,transparent 65%),linear-gradient(130deg,#fff,#f0fafb);border-color:#cfe6ea}
+.hospital-page h1 span,.hospital-page .eyebrow,.hospital-page .results strong{color:#167986}
+.hospital-page .button{background:#147986}.hospital-page .button:hover{background:#10616d}
+.hospital-page .secondary,.hospital-page .back,.hospital-page .email,.hospital-page .more summary,.hospital-page .sources a{color:#236b77}
+.hospital-page .tools span{border-color:#d2e6e9;color:#426b74}.hospital-page .results div,.hospital-page .results div:first-child,.hospital-page .results div+div{border-color:#d4e7eb}
+.hospital-page .steps .number{color:#167986;background:#eaf7f9}.hospital-page .steps li,.hospital-page .report,.hospital-page .more{border-color:#d5e7eb}
+.hospital-page .context{background:#eaf7f9;border-color:#cfe7eb;color:#235965}.hospital-page .context p{color:#466671}
+.hospital-page .report a::after{color:#167986;border-color:#d3e7eb}
+.forecast-comparison{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}.forecast-comparison>div{background:#ffffffa8;border:1px solid #d1e5e9;border-radius:11px;padding:16px}.forecast-comparison span,.forecast-comparison small{display:block;font-size:13px;color:#456572}.forecast-comparison strong{display:block;margin:5px 0;font-size:27px;color:#176c79;font-variant-numeric:tabular-nums}
+.hospital-page .additional-report .report+.report{margin-top:16px}
+.hospital-page .report img{aspect-ratio:2880/1635}
+@media(max-width:650px){.hospital-page h1{font-size:clamp(27px,7.3vw,33px)}.hospital-page .results strong,.hospital-page .results div:nth-child(2) strong{font-size:23px}.hospital-page .results span{font-size:11px}.forecast-comparison{gap:10px}.forecast-comparison>div{padding:13px}.forecast-comparison span,.forecast-comparison small{font-size:12px}}
+@media(max-width:360px){.hospital-page .results strong,.hospital-page .results div:nth-child(2) strong{font-size:20px}.hospital-page .results span{font-size:11px}}
