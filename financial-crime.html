@@ -23,20 +23,20 @@
     <header class="hero">
       <p class="eyebrow">A PROJECT BY TARIK ALANSARI</p>
       <h1>Financial Crime<br><span>Analytics</span></h1>
-      <p class="lead">Which bank payments should an investigator check first? I built a system that puts potentially suspicious payments at the top of a review list—and explains why.</p>
+      <p class="lead">A bank cannot manually check every payment. I built a tool that suggests which payments to look at first, with reasons for each suggestion. A person still decides whether to investigate.</p>
       <div class="tools" aria-label="Project tools"><span>PostgreSQL</span><span>SQL</span><span>Python</span><span>NumPy</span><span>Power BI</span></div>
       <div class="hero-actions"><a class="button" href="#report">See the results <span aria-hidden="true">↓</span></a><a class="secondary" href="https://github.com/Tansari2004/financial-crime-investigation-analytics" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">↗</span></a></div>
     </header>
 
     <section class="results" aria-label="Verified project results">
       <div><strong>5.08M</strong><span>simulated payments analyzed</span></div>
-      <div><strong>199</strong><span>payments marked as money laundering in the first 1,000 test results</span></div>
-      <div><strong>10,000</strong><span>payments ordered for review in the dashboard</span></div>
+      <div><strong>1,000</strong><span>highest-ranked test payments checked against the dataset’s answers</span></div>
+      <div><strong>199</strong><span>of those payments marked as money laundering in the dataset</span></div>
     </section>
 
     <section class="section" aria-labelledby="flow">
-      <p class="eyebrow">HOW IT WORKS</p><h2 id="flow">A clearer starting point for review.</h2>
-      <p class="section-intro">Each transaction is a payment between accounts, with a time, amount, currency, and payment method. The records come from IBM’s simulated banking dataset—not real customers. Most are legitimate; some carry a synthetic money-laundering label for model evaluation.</p>
+      <p class="eyebrow">THE IDEA</p><h2 id="flow">Make a long list of payments easier to check.</h2>
+      <p class="section-intro">Each record is a simulated payment between accounts: who sent it, who received it, when, and how much. IBM’s dataset marks some payments as money laundering—an attempt to hide the illegal origin of money. Those marks let me test the tool; they are not given to it as clues.</p>
       <ol class="steps">
         <li><span class="number">01</span><h3>Look at the payments</h3><p>Use SQL to examine amounts, payment methods, and the account’s earlier activity.</p></li>
         <li><span class="number">02</span><h3>Choose what to check first</h3><p>A machine-learning model learns from older payments, then orders newer ones by how suspicious they look.</p></li>
@@ -45,13 +45,14 @@
     </section>
 
     <section class="section" id="report" aria-labelledby="report-title">
-      <div class="section-heading"><div><p class="eyebrow">THE RESULTS</p><h2 id="report-title">A queue built for investigation.</h2></div><span class="quiet">Power BI report</span></div>
+      <div class="section-heading"><div><p class="eyebrow">THE RESULTS</p><h2 id="report-title">What did the first 1,000 suggestions find?</h2></div><span class="quiet">Tested on later payments</span></div>
+      <aside class="context"><strong>199 matched the dataset’s money-laundering marks. 801 did not.</strong><p>Think of the output as a “check these first” list, not a list of confirmed crimes. Most suggestions still needed checking and were not marked as money laundering.</p><p>There were 1,611 marked payments in the full test period. The first 1,000 suggestions found 199 of them—about 12%. Many marked payments remained outside that shortlist.</p></aside>
+      <p class="section-intro">The dashboard below shows 10,000 payments in review order. For each one, it shows the payment details, its score, and the factors that raised that score.</p>
       <p class="image-hint">Tap a screenshot to view it larger.</p>
-      <figure class="report wide"><a href="crime-assets/review-queue.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size ranked review queue screenshot"><img src="crime-assets/review-queue.png" width="2880" height="1800" alt="Power BI financial crime review queue showing ranked synthetic transactions, model scores, explanations, amounts and currencies" loading="lazy" decoding="async"></a><figcaption><h3>Every case, with a reason.</h3><p>Explore 10,000 ranked test cases with scores, transaction details, and model explanations.</p></figcaption></figure>
+      <figure class="report wide"><a href="crime-assets/review-queue.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size ranked review queue screenshot"><img src="crime-assets/review-queue.png" width="2880" height="1800" alt="Power BI financial crime review queue showing ranked synthetic transactions, model scores, explanations, amounts and currencies" loading="lazy" decoding="async"></a><figcaption><h3>How to read the review list</h3><p>Start at the top: higher scores mean earlier review. Check the amount, currency, and explanation beside each payment. The score is a way to order the list—not the probability that a crime occurred.</p></figcaption></figure>
       <details class="more additional-report"><summary>See the currency dashboard <span aria-hidden="true">+</span></summary>
       <figure class="report"><a href="crime-assets/currency-dashboard.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size case counts by currency screenshot"><img src="crime-assets/currency-dashboard.png" width="2880" height="1800" alt="Power BI dashboard chart showing ranked review cases by payment currency" loading="lazy" decoding="async"></a><figcaption><h3>Cases by currency</h3><p>A simple dashboard view helps investigators understand how the ranked sample is distributed across payment currencies.</p></figcaption></figure>
       </details>
-      <aside class="context"><strong>The result, in plain language</strong><p>Of the first 1,000 payments the model suggested checking, 199 were marked as money laundering in the simulated dataset. The other 801 were not.</p><p>The test period contained 1,611 marked payments in total, so this first 1,000-payment review list found about 12% of them. It helps prioritize review; it does not catch everything or prove a crime occurred.</p></aside>
       <details class="more evaluation"><summary>Model details & verified results <span aria-hidden="true">+</span></summary>
         <div class="detail-content">
           <h3>Tested on later dates</h3><p>The class-weighted logistic regression was built with NumPy. Training uses dates before September 8, 2022; validation uses September 8; testing uses September 9 onward. Historical features use earlier calendar days, and laundering labels are excluded from model inputs.</p>
@@ -63,7 +64,7 @@
           <nav class="sources" aria-label="Project evidence"><a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/blob/main/reports/model_report.md" target="_blank" rel="noopener noreferrer">Model report ↗</a><a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/blob/main/docs/findings.md" target="_blank" rel="noopener noreferrer">Data findings ↗</a><a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/blob/main/docs/power_bi_build.md" target="_blank" rel="noopener noreferrer">Power BI details ↗</a></nav>
         </div>
       </details>
-      <p class="note">The data and labels are synthetic. Review scores rank cases for human attention; they are not calibrated probabilities or proof of financial crime.</p>
+      <p class="note">All payments and money-laundering marks are simulated—not real customer records. This is a project about organizing investigation work, not proof of real financial crime.</p>
     </section>
 
     <footer><div><h2>Interested in the work?</h2><p>Explore the code, or get in touch.</p></div><div class="footer-links"><a class="button" href="https://github.com/Tansari2004/financial-crime-investigation-analytics" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="email" href="mailto:tansari7@uwo.ca">Email Tarik ↗</a></div></footer>
