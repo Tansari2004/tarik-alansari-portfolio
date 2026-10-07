@@ -2,7 +2,6 @@
 @media(max-width:650px){.page{width:calc(100% - 32px)}.nav{padding:20px 0;font-size:12px}.hero{padding:30px 25px;border-radius:22px}h1{font-size:34px}.project-name{font-size:17px;margin-top:20px}.lead{font-size:15px}.eyebrow{font-size:10px}.results{padding-top:22px}.results div{padding:5px 13px}.results strong{font-size:27px}.results span{font-size:11px}.section{padding:32px 0}.overview{grid-template-columns:1fr;gap:18px}.overview>p{font-size:15px}.steps{grid-template-columns:1fr;gap:12px;margin-top:20px}.steps li{padding:20px}.number{margin-bottom:12px}.section-heading{display:block}.quiet{display:block;margin-top:12px}.report figcaption{padding:19px}.report figcaption h3{font-size:17px}.health img{padding:8px 0}.report-grid{grid-template-columns:1fr}.report-grid img{height:auto}.more{padding:0 14px}.more summary{font-size:13px}.skills-grid{grid-template-columns:1fr;gap:22px}footer{display:block;padding:30px 0}.footer-links{margin-top:22px}.button{min-height:44px}}
 @media(prefers-reduced-motion:reduce){.button{transition:none}}
 
-/* Comfortable touch navigation and a report viewer that stays on the page. */
 html{-webkit-text-size-adjust:100%;scroll-padding-top:20px}
 .back,.email{display:inline-flex;align-items:center;min-height:44px}
 .image-hint{color:#647b98;font-size:13px;margin-top:-10px;margin-bottom:16px}
@@ -38,11 +37,9 @@ html{-webkit-text-size-adjust:100%;scroll-padding-top:20px}
 }
 @media(max-width:360px){.page{width:calc(100% - 24px)}.hero{padding:23px 18px}.results span{font-size:11px}.viewer-bar h2{max-width:125px}}
 
-/* Plain-language context for the payment records. */
 .overview>div p{font-size:16px;line-height:1.7;color:#50637d}
 .overview>div p+p{margin-top:14px}
 
-/* A lighter overview with a direct route to the evidence. */
 .hero{background:radial-gradient(ellipse at 100% 0,#d6e8ff88,transparent 65%),linear-gradient(120deg,#fff,#f3f8ff);padding:44px 48px}
 .lead{margin-top:18px;max-width:610px}
 .hero-actions{display:flex;align-items:center;gap:23px;flex-wrap:wrap}

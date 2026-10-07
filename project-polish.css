@@ -1,4 +1,3 @@
-/* Shared visual language, with a quiet accent for each case study. */
 body{--accent:#2563c7;--accent-dark:#1c4f9e;--tint:#edf4ff;--line:#dce6f3;--ink:#1b2e49;--muted:#52647c;background:#f7f9fd}
 body.crime-page:not(.hospital-page):not(.maintenance-page){--accent:#4563a0;--accent-dark:#354d7c;--tint:#eef2fa}
 body.hospital-page{--accent:#177a83;--accent-dark:#125d66;--tint:#eaf7f7;--line:#d7e9e9}

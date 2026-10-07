@@ -10,7 +10,6 @@
 .context{margin-top:22px;padding:20px 22px;border-left:4px solid #a34267;border-radius:4px 12px 12px 4px;background:#fff8fb;color:#563d49}.context strong{font-size:15px}.context p{font-size:14px;line-height:1.7;margin-top:7px;color:#705a66}
 @media(max-width:650px){.crime-page h1{font-size:clamp(31px,9vw,39px)}.context{padding:18px}.crime-page .results strong{font-size:24px}.crime-page .results span{font-size:11px}}
 
-/* Readable evidence with detail available on demand. */
 .crime-page .page{max-width:960px}
 .crime-page .lead,.crime-page .overview>p,.crime-page .steps p,.crime-page .report figcaption p{color:#4c5c72}
 .crime-page .results{gap:14px;border:0;padding:0;background:none;grid-template-columns:1fr 1.25fr 1fr}
@@ -30,7 +29,6 @@ table{width:100%;border-collapse:collapse;font-size:14px;text-align:left;font-va
  .crime-page .more summary{font-size:14px}.detail-content p{font-size:16px}table{font-size:12px}th,td{padding:11px 9px}.sources{display:grid;gap:2px}.context strong{font-size:16px}
 }
 
-/* Quiet blue surfaces and a shorter first read. */
 .crime-page{background:linear-gradient(155deg,#f7faff,#eef4ff 55%,#f7faff)}
 .crime-page .page{max-width:920px}
 .crime-page .hero{background:radial-gradient(ellipse at 100% 0,#c9dfff99,transparent 65%),linear-gradient(130deg,#fff,#f2f7ff);border-color:#d7e4f7;padding:42px}

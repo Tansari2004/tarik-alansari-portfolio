@@ -2,7 +2,6 @@
 @media(max-width:700px){.page{width:calc(100% - 32px)}.nav{padding:14px 0}.hero{grid-template-columns:1fr;padding:28px 24px;gap:24px;border-radius:22px}.hero h1{font-size:38px}.lead{font-size:16px}.hero-note{padding:22px;position:relative}.message-mark{display:none}.hero-note p{font-size:17px;margin:12px 0 18px}.actions{gap:16px;margin-top:22px}.metrics{gap:8px;margin-top:16px}.metrics div{padding:16px 10px}.metrics strong{font-size:25px}.metrics span{font-size:11px}.metric-note{font-size:11px}.section{padding:32px 0}h2{font-size:26px}.example-card{grid-template-columns:1fr}.input,.output{padding:24px}.input blockquote{font-size:22px;margin:16px 0 20px}.approach-grid{grid-template-columns:1fr;gap:18px}.approach-grid article{background:#fff;border:1px solid #e7e3f0;padding:22px;border-radius:16px}.approach-grid h3{margin:9px 0}.approach-grid p{margin-bottom:0}.scope{grid-template-columns:1fr;gap:20px;padding:10px 0}.scope h2 br{display:none}details{padding:0 18px}summary{font-size:13px;line-height:1.6}th,td{padding:10px 8px;font-size:12px}.sources{display:grid;gap:0}footer{display:block}footer .actions{margin-top:22px}.disclaimer{margin-top:10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
-/* Phone layout: a shorter introduction, readable results, and generous tap targets. */
 a,button,summary{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .hero-copy,.hero-note,.input,.output,.scope>div{min-width:0}
 @media(max-width:700px){
