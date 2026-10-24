@@ -2,40 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f7f6fc">
-  <title>DiaCare NLP Triage · Tarik Alansari</title>
-  <meta name="description" content="A closer look at Tarik Alansari’s DiaCare NLP project: classifying support messages, assigning urgency, and explaining routing decisions.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="DiaCare NLP Triage by Tarik Alansari: a support-message classification prototype with separate topic and priority models, a keyword override, and a FastAPI interface.">
   <link rel="canonical" href="https://tansari2004.github.io/tarik-alansari-portfolio/diacare-nlp.html">
-  <meta property="og:title" content="DiaCare NLP Triage · Tarik Alansari">
-  <meta property="og:description" content="Turning support messages into clearer priorities for human review.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DiaCare NLP — Support Message Classification · Tarik Alansari">
+  <meta property="og:description" content="A project report on support-message categories, priority labels, API behaviour, and the limits of synthetic-data evaluation.">
+  <meta property="og:url" content="https://tansari2004.github.io/tarik-alansari-portfolio/diacare-nlp.html">
   <meta property="og:image" content="https://tansari2004.github.io/tarik-alansari-portfolio/diacare-nlp-button.webp">
-  <link rel="stylesheet" href="diacare-nlp.css?v=3">
-  <link rel="stylesheet" href="project-polish.css?v=1">
-  <script src="diacare-nlp.js?v=2" defer></script>
+  <meta name="twitter:card" content="summary_large_image">
+  <title>DiaCare NLP — Support Message Classification · Tarik Alansari</title>
+  <link rel="stylesheet" href="banking-pipeline.css?v=report-findings-1">
+  <script src="banking-pipeline.js?v=case-study-1" defer></script>
 </head>
-<body class="nlp-page">
-  <main class="page">
-    <nav class="nav" aria-label="Project navigation"><a href="./">← Portfolio</a><span>Tarik Alansari</span></nav>
-    <header class="hero">
-      <div class="hero-copy"><p class="eyebrow">DIACARE NLP TRIAGE</p><h1>Sort the message.<br><span>Flag the urgency.</span></h1><p class="lead">I built a tool that reads a support message, suggests what it is about, and assigns an urgency level. A person reviews the suggestion—it does not diagnose or give medical advice.</p><div class="actions"><a class="button" href="#examples">See an example ↓</a><a class="text-link" href="https://github.com/Tansari2004/diacare-nlp" target="_blank" rel="noopener noreferrer">View GitHub ↗</a></div></div>
-      <aside class="hero-note"><span class="small-label">BUILT FOR HUMAN REVIEW</span><div class="message-mark" aria-hidden="true">Aa<span>→</span></div><p>Understand the message.<br>Suggest a route.<br>Keep a person in the loop.</p><div class="chips" aria-label="Project tools"><span>Python</span><span>scikit-learn</span><span>FastAPI</span><span>Docker</span></div></aside>
-    </header>
-    <section class="metrics" aria-label="Synthetic holdout results"><div><strong>92.9%</strong><span>of test messages given the correct topic</span></div><div><strong>80.2%</strong><span>given the correct urgency level</span></div><div><strong>126</strong><span>made-up messages used for testing</span></div></section>
-    <p class="metric-note">Results on synthetic data—not a measure of clinical safety or real-world performance.</p>
-
-    <section class="section" id="examples" aria-labelledby="example-title"><p class="eyebrow">SEE THE IDEA</p><h2 id="example-title">What happens to a message?</h2><p class="intro">Choose an example to see its suggested topic and urgency. These are saved examples, not a live chatbot.</p>
-      <div class="example-tabs" role="group" aria-label="Choose a documented example"><button type="button" data-example="billing" aria-pressed="true">Billing question</button><button type="button" data-example="gate" aria-pressed="false">Keyword escalation</button></div>
-      <div class="example-card" aria-live="polite" aria-atomic="true"><div class="input"><span class="small-label">SUPPORT MESSAGE</span><blockquote id="message">“I was charged twice for my subscription.”</blockquote><p class="example-label">Saved example from the repository—not a live prediction.</p></div><div class="output"><span class="small-label">SUGGESTED TOPIC & URGENCY</span><div class="routing"><span id="category">Billing</span><span id="priority">Priority 3 / 5</span></div><p id="explanation">Suggested topic: a billing issue. Words such as “charged” and “subscription” help explain the choice. The suggested urgency is 3 out of 5.</p><div class="review"><span aria-hidden="true">→</span> Human review</div></div></div>
-    </section>
-
-    <section class="section" aria-labelledby="approach-title"><p class="eyebrow">HOW IT WORKS</p><h2 id="approach-title">Read. Sort. Send for review.</h2><div class="approach-grid"><article><span class="step">01</span><h3>Check for urgent phrases</h3><p>First, look for phrases such as “chest pain.” A match flags the message at the highest urgency level for human review.</p></article><article><span class="step">02</span><h3>Suggest a topic and urgency</h3><p>Otherwise, two machine-learning models use the message’s words to suggest its topic and a priority from 1 to 5.</p></article><article><span class="step">03</span><h3>Show why it was flagged</h3><p>Return the suggestion and the words that helped explain it. A person checks the result and decides what to do next.</p></article></div></section>
-
-    <section class="section" aria-labelledby="scope-title"><div class="scope"><div><p class="eyebrow">WHAT IT COVERS</p><h2 id="scope-title">Support routing.<br>Not diagnosis.</h2></div><div><p>Five categories: appointment, billing, medical, technical issue, and other. Priority runs from 1 (low) to 5 (emergency).</p><p>The project uses 630 synthetic messages. It contains no patient records or personal health information. The keyword gate covers only a small set of phrases and cannot replace clinical assessment.</p></div></div>
-      <details><summary>Explore the evaluation & technical details <span aria-hidden="true">+</span></summary><div class="details-content"><h3>How it was evaluated</h3><p>A stratified 20% holdout leaves 126 messages for testing. Five-fold stratified cross-validation is performed on the remaining training pool, using random seed 42. Features include TF-IDF unigrams and bigrams, with up to 20,000 features. The linear SVM models use sigmoid probability calibration; priority uses balanced class weights.</p><div class="table-wrap"><table><thead><tr><th scope="col">Measure</th><th scope="col">Category</th><th scope="col">Priority</th></tr></thead><tbody><tr><th scope="row">Holdout accuracy</th><td>92.9%</td><td>80.2%</td></tr><tr><th scope="row">Holdout macro F1</th><td>0.927</td><td>0.808</td></tr><tr><th scope="row">5-fold CV macro F1</th><td>0.934 ± 0.033</td><td>0.816 ± 0.022</td></tr></tbody></table></div><p>Macro F1 weights each class equally. The technical-issue category has lower recall (80%) than the other categories. Priority 5 has only seven holdout examples, so conclusions about rare urgent cases need particular care.</p><h3>What the API provides</h3><p><code>POST /triage</code> accepts message text. <code>GET /health</code> reports service status and whether the models loaded. The repository includes training code, model artifacts, Docker packaging, and API and safety-gate tests.</p><p>For model predictions, the returned confidence field is the larger of the category and priority model’s maximum probabilities—not a joint certainty score. The gate’s 0.99 value is fixed by code, not an estimated clinical probability.</p><h3>Before real-world use</h3><p>The category-balanced synthetic dataset does not represent real support traffic. Representative validation and review by qualified professionals would be required before real-world use.</p><div class="sources"><a href="https://github.com/Tansari2004/diacare-nlp/blob/main/results/metrics.json" target="_blank" rel="noopener noreferrer">Full evaluation metrics ↗</a><a href="https://github.com/Tansari2004/diacare-nlp/blob/main/triage_api.py" target="_blank" rel="noopener noreferrer">API implementation ↗</a><a href="https://github.com/Tansari2004/diacare-nlp/blob/main/data/DATASET_INFO.md" target="_blank" rel="noopener noreferrer">Dataset notes ↗</a></div></div></details>
-    </section>
-    <footer><div><p class="eyebrow">LET’S CONNECT</p><h2>Interested in the work?</h2></div><div class="actions"><a class="button" href="https://github.com/Tansari2004/diacare-nlp" target="_blank" rel="noopener noreferrer">Explore GitHub ↗</a><a class="text-link" href="mailto:tansari7@uwo.ca">Email Tarik ↗</a></div></footer>
-    <p class="disclaimer">Portfolio project, not a medical device. Examples explain the software; they are not medical advice.</p>
-  </main>
+<body>
+  <a class="skip-link" href="#main">Skip to project report</a>
+  <div class="page">
+    <nav class="project-nav" aria-label="Project navigation"><a href="./#work">← Portfolio</a><a class="author" href="./">Tarik Alansari</a><a href="https://github.com/Tansari2004/diacare-nlp">GitHub ↗</a></nav>
+    <main id="main" class="project-report">
+      <header class="report-header">
+        <p class="eyebrow">Project report · Natural language processing</p>
+        <h1>DiaCare NLP<br><span class="title-accent">Support Message Classification</span></h1>
+        <p class="standfirst">Suggesting a support category and priority, with evidence a reviewer can inspect.</p>
+        <p class="byline">Built by Tarik Alansari</p>
+        <p class="technology-line"><strong>Technologies</strong> Python · TF-IDF · Linear SVM · scikit-learn · FastAPI · Docker</p>
+        <nav class="report-contents" aria-label="Report sections"><a href="#overview">Overview</a><a href="#approach">Approach</a><a href="#results">Results</a><a href="#data-notes">Data &amp; next steps</a></nav>
+      </header>
+      <section class="report-section" aria-labelledby="overview">
+        <h2 id="overview"><span class="section-number" aria-hidden="true">01</span>Project overview</h2>
+        <p>I built a standalone support-message classification prototype using <strong>630 synthetic messages</strong>. It suggests one of five categories—appointment, billing, medical, technical issue, or other—and a priority label from 1 to 5 for human review.</p>
+        <p>My work connects text preprocessing, two separately trained classifiers, a deterministic keyword override, and a FastAPI service. The repository includes training code, saved models, evaluation results, API tests, and Docker packaging.</p>
+      </section>
+      <section class="report-section" aria-labelledby="approach">
+        <h2 id="approach"><span class="section-number" aria-hidden="true">02</span>How I built it</h2>
+        <ol class="approach-list">
+          <li><strong>Represent the message text.</strong> Convert words and two-word phrases into TF-IDF features, capped at 20,000. Keep the vectoriser inside each model pipeline so outer cross-validation folds fit their own vocabulary.</li>
+          <li><strong>Learn category and priority separately.</strong> Train linear SVM classifiers with sigmoid probability calibration; apply balanced class weights to priority. Each target uses its own stratified 20% holdout and five-fold cross-validation on its remaining training pool, with seed 42.</li>
+          <li><strong>Expose a reviewable response.</strong> Check a short list of keyword patterns before model inference. A match returns category “medical” and priority 5; otherwise, the API returns both model predictions and indicative terms. A health endpoint reports whether the model artifacts loaded.</li>
+        </ol>
+        <h3 class="report-subheading">Engineering decisions</h3>
+        <p>Separate classifiers let topic and priority be evaluated independently instead of assuming that a message’s subject determines its urgency. The keyword override is visible in the response through a <code>gate_triggered</code> field, so a reviewer can distinguish a rule match from model output.</p>
+        <p>Model loading is checked separately from the service being reachable: the health response includes <code>models_loaded</code>, and requests without available models return an explicit error rather than a fabricated prediction. Indicative terms support inspection, while the full prediction and rule status remain available in the JSON response.</p>
+      </section>
+      <section class="report-section" aria-labelledby="results">
+        <h2 id="results"><span class="section-number" aria-hidden="true">03</span>Results</h2>
+        <p>The category model correctly labelled <strong>117 of 126 holdout messages (92.9%)</strong>; the priority model correctly labelled <strong>101 of 126 (80.2%)</strong> on its separately sampled holdout. These are individual model results, not the accuracy of getting both answers right on the same messages or of the combined keyword-and-model API.</p>
+        <p>Priority classification made more errors than category classification. Six of seven priority-5 examples were classified correctly, with one assigned priority 4; that small sample cannot establish reliable handling of rare urgent messages.</p>
+        <table class="results-table"><caption>Separate synthetic holdouts · 126 messages per target</caption><thead><tr><th scope="col">Measure</th><th scope="col">Category</th><th scope="col">Priority</th></tr></thead><tbody><tr><th scope="row">Correct labels</th><td>117 / 126</td><td>101 / 126</td></tr><tr><th scope="row">Macro F1</th><td>0.927</td><td>0.808</td></tr><tr><th scope="row">Accuracy</th><td>92.9%</td><td>80.2%</td></tr></tbody></table>
+        <figure class="report"><a href="nlp-assets/priority-confusion-matrix.png" aria-label="Enlarge priority classification confusion matrix"><img src="nlp-assets/priority-confusion-matrix.png" width="1280" height="880" alt="Priority model holdout confusion matrix: 16, 36, 29, 14 and 6 correct predictions for priorities 1 to 5, with one actual priority-5 message classified as priority 4" loading="lazy" decoding="async"></a><figcaption><h3>Figure 1. Priority classification errors</h3><p>Generated from the published evaluation counts. Rows are actual labels and columns are model predictions, before the API keyword override. Select the figure to enlarge.</p></figcaption></figure>
+        <details class="supporting-reports"><summary>Supporting evidence: category errors and API interpretation <span aria-hidden="true">+</span></summary><div class="supporting-content">
+          <figure class="report"><a href="nlp-assets/category-confusion-matrix.png" aria-label="Enlarge category classification confusion matrix"><img src="nlp-assets/category-confusion-matrix.png" width="1280" height="880" alt="Category model holdout confusion matrix: 24 appointment, 24 billing, 25 medical, 24 other and 20 technical-issue messages correctly classified" loading="lazy" decoding="async"></a><figcaption><h3>Figure 2. Support-category classification errors</h3><p>Technical-issue recall was 80%: 20 of 25 examples were correct, with three assigned appointment and two billing. This was the lowest category recall.</p></figcaption></figure>
+          <p class="technology-line">Macro F1 weights classes equally. Five-fold training-pool macro F1 was 0.934 ± 0.033 for category and 0.816 ± 0.022 for priority. These folds share the dataset’s synthetic wording and repetition limits.</p>
+          <p class="technology-line">The API confidence field takes the larger of the two models’ maximum probabilities; it is not joint confidence in both predictions. A keyword match returns a fixed 0.99, not a learned probability. Returned terms use coefficients from one calibrated ensemble member and are indicative, rather than a complete explanation of the ensemble output.</p>
+        </div></details>
+      </section>
+      <section class="report-section data-notes" aria-labelledby="data-notes">
+        <h2 id="data-notes"><span class="section-number" aria-hidden="true">04</span>Data, limitations &amp; next steps</h2>
+        <p>The category-balanced dataset contains no patient records. Its 630 rows include <strong>613 distinct texts after lowercasing and trimming</strong>; in each target’s split, seven holdout rows repeat text also present in training. The reported scores describe this synthetic experiment, rather than generalisation to unseen patient language or real support traffic.</p>
+        <p>The keyword gate covers a small set of phrases and does not establish clinical safety. This prototype is not a diagnostic or autonomous triage system, and its scores do not measure health outcomes or real-world routing quality.</p>
+        <p><strong>Takeaway &amp; next step.</strong> A service can expose clear predictions without having enough evidence to trust every routing decision. Next, I would group duplicate and paraphrased messages before splitting, evaluate category and priority together on a shared representative holdout, and test negation, unfamiliar wording, and rare high-priority cases with qualified reviewers.</p>
+        <p class="evidence-links">Technical evidence: <a href="https://github.com/Tansari2004/diacare-nlp/blob/main/train.py">training &amp; split implementation</a> · <a href="https://github.com/Tansari2004/diacare-nlp/blob/main/results/metrics.json">full metrics &amp; confusion matrices</a> · <a href="https://github.com/Tansari2004/diacare-nlp/blob/main/triage_api.py">API implementation</a> · <a href="https://github.com/Tansari2004/diacare-nlp/blob/main/tests/test_api.py">API tests</a> · <a href="https://github.com/Tansari2004/diacare-nlp/blob/main/data/DATASET_INFO.md">dataset notes</a>.</p>
+      </section>
+      <footer class="report-footer"><a href="https://github.com/Tansari2004/diacare-nlp">Explore the code ↗</a><a href="mailto:tansari7@uwo.ca">Discuss the project ↗</a><a href="./#work">Back to portfolio</a></footer>
+    </main>
+  </div>
+  <dialog class="image-viewer" aria-labelledby="viewer-title" aria-describedby="viewer-hint"><div class="viewer-bar"><h2 id="viewer-title">Evaluation figure</h2><div class="viewer-controls"><button type="button" class="zoom-button" aria-pressed="false">Zoom in</button><button type="button" class="close-viewer" aria-label="Close screenshot">✕</button></div></div><div class="viewer-image"><img alt=""></div><p class="viewer-hint" id="viewer-hint">Zoom in, then scroll to explore the figure. Press Escape to close.</p></dialog>
 </body>
 </html>
