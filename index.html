@@ -16,7 +16,9 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231c5ee4'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Arial,sans-serif' font-weight='700' font-size='25' fill='white'%3ETA%3C/text%3E%3C/svg%3E">
     <title>Tarik Alansari — Data & Software</title>
-    <link rel="stylesheet" href="hero-desktop.css?v=about-contact-1">
+    <link rel="stylesheet" href="hero-desktop.css?v=mobile-landing-1">
+    <link rel="stylesheet" href="landing-mobile.css?v=1" media="(max-width: 760px)">
+    <script src="landing.js?v=1" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to introduction</a>
@@ -33,18 +35,21 @@
       <main id="main">
         <section class="hero" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <p class="eyebrow">Data analytics &amp; machine learning</p>
+            <p class="eyebrow"><span class="desktop-only">Data analytics &amp; machine learning</span><span class="mobile-only">Data &amp; software</span></p>
             <h1 id="hero-title">Tarik Alansari</h1>
             <p class="intro">I build data systems and useful software.</p>
             <p class="credential">MDA (AI) <span aria-hidden="true">·</span> Western University</p>
             <div class="hero-actions">
-              <a class="primary-action" href="#work">Explore my work <span aria-hidden="true">→</span></a>
+              <a class="primary-action" href="#work"><span class="desktop-only">Explore my work</span><span class="mobile-only">View work</span> <span class="desktop-only" aria-hidden="true">→</span><span class="mobile-only" aria-hidden="true">↓</span></a>
               <a class="resume-action" href="https://tansari2004.github.io/tarik-alansari-portfolio/Tarik-Alansari-Resume.pdf">Résumé <span aria-hidden="true">↗</span></a>
             </div>
             <p class="availability"><span class="status-dot" aria-hidden="true"></span>Open to 2027 co-ops</p>
           </div>
           <div class="hero-art" aria-hidden="true">
-            <img src="assets/hero-data-pipeline.png" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">
+            <picture>
+              <source media="(max-width: 760px)" srcset="assets/mobile-visuals-v2/hero-glass-data-320.webp 320w, assets/mobile-visuals-v2/hero-glass-data-640.webp 640w" sizes="(max-width: 359px) 98px, (max-width: 440px) 120px, 160px" type="image/webp">
+              <img src="assets/hero-data-pipeline.png" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">
+            </picture>
           </div>
         </section>
         <section class="selected-work" aria-labelledby="work" aria-describedby="project-visual-note">
@@ -55,52 +60,75 @@
           <p class="visually-hidden" id="project-visual-note">The project images are concept illustrations. Open a project to explore the actual work.</p>
           <div class="project-grid">
             <a class="project-card" href="https://tansari2004.github.io/tarik-alansari-portfolio/banking-pipeline.html" aria-label="Explore Banking Data Platform">
-              <img src="assets/projects/banking-data-platform.png" alt="Concept illustration of a data pipeline with ingest, transform, and serve stages" width="1672" height="941" loading="lazy" decoding="async">
-              <div class="project-label"><h3>Banking Data Platform</h3><span class="project-arrow" aria-hidden="true">→</span></div>
+              <picture>
+                <source media="(max-width: 760px)" srcset="assets/mobile-visuals-v2/banking-data-platform-320.webp 320w, assets/mobile-visuals-v2/banking-data-platform-640.webp 640w" sizes="(max-width: 440px) 44vw, 220px" type="image/webp">
+                <img src="assets/projects/banking-data-platform.png" alt="Concept illustration of a data pipeline with ingest, transform, and serve stages" width="1672" height="941" loading="lazy" decoding="async">
+              </picture>
+              <div class="project-label"><div class="project-copy"><p class="project-category mobile-only">Data engineering</p><h3>Banking Data Platform</h3></div><span class="project-arrow" aria-hidden="true">→</span></div>
             </a>
             <a class="project-card" href="https://tansari2004.github.io/tarik-alansari-portfolio/financial-crime.html" aria-label="Explore Financial Crime Analytics">
-              <img src="assets/projects/financial-crime-analytics.png" alt="Concept illustration of risk distributions and a transaction review table" width="1672" height="941" loading="lazy" decoding="async">
-              <div class="project-label"><h3>Financial Crime Analytics</h3><span class="project-arrow" aria-hidden="true">→</span></div>
+              <picture>
+                <source media="(max-width: 760px)" srcset="assets/mobile-visuals-v2/financial-crime-analytics-320.webp 320w, assets/mobile-visuals-v2/financial-crime-analytics-640.webp 640w" sizes="(max-width: 440px) 44vw, 220px" type="image/webp">
+                <img src="assets/projects/financial-crime-analytics.png" alt="Concept illustration of risk distributions and a transaction review table" width="1672" height="941" loading="lazy" decoding="async">
+              </picture>
+              <div class="project-label"><div class="project-copy"><p class="project-category mobile-only">Machine learning</p><h3>Financial Crime Analytics</h3></div><span class="project-arrow" aria-hidden="true">→</span></div>
             </a>
             <a class="project-card" href="diacare.html" aria-label="Explore DiaCare">
-              <img src="assets/projects/diacare.png" alt="Concept illustration of DiaCare meal logging and glucose tracking" width="1672" height="941" loading="lazy" decoding="async">
-              <div class="project-label"><h3>DiaCare</h3><span class="project-arrow" aria-hidden="true">→</span></div>
+              <picture>
+                <source media="(max-width: 760px)" srcset="assets/mobile-visuals-v2/diacare-320.webp 320w, assets/mobile-visuals-v2/diacare-640.webp 640w" sizes="(max-width: 440px) 44vw, 220px" type="image/webp">
+                <img src="assets/projects/diacare.png" alt="Concept illustration of DiaCare meal logging and glucose tracking" width="1672" height="941" loading="lazy" decoding="async">
+              </picture>
+              <div class="project-label"><div class="project-copy"><p class="project-category mobile-only">Product engineering</p><h3>DiaCare</h3></div><span class="project-arrow" aria-hidden="true">→</span></div>
             </a>
           </div>
         </section>
-        <section class="more-projects" aria-labelledby="more-projects-title" aria-describedby="project-visual-note">
-          <div class="work-heading">
-            <h2 id="more-projects-title">More projects</h2>
-            <a class="all-projects" href="#more-projects-title">All projects <span aria-hidden="true">→</span></a>
-          </div>
+        <details class="more-projects" id="more-projects" aria-describedby="project-visual-note" open>
+          <summary class="work-heading" id="more-projects-title">
+            <h2>More projects</h2>
+            <span class="all-projects desktop-only">All projects <span aria-hidden="true">→</span></span>
+            <span class="project-count mobile-only" aria-hidden="true"><span class="when-closed">+ 4</span><span class="when-open">− 4</span></span>
+            <span class="visually-hidden">Four additional projects</span>
+          </summary>
           <div class="more-project-grid">
             <a class="compact-project" href="https://tansari2004.github.io/tarik-alansari-portfolio/hospital-analytics.html" aria-labelledby="hospital-title" aria-describedby="hospital-description">
-              <img src="assets/projects/hospital-patient-flow.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+              <picture>
+                <source media="(max-width: 760px)" srcset="assets/mobile-visuals-v2/hospital-patient-flow-160.webp 160w, assets/mobile-visuals-v2/hospital-patient-flow-320.webp 320w" sizes="84px" type="image/webp">
+                <img src="assets/projects/hospital-patient-flow.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+              </picture>
               <div class="compact-project-copy"><h3 id="hospital-title">Hospital Demand &amp; Bed Capacity Analytics</h3><p id="hospital-description">Forecasting demand and capacity.</p></div>
               <span class="project-arrow" aria-hidden="true">→</span>
             </a>
             <a class="compact-project" href="https://tansari2004.github.io/tarik-alansari-portfolio/predictive-maintenance.html" aria-labelledby="maintenance-title" aria-describedby="maintenance-description">
-              <img src="assets/projects/predictive-maintenance.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+              <picture>
+                <source media="(max-width: 760px)" srcset="assets/mobile-visuals-v2/predictive-maintenance-160.webp 160w, assets/mobile-visuals-v2/predictive-maintenance-320.webp 320w" sizes="84px" type="image/webp">
+                <img src="assets/projects/predictive-maintenance.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+              </picture>
               <div class="compact-project-copy"><h3 id="maintenance-title">Predictive Maintenance</h3><p id="maintenance-description">Exploring equipment failure prediction.</p></div>
               <span class="project-arrow" aria-hidden="true">→</span>
             </a>
             <a class="compact-project" href="https://tansari2004.github.io/tarik-alansari-portfolio/diacare-nlp.html" aria-labelledby="triage-title" aria-describedby="triage-description">
-              <img src="assets/projects/diacare-nlp-triage.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+              <picture>
+                <source media="(max-width: 760px)" srcset="assets/mobile-visuals-v2/diacare-nlp-triage-160.webp 160w, assets/mobile-visuals-v2/diacare-nlp-triage-320.webp 320w" sizes="84px" type="image/webp">
+                <img src="assets/projects/diacare-nlp-triage.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+              </picture>
               <div class="compact-project-copy"><h3 id="triage-title">DiaCare NLP Triage</h3><p id="triage-description">Classifying messages for review.</p></div>
               <span class="project-arrow" aria-hidden="true">→</span>
             </a>
             <a class="compact-project" href="food-ai.html" aria-labelledby="food-title" aria-describedby="food-description">
-              <img src="assets/projects/food-ai.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+              <picture>
+                <source media="(max-width: 760px)" srcset="assets/mobile-visuals-v2/food-ai-160.webp 160w, assets/mobile-visuals-v2/food-ai-320.webp 320w" sizes="84px" type="image/webp">
+                <img src="assets/projects/food-ai.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+              </picture>
               <div class="compact-project-copy"><h3 id="food-title">Food AI</h3><p id="food-description">Recognising food from images.</p></div>
               <span class="project-arrow" aria-hidden="true">→</span>
             </a>
           </div>
-        </section>
+        </details>
         <section class="about-section" id="about" aria-labelledby="about-title">
           <p class="about-label">About me</p>
           <div class="about-copy">
             <h2 id="about-title">An analytical foundation. A builder’s mindset.</h2>
-            <p>CS &amp; mathematics background. MDA (AI) at Western University.</p>
+            <p><span class="desktop-only">CS &amp; mathematics background. MDA (AI) at Western University.</span><span class="mobile-only">CS &amp; mathematics · Founder of DiaCare</span></p>
           </div>
         </section>
       </main>

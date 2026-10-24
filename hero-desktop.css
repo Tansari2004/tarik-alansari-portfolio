@@ -8,6 +8,13 @@
 }
 
 * { box-sizing: border-box; }
+.mobile-only { display: none; }
+.project-copy { min-width: 0; }
+.project-card picture, .compact-project picture, .hero-art picture { display: block; }
+.hero-art picture { width: 100%; }
+.more-projects > summary { list-style: none; cursor: pointer; }
+.more-projects > summary::-webkit-details-marker { display: none; }
+.more-projects > summary:focus-visible { outline: 3px solid #005cf4; outline-offset: 5px; }
 body { margin: 0; }
 a { color: inherit; text-decoration: none; }
 a:focus-visible { outline: 3px solid #005cf4; outline-offset: 5px; }
@@ -49,7 +56,7 @@ h1 { margin: 0; font-size: clamp(36px, 3.5vw, 50px); font-weight: 750; line-heig
 .primary-action, .resume-action { display: inline-flex; align-items: center; justify-content: center; gap: 13px; min-height: 44px; font-size: 14px; font-weight: 600; }
 .primary-action { padding: 0 19px; color: #fff; background: #0059ef; border: 1px solid #0054e4; border-radius: 10px; box-shadow: 0 4px 10px #0059ef14; transition: background-color .15s ease; }
 .primary-action:hover { background: #0049ca; }
-.primary-action span { font-size: 23px; font-weight: 400; }
+.primary-action > span[aria-hidden] { font-size: 23px; font-weight: 400; }
 .resume-action { gap: 8px; color: #0055e8; }
 .availability { display: flex; align-items: center; gap: 9px; margin: 14px 0 0; color: #455c7b; font-size: 13px; line-height: 1.5; }
 .status-dot { flex: 0 0 9px; width: 9px; height: 9px; border-radius: 50%; background: #16b85a; box-shadow: 0 0 0 3px #16b85a0b; }
@@ -145,7 +152,7 @@ h1 { margin: 0; font-size: clamp(36px, 3.5vw, 50px); font-weight: 750; line-heig
   .hero-actions { margin-top: 16px; gap: 18px; }
   .primary-action, .resume-action { min-height: 38px; font-size: 12px; gap: 10px; }
   .primary-action { padding-inline: 15px; border-radius: 7px; }
-  .primary-action span { font-size: 18px; }
+  .primary-action > span[aria-hidden] { font-size: 18px; }
   .availability { font-size: 11px; margin-top: 11px; gap: 7px; }
   .status-dot { width: 7px; height: 7px; flex-basis: 7px; }
   .hero-art { inset: 0 2% 0 48%; }
