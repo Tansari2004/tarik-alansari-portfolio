@@ -32,6 +32,8 @@ h2 { font-size: 21px; line-height: 1.3; font-weight: 650; letter-spacing: -.025e
 .section-number { display: inline-block; vertical-align: middle; margin-right: 10px; color: #5d82b4; font-size: 10px; font-weight: 600; letter-spacing: .06em; }
 .report-section > p, .approach-list { font-size: 14px; line-height: 1.8; color: #46556b; }
 .report-section > p + p { margin-top: 12px; }
+.report-subheading { margin: 21px 0 8px; color: #273851; font-size: 15px; font-weight: 600; line-height: 1.5; letter-spacing: -.015em; }
+.data-notes > .evidence-links { margin-top: 12px; font-size: 12px; }
 .report-section strong, .approach-list strong { color: #273851; font-weight: 600; }
 .approach-list { padding-left: 22px; margin: 0 0 14px; }
 .approach-list li { padding-left: 5px; margin-bottom: 11px; }
