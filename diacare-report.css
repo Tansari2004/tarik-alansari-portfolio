@@ -1,0 +1,11 @@
+.app-figures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; margin-top: 22px; }
+.app-figures .report { margin-top: 0; min-width: 0; }
+.app-figures .report a { display: flex; justify-content: center; }
+.app-figures .report img { width: auto; max-width: 100%; height: 360px; object-fit: contain; border-radius: 7px; }
+.report-section > .verification-note { margin-top: 24px; }
+@media (max-width: 520px) {
+  .app-figures { gap: 16px; }
+  .app-figures .report img { width: 100%; height: auto; }
+  .app-figures .report h3, .app-figures .report figcaption p { font-size: 11px; }
+  .app-figures .report figcaption { padding-left: 8px; }
+}
