@@ -2,72 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#eef5ff">
-  <meta name="description" content="Predictive Maintenance by Tarik Alansari. A leakage-safe machine-learning case study measuring failure detection and false alarms on 10,000 synthetic manufacturing records.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Predictive Maintenance by Tarik Alansari: a synthetic-data failure-classification project evaluating detection, false alarms, and training-only threshold selection.">
   <link rel="canonical" href="https://tansari2004.github.io/tarik-alansari-portfolio/predictive-maintenance.html">
-  <meta property="og:title" content="Predictive Maintenance · Tarik Alansari">
-  <meta property="og:description" content="Finding likely machine failures—and understanding the cost of false alarms.">
   <meta property="og:type" content="website">
+  <meta property="og:title" content="Predictive Maintenance — Failure Classification · Tarik Alansari">
+  <meta property="og:description" content="A project report on classifying machine failures and making the cost of false alarms visible.">
+  <meta property="og:url" content="https://tansari2004.github.io/tarik-alansari-portfolio/predictive-maintenance.html">
   <meta property="og:image" content="https://tansari2004.github.io/tarik-alansari-portfolio/predictive-maintenance-button.webp">
-  <title>Predictive Maintenance · Tarik Alansari</title>
-  <link rel="stylesheet" href="banking-pipeline.css?v=3">
-  <link rel="stylesheet" href="financial-crime.css?v=3">
-  <link rel="stylesheet" href="project-polish.css?v=1">
-  <script src="banking-pipeline.js" defer></script>
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Predictive Maintenance — Failure Classification · Tarik Alansari</title>
+  <link rel="stylesheet" href="banking-pipeline.css?v=report-findings-1">
+  <script src="banking-pipeline.js?v=case-study-1" defer></script>
 </head>
-<body class="crime-page maintenance-page">
-  <main class="page">
-    <nav class="nav" aria-label="Project navigation"><a href="./" class="back">← Back to portfolio</a><span>Tarik Alansari</span></nav>
-    <header class="hero">
-      <p class="eyebrow">MACHINE LEARNING · A PROJECT BY TARIK ALANSARI</p>
-      <h1>Predictive<br><span>Maintenance</span></h1>
-      <p class="lead">I built a tool that reads machine measurements and suggests which records may show a failure. The idea is to help a maintenance team decide what to check—not to replace their judgment.</p>
-      <div class="tools" aria-label="Project tools"><span>Python</span><span>scikit-learn</span><span>Logistic regression</span></div>
-      <div class="hero-actions"><a class="button" href="#report">See the results <span aria-hidden="true">↓</span></a><a class="secondary" href="https://github.com/Tansari2004/predictive-maintenance-classifier" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">↗</span></a></div>
-    </header>
-
-    <section class="results" aria-label="Project results">
-      <div><strong>10,000</strong><span>simulated machine records in the dataset</span></div>
-      <div><strong>2,000</strong><span>records saved for testing</span></div>
-      <div><strong>75%</strong><span>of test failures correctly flagged</span></div>
-    </section>
-
-    <section class="section" aria-labelledby="flow">
-      <p class="eyebrow">HOW IT WORKS</p><h2 id="flow">Read the measurements. Flag a possible problem.</h2>
-      <p class="section-intro">Think of each record as a snapshot: how hot the machine is, how fast it is turning, and how worn its tool is. The dataset also says whether a failure occurred, so I can check whether the model gets it right. These are simulated records, not readings from a live factory.</p>
-      <ol class="steps">
-        <li><span class="number">01</span><h3>Read the machine data</h3><p>Use temperature, rotation speed, turning force, and tool wear. Leave out fields that already reveal a failure.</p></li>
-        <li><span class="number">02</span><h3>Learn signs of trouble</h3><p>Train the model to distinguish failure records from normal ones, giving extra attention to the less common failures.</p></li>
-        <li><span class="number">03</span><h3>Check the alerts</h3><p>Choose when to raise an alert, then count correct alerts, missed failures, and false alarms on new test records.</p></li>
-      </ol>
-    </section>
-
-    <section class="section" id="report" aria-labelledby="report-title">
-      <div class="section-heading"><div><p class="eyebrow">THE RESULTS</p><h2 id="report-title">It caught 51 of the 68 failures.</h2></div><span class="quiet">Tested on records it had not seen</span></div>
-      <p class="section-intro">Of the 2,000 test records, 68 represented failures. Here is what happened when the tool checked them:</p>
-      <div class="results" aria-label="Test outcomes"><div><strong>51</strong><span>failures correctly flagged for a check</span></div><div><strong>17</strong><span>failures missed by the model</span></div><div><strong>191</strong><span>normal records flagged by mistake</span></div></div>
-      <details class="more additional-report"><summary>See the test-results chart <span aria-hidden="true">+</span></summary>
-      <p class="image-hint">The chart counts correct predictions and mistakes. Tap it to view it larger.</p>
-      <figure class="report wide"><a href="maintenance-assets/confusion-matrix.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size model evaluation chart"><img src="maintenance-assets/confusion-matrix.png" alt="Confusion matrix: 1,741 correct non-failure predictions, 191 false alarms, 17 missed failures and 51 correctly flagged failures" width="1152" height="864" loading="lazy" decoding="async"></a><figcaption><h3>How to read the chart</h3><p>The rows show what actually happened; the columns show what the model predicted. Matching outcomes are correct predictions. The other two boxes are missed failures and false alarms.</p></figcaption></figure>
-      </details>
-
-      <aside class="context"><strong>The takeaway: useful alerts, but plenty of false alarms.</strong><p>The tool found three out of four failures. But most alerts were false alarms, so someone would still need to check them.</p><p>This is a practice project showing how to test a model honestly. It does not prove that the tool can predict breakdowns ahead of time or save money in a real factory.</p></aside>
-
-      <details class="more evaluation"><summary>Data, methods & full results <span aria-hidden="true">+</span></summary><div class="detail-content">
-        <h3>Six operational features</h3><p>The UCI AI4I 2020 dataset contains 10,000 synthetic manufacturing records. Inputs are product type, air temperature, process temperature, rotational speed, torque, and tool wear. Identifiers and the five failure-mode columns are excluded to prevent target leakage.</p>
-        <h3>A separate test set</h3><p>An 80/20 stratified split preserves the rare-failure balance, using random seed 42. The model is class-weighted logistic regression. Five-fold cross-validation generates out-of-fold training predictions for threshold selection.</p>
-        <p>The threshold is selected to maximize failure recall while respecting a configurable false-positive-rate limit. It is then locked at 0.655 before evaluation on the 2,000-row test set. The chart title rounds this value to 0.65.</p>
-        <h3>Verified test results</h3>
-        <div class="table-scroll"><table><thead><tr><th scope="col">Measure</th><th scope="col">Result</th></tr></thead><tbody><tr><td>Failure recall · share of failures caught</td><td>75.0%</td></tr><tr><td>Precision · share of alerts that were failures</td><td>21.1%</td></tr><tr><td>False-positive rate · non-failures flagged</td><td>9.9%</td></tr><tr><td>Precision–recall AUC</td><td>0.382</td></tr><tr><td>ROC AUC</td><td>0.907</td></tr><tr><td>Failures caught / missed</td><td>51 / 17</td></tr><tr><td>Correct non-failure predictions / false alarms</td><td>1,741 / 191</td></tr></tbody></table></div>
-        <h3>What this demonstrates</h3><p>A reproducible workflow for imbalanced classification, leakage prevention, and threshold tuning. The results describe classification on a synthetic dataset, not a deployed factory system or a measured advance warning time.</p>
-        <nav class="sources" aria-label="Project evidence"><a href="https://github.com/Tansari2004/predictive-maintenance-classifier" target="_blank" rel="noopener noreferrer">Project & methodology ↗</a><a href="https://github.com/Tansari2004/predictive-maintenance-classifier/blob/main/results/metrics.json" target="_blank" rel="noopener noreferrer">Verified metrics ↗</a><a href="https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset" target="_blank" rel="noopener noreferrer">UCI dataset · CC BY 4.0 ↗</a></nav>
-      </div></details>
-      <p class="note">A synthetic-data case study. Real deployment would require maintenance cost estimates, drift monitoring, maintenance feedback, and prospective validation.</p>
-    </section>
-
-    <footer><div><h2>Interested in the work?</h2><p>Explore the code, or get in touch.</p></div><div class="footer-links"><a class="button" href="https://github.com/Tansari2004/predictive-maintenance-classifier" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="email" href="mailto:tansari7@uwo.ca">Email Tarik ↗</a></div></footer>
-  </main>
-  <dialog class="image-viewer" aria-labelledby="viewer-title"><div class="viewer-bar"><h2 id="viewer-title">Report screenshot</h2><div class="viewer-controls"><button type="button" class="zoom-button" aria-pressed="false">Zoom in</button><button type="button" class="close-viewer" aria-label="Close screenshot">✕</button></div></div><div class="viewer-image"><img alt=""></div><p class="viewer-hint">Use Zoom in, then scroll to explore the report.</p></dialog>
+<body>
+  <a class="skip-link" href="#main">Skip to project report</a>
+  <div class="page">
+    <nav class="project-nav" aria-label="Project navigation"><a href="./#work">← Portfolio</a><a class="author" href="./">Tarik Alansari</a><a href="https://github.com/Tansari2004/predictive-maintenance-classifier">GitHub ↗</a></nav>
+    <main id="main" class="project-report">
+      <header class="report-header">
+        <p class="eyebrow">Project report · Machine learning</p>
+        <h1>Predictive Maintenance<br><span class="title-accent">Failure Classification</span></h1>
+        <p class="standfirst">Finding failure records while making the false-alarm trade-off explicit.</p>
+        <p class="byline">Built by Tarik Alansari</p>
+        <p class="technology-line"><strong>Technologies</strong> Python · pandas · scikit-learn · Logistic regression · Matplotlib</p>
+        <nav class="report-contents" aria-label="Report sections"><a href="#overview">Overview</a><a href="#approach">Approach</a><a href="#results">Results</a><a href="#data-notes">Data &amp; next steps</a></nav>
+      </header>
+      <section class="report-section" aria-labelledby="overview">
+        <h2 id="overview"><span class="section-number" aria-hidden="true">01</span>Project overview</h2>
+        <p>I built a reproducible failure-classification workflow using <strong>10,000 synthetic manufacturing records</strong> from UCI’s AI4I 2020 dataset. The objective was to identify records requiring review while measuring how many normal records would also trigger an alert.</p>
+        <p>My work covers input validation, feature selection, a preprocessing and modelling pipeline, threshold selection, and holdout evaluation. This is a classification study of machine snapshots; it does not estimate remaining useful life or a warning time before breakdown.</p>
+      </section>
+      <section class="report-section" aria-labelledby="approach">
+        <h2 id="approach"><span class="section-number" aria-hidden="true">02</span>How I built it</h2>
+        <ol class="approach-list">
+          <li><strong>Restrict inputs to operational measurements.</strong> Use product type, air and process temperature, rotational speed, torque, and tool wear. Exclude identifiers and the five failure-mode columns, which would reveal the outcome being predicted.</li>
+          <li><strong>Keep preprocessing inside the model pipeline.</strong> Impute and standardise numeric inputs, encode product type, and train class-weighted logistic regression. An 80/20 stratified split reserves 2,000 records for testing, using random seed 42.</li>
+          <li><strong>Select the alert threshold before testing.</strong> Generate out-of-fold predictions across five training folds, then maximise failure recall subject to a 10% false-positive-rate limit on those predictions. Lock the selected threshold at <strong>0.655</strong> before evaluating the holdout.</li>
+        </ol>
+        <h3 class="report-subheading">Modelling decisions</h3>
+        <p>Keeping imputation, scaling, and encoding inside cross-validation prevents held-out fold records from influencing fitted preprocessing. Class weighting gives rare failures more influence during training. The alert threshold is a separate operating choice: a higher recall can require more inspections of normal equipment.</p>
+        <p>The 10% false-positive limit is a training-selection constraint, not a guarantee on future data or an established maintenance budget. Stratification preserves the class balance in this random split; it does not test performance on a later production period or a different fleet.</p>
+      </section>
+      <section class="report-section" aria-labelledby="results">
+        <h2 id="results"><span class="section-number" aria-hidden="true">03</span>Results</h2>
+        <p>On the 2,000-record holdout, the model caught <strong>51 of 68 failures (75% recall)</strong> and missed 17. It also flagged <strong>191 normal records</strong>, so only <strong>21.1% of its 242 alerts</strong> corresponded to failures. Most alerts would therefore require an inspection that did not confirm a failure.</p>
+        <table class="results-table"><caption>Holdout evaluation · locked threshold 0.655 · 68 failure and 1,932 non-failure records</caption><thead><tr><th scope="col">Measure</th><th scope="col">Result</th></tr></thead><tbody><tr><th scope="row">Failures caught / missed</th><td>51 / 17</td></tr><tr><th scope="row">Failure recall</th><td>75.0%</td></tr><tr><th scope="row">False alarms / correct non-failure predictions</th><td>191 / 1,741</td></tr><tr><th scope="row">Precision · failures among alerts</th><td>21.1%</td></tr><tr><th scope="row">False-positive rate · non-failures flagged</th><td>9.9%</td></tr></tbody></table>
+        <figure class="report"><a href="maintenance-assets/confusion-matrix.png" aria-label="Enlarge holdout confusion matrix"><img src="maintenance-assets/confusion-matrix.png" width="1152" height="864" alt="Holdout confusion matrix showing 1,741 correct non-failure predictions, 191 false alarms, 17 missed failures, and 51 correctly flagged failures" loading="lazy" decoding="async"></a><figcaption><h3>Figure 1. Holdout classification outcomes</h3><p>Rows show actual outcomes; columns show predictions. The chart title rounds the threshold to 0.65; evaluation used 0.655. Select the figure to enlarge.</p></figcaption></figure>
+        <details class="supporting-reports"><summary>Supporting evaluation: ranking metrics and reproducibility <span aria-hidden="true">+</span></summary><div class="supporting-content">
+          <p class="technology-line">Average precision was <strong>0.3818</strong> and ROC AUC was <strong>0.9070</strong>. These measure ranking across thresholds; the inspection workload above describes the selected operating point. The repository labels average precision as “PR AUC”; the implementation computes scikit-learn’s average_precision_score.</p>
+          <p class="technology-line">The public <a href="https://github.com/Tansari2004/predictive-maintenance-classifier/blob/main/results/metrics.json">metrics file</a> records the threshold, split size, seed, and all four confusion-matrix cells. The <a href="https://github.com/Tansari2004/predictive-maintenance-classifier/blob/main/src/train.py">training code</a> shows fold construction, threshold selection, and final evaluation; the <a href="https://github.com/Tansari2004/predictive-maintenance-classifier/blob/main/tests/test_model.py">unit tests</a> check a feasible threshold-selection example and confusion-matrix accounting.</p>
+        </div></details>
+      </section>
+      <section class="report-section data-notes" aria-labelledby="data-notes">
+        <h2 id="data-notes"><span class="section-number" aria-hidden="true">04</span>Data, limitations &amp; next steps</h2>
+        <p>AI4I 2020 is a synthetic dataset, published by UCI under CC BY 4.0. Results describe this held-out random split. They do not establish advance warning, avoided downtime, cost savings, or generalisation to real machinery. Class-weighted scores have not been validated as calibrated failure probabilities.</p>
+        <p><strong>Takeaway &amp; next step.</strong> Catching more failures is useful only when the resulting inspection workload is acceptable. Next, I would compare simple sensor rules and alternative thresholds under explicit missed-failure and inspection costs, then evaluate on time-separated operational data before proposing deployment.</p>
+        <p class="evidence-links">Technical evidence: <a href="https://github.com/Tansari2004/predictive-maintenance-classifier/blob/main/src/data.py">input and feature definitions</a> · <a href="https://github.com/Tansari2004/predictive-maintenance-classifier/blob/main/src/train.py">modelling &amp; threshold selection</a> · <a href="https://github.com/Tansari2004/predictive-maintenance-classifier/blob/main/results/metrics.json">full results</a> · <a href="https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset">UCI dataset</a>.</p>
+      </section>
+      <footer class="report-footer"><a href="https://github.com/Tansari2004/predictive-maintenance-classifier">Explore the code ↗</a><a href="mailto:tansari7@uwo.ca">Discuss the project ↗</a><a href="./#work">Back to portfolio</a></footer>
+    </main>
+  </div>
+  <dialog class="image-viewer" aria-labelledby="viewer-title" aria-describedby="viewer-hint"><div class="viewer-bar"><h2 id="viewer-title">Evaluation figure</h2><div class="viewer-controls"><button type="button" class="zoom-button" aria-pressed="false">Zoom in</button><button type="button" class="close-viewer" aria-label="Close screenshot">✕</button></div></div><div class="viewer-image"><img alt=""></div><p class="viewer-hint" id="viewer-hint">Zoom in, then scroll to explore the figure. Press Escape to close.</p></dialog>
 </body>
 </html>
