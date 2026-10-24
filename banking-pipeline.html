@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://tansari2004.github.io/tarik-alansari-portfolio/banking-transaction-platform-button.webp">
   <meta name="twitter:card" content="summary_large_image">
   <title>Banking Transaction Data Platform · Tarik Alansari</title>
-  <link rel="stylesheet" href="banking-pipeline.css?v=report-layout-1">
+  <link rel="stylesheet" href="banking-pipeline.css?v=report-polish-1">
   <script src="banking-pipeline.js?v=case-study-1" defer></script>
 </head>
 <body>
@@ -23,19 +23,19 @@
     <main id="main" class="project-report">
       <header class="report-header">
         <p class="eyebrow">Project report · Data engineering</p>
-        <h1>Banking Transaction<br>Data Platform</h1>
+        <h1>Banking Transaction<br><span class="title-accent">Data Platform</span></h1>
         <p class="standfirst">From simulated payments to checked, reliable reporting.</p>
         <p class="byline">Built by Tarik Alansari</p>
         <p class="technology-line"><strong>Technologies</strong> Python · PostgreSQL · dbt · Dagster · Power BI</p>
         <nav class="report-contents" aria-label="Report sections"><a href="#overview">Overview</a><a href="#approach">Approach</a><a href="#results">Results</a><a href="#data-notes">Data notes</a></nav>
       </header>
       <section class="report-section" aria-labelledby="overview">
-        <h2 id="overview">Project overview</h2>
+        <h2 id="overview"><span class="section-number" aria-hidden="true">01</span>Project overview</h2>
         <p>I built a data pipeline to check and organise <strong>5.08 million simulated payment records</strong> before publishing them to Power BI. The goal was to make the reports traceable: every accepted record accounted for, with payment amounts reconciled across all <strong>15 currencies</strong>.</p>
         <p>Each record describes a payment between accounts, including the banks, timestamp, amounts, currencies, and payment method. I used IBM’s synthetic AML data, which contains generated transactions rather than real customer records.</p>
       </section>
       <section class="report-section" aria-labelledby="approach">
-        <h2 id="approach">How I built it</h2>
+        <h2 id="approach"><span class="section-number" aria-hidden="true">02</span>How I built it</h2>
         <ol class="approach-list">
           <li><strong>Collect and preserve the data.</strong> Load the source transactions with Python, retain the originals, and flag records that need checking.</li>
           <li><strong>Validate and reconcile.</strong> Organise the data in PostgreSQL, run dbt quality checks, and compare record counts and currency amounts before publication.</li>
@@ -44,7 +44,7 @@
         <p>The pipeline passed <strong>24 dbt quality checks</strong>. Reconciliation checks confirm that the published amounts match the source across every currency.</p>
       </section>
       <section class="report-section" aria-labelledby="results">
-        <h2 id="results">Results</h2>
+        <h2 id="results"><span class="section-number" aria-hidden="true">03</span>Results</h2>
         <p>The full run published <strong>5,078,336 accepted rows</strong>, retained <strong>9 duplicate candidates</strong>, and recorded no invalid rejects or currency imbalances.</p>
         <table class="results-table"><caption>Verified pipeline run</caption><thead><tr><th scope="col">Measure</th><th scope="col">Result</th></tr></thead><tbody><tr><th scope="row">Source rows</th><td>5,078,345</td></tr><tr><th scope="row">Accepted rows</th><td>5,078,336</td></tr><tr><th scope="row">Duplicate candidates retained</th><td>9</td></tr><tr><th scope="row">Invalid rejects</th><td>0</td></tr><tr><th scope="row">Currency imbalances</th><td>0 across 15 currencies</td></tr></tbody></table>
         <figure class="report main-figure"><a href="banking-assets/transaction-activity.png" aria-label="Enlarge transaction activity report"><img src="banking-assets/transaction-activity.png" width="2880" height="1635" alt="Actual Power BI report showing daily published payment volumes and a rounded 5M transaction total" loading="lazy" decoding="async"></a><figcaption><h3>Figure 1. Transaction activity</h3><p>Daily published payment volumes across the reporting period. Select the figure to enlarge it.</p></figcaption></figure>
@@ -54,7 +54,7 @@
           <figure class="report"><a href="banking-assets/risk-monitoring.png" aria-label="Enlarge risk monitoring report"><img src="banking-assets/risk-monitoring.png" width="2880" height="1635" alt="Actual Power BI report showing rule-based risk-alert counts by currency" loading="lazy" decoding="async"></a><figcaption><h3>Figure 4. Rule-based risk monitoring</h3><p>Transparent rules flag payments for review. These alerts are not confirmed fraud.</p></figcaption></figure>
         </div></details>
       </section>
-      <section class="report-section data-notes" aria-labelledby="data-notes"><h2 id="data-notes">Data &amp; limitations</h2><p>This project uses IBM’s synthetic AML data. It contains no real customer records and does not demonstrate performance on a production banking system. The Power BI figures are exported snapshots of the verified data.</p></section>
+      <section class="report-section data-notes" aria-labelledby="data-notes"><h2 id="data-notes"><span class="section-number" aria-hidden="true">04</span>Data &amp; limitations</h2><p>This project uses IBM’s synthetic AML data. It contains no real customer records and does not demonstrate performance on a production banking system. The Power BI figures are exported snapshots of the verified data.</p></section>
       <footer class="report-footer"><a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/tree/main/pipeline">Explore the code ↗</a><a href="mailto:tansari7@uwo.ca">Discuss the project ↗</a><a href="./#work">Back to portfolio</a></footer>
     </main>
   </div>
