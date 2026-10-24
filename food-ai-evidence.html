@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Sanitised Food AI evidence: historical model-ranking results and focused backend and Flutter verification.">
+  <link rel="canonical" href="https://tansari2004.github.io/tarik-alansari-portfolio/food-ai-evidence.html">
+  <title>Food AI — Experiment &amp; Test Evidence · Tarik Alansari</title>
+  <link rel="stylesheet" href="banking-pipeline.css?v=report-findings-1">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to technical evidence</a>
+  <div class="page">
+    <nav class="project-nav" aria-label="Project navigation"><a href="food-ai.html">← Food AI report</a><a class="author" href="./">Tarik Alansari</a><a href="https://diacare.health/">Product website ↗</a></nav>
+    <main class="project-report" id="main">
+      <header class="report-header"><p class="eyebrow">Food AI · Technical evidence</p><h1>Experiment<br><span class="title-accent">&amp; test summary</span></h1><p class="standfirst">Separating model-ranking evidence from implementation checks.</p><p class="byline">Published October 24, 2026 · Historical experiment dated October 3, 2026</p></header>
+      <section class="report-section" aria-labelledby="experiment"><h2 id="experiment">Historical model comparison</h2>
+        <p>The <a href="food-ai-assets/model-comparison.json">published aggregate JSON</a> preserves the saved CLIP/SigLIP comparison. Both rank the same 2,356 names. Food-presence classification is bypassed; nonfood images are excluded. The two samples are 294 app food assets and 202 Food-101 validation photos.</p>
+        <p>The Food-101 sample selects two photos per category at dataset-viewer offsets <code>category_block * 250 + 17</code> and the following row. Accepted names are compared using exact or reviewed spelling normalisation; valid singular/plural variants and alternative names may still be counted as misses. The catalogue has exact normalised names for 84 of the 101 benchmark categories.</p>
+        <p>CLIP top-1/top-3/top-6 matches were 67/112/137 of 202. The tested SigLIP configuration returned 47/64/77 matches. The candidate is <code>google/siglip2-base-patch32-256</code>, pinned to revision <code>94dffa8cb1179de3e03f091dbc3917e5d5a9ae84</code>. Results supported retaining CLIP for this configuration; they are not evidence that every SigLIP approach would perform worse.</p>
+        <p>These samples informed model selection. App assets also informed earlier tuning. Neither is a fresh representative DiaCare final test set. Local timing excludes upload, cold start, and model initialisation. The underlying images and per-image research manifests are not published here, so the aggregate file alone is not sufficient to independently reproduce the experiment.</p>
+      </section>
+      <section class="report-section" aria-labelledby="open-names"><h2 id="open-names">Separate open-ended naming experiment</h2>
+        <p>The saved October 3 experiment used 202 Food-101 photos plus five nonfood and two egg fixtures, making 209 requests. The first accepted name matched on 115/202 photos (56.9%); any returned name matched on 124/202 (61.4%). Thirteen requests failed—11 read timeouts and two other request failures—and were counted as misses without retries.</p>
+        <p>Open-ended component names and ranked alternative dish names are different outputs. These match rates do not measure human-reviewed semantic correctness, portion accuracy, or nutritional accuracy. A separately configured test service was recorded, but the native signed-in camera round trip remained unverified. No new provider requests or deployment changes were made for this portfolio update.</p>
+      </section>
+      <section class="report-section" aria-labelledby="backend"><h2 id="backend">Backend verification · 35 tests passed</h2>
+        <p>The local command was <code>python -m pytest -q food_vision_api</code>. Existing test modules cover API/image boundaries, catalogue mappings, ranking, evaluation accounting, model-comparison accounting, optional-provider parsing, and provider failure handling.</p>
+        <p>Fixtures and mocks avoid downloading model weights, making paid inference requests, or uploading real photos. Authentication coverage checks rejection without credentials; it does not establish all Firebase access-control behaviours. Fake image rankers exercise response paths, not recognition quality. A missing local test dependency was installed before the complete passing run.</p>
+      </section>
+      <section class="report-section" aria-labelledby="flutter"><h2 id="flutter">Flutter verification · 38 focused tests passed</h2>
+        <p>The run used <code>flutter test --no-pub</code> with these six existing files under <code>test/</code>:</p>
+        <ul class="approach-list"><li>food_photo_recognition_service_test.dart — scored/unscored parsing, confirmation flags, uncertain and nonfood responses, malformed values, and readiness warm-up.</li><li>photo_capture_flow_test.dart — rapid taps, consent cancellation, camera failure, retry, and waiting for the consent-dialog transition.</li><li>photo_analysis_status_card_test.dart — loading, rejection, cancellation, distinct retry/new-photo controls, and manual search in English and Arabic.</li><li>photo_analysis_deadline_test.dart — completed, stalled, and shared-budget stages.</li><li>photo_analysis_cancellation_test.dart — immediate cancellation, normal completion, and late errors.</li><li>portion_estimate_test.dart — confirmed reference calculations, volume/weight distinction, and invalid inputs.</li></ul>
+        <p>The local runner reported successful completion. These are helper and widget checks, not an end-to-end device camera, authenticated production upload, or released-app verification.</p>
+      </section>
+      <section class="report-section data-notes" aria-labelledby="limits"><h2 id="limits">Evidence boundaries</h2><p>This is a sanitised summary of private implementation and saved research records. It does not publish production code, user images, credentials, or private logs. The October 3 comparison was inspected and its count arithmetic checked, but model inference was not rerun on October 24.</p><p>The practical next evidence is a reserved camera-photo evaluation set with independent labels, plus a signed-in device workflow check. Provider retention, calibration, food coverage, and any health outcomes require their own evidence.</p></section>
+      <footer class="report-footer"><a href="food-ai.html">Back to Food AI report</a><a href="food-ai-assets/model-comparison.json">Aggregate comparison JSON</a><a href="mailto:tansari7@uwo.ca">Discuss implementation ↗</a></footer>
+    </main>
+  </div>
+</body>
+</html>

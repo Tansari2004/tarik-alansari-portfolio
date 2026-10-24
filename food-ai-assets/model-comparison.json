@@ -1,0 +1,65 @@
+{
+  "decision": "Retain current CLIP; reject tested SigLIP configuration",
+  "limits": [
+    "Raw name ranking only; food-presence gate bypassed",
+    "Small Food-101 sample; alternative names can be counted as misses",
+    "App assets informed prior tuning",
+    "Local timing excludes upload, cold start and initialization"
+  ],
+  "comparisons": [
+    {
+      "sample": "app_assets",
+      "ranking_only": true,
+      "presence_gate_evaluated": false,
+      "food_photos": 294,
+      "candidate_model": "google/siglip2-base-patch32-256",
+      "candidate_revision": "94dffa8cb1179de3e03f091dbc3917e5d5a9ae84",
+      "catalog_size": 2356,
+      "summary": {
+        "clip": {
+          "raw_top_1": 0.48299319727891155,
+          "raw_top_3": 0.6972789115646258,
+          "raw_top_6": 0.7755102040816326,
+          "mean_seconds": 0.1341900453405046,
+          "p95_seconds": 0.19710816600127146
+        },
+        "candidate": {
+          "raw_top_1": 0.23469387755102042,
+          "raw_top_3": 0.35714285714285715,
+          "raw_top_6": 0.47278911564625853,
+          "mean_seconds": 0.08101919883305601,
+          "p95_seconds": 0.19367258400598075
+        }
+      }
+    },
+    {
+      "sample": "food101_sample",
+      "ranking_only": true,
+      "presence_gate_evaluated": false,
+      "food_photos": 202,
+      "candidate_model": "google/siglip2-base-patch32-256",
+      "candidate_revision": "94dffa8cb1179de3e03f091dbc3917e5d5a9ae84",
+      "catalog_size": 2356,
+      "summary": {
+        "clip": {
+          "raw_top_1": 0.3316831683168317,
+          "raw_top_3": 0.5544554455445545,
+          "raw_top_6": 0.6782178217821783,
+          "mean_seconds": 0.1252415627228888,
+          "p95_seconds": 0.18729266700393055
+        },
+        "candidate": {
+          "raw_top_1": 0.23267326732673269,
+          "raw_top_3": 0.31683168316831684,
+          "raw_top_6": 0.3811881188118812,
+          "mean_seconds": 0.08913978489107478,
+          "p95_seconds": 0.18067274999339134
+        }
+      }
+    }
+  ],
+  "provenance": {
+    "experiment_date": "2026-10-03",
+    "publication_note": "Historical local aggregate report; not rerun for portfolio publication on 2026-10-24. Raw photographs and per-image manifests are not published here."
+  }
+}
