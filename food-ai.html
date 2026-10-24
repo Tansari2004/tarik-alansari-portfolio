@@ -14,6 +14,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <title>Food AI — Photo Suggestions &amp; Model Evaluation · Tarik Alansari</title>
   <link rel="stylesheet" href="banking-pipeline.css?v=report-findings-1">
+  <link rel="stylesheet" href="food-ai-report.css?v=1">
   <script src="banking-pipeline.js?v=case-study-1" defer></script>
 </head>
 <body>
@@ -47,20 +48,33 @@
       </section>
       <section class="report-section" aria-labelledby="results">
         <h2 id="results"><span class="section-number" aria-hidden="true">03</span>Results</h2>
-        <p>In the saved October 3, 2026 comparison on <strong>202 Food-101 photos</strong>, CLIP returned an accepted label first on <strong>67 photos (33.2%)</strong>, compared with <strong>47 (23.3%)</strong> for the tested SigLIP 2 configuration. I retained CLIP for this candidate-ranking approach.</p>
+        <p>In the saved October 3, 2026 comparison on <strong>202 Food-101 photos</strong>, CLIP returned an accepted label first on <strong>67 photos (33.2%)</strong>, compared with <strong>47 (23.3%)</strong> for the tested SigLIP 2 configuration. CLIP won this CLIP-versus-SigLIP comparison; selection against the open-ended provider remains unresolved.</p>
+        <p>CLIP included an accepted name among its first six suggestions for <strong>137 of 202 images</strong>, but ranked one first for only <strong>67</strong>. This supports further investigation of a suggestion-and-confirmation interface; it does not establish that the workflow saves users time.</p>
         <p>This is a small research sample using exact or reviewed spelling matches. The food-presence gate was bypassed and nonfood images were excluded. These numbers measure name ranking, not complete app accuracy; alternative valid names can count as misses.</p>
-        <table class="results-table preferred-first"><caption>Raw accepted-label matches · same 202 photos and 2,356 candidate names</caption><thead><tr><th scope="col">Model</th><th scope="col">First name</th><th scope="col">First 6 names</th></tr></thead><tbody><tr><th scope="row">CLIP ViT-B/32 · retained</th><td>67 / 202 · 33.2%</td><td>137 / 202 · 67.8%</td></tr><tr><th scope="row">Tested SigLIP 2</th><td>47 / 202 · 23.3%</td><td>77 / 202 · 38.1%</td></tr></tbody></table>
+        <table class="results-table preferred-first"><caption>Raw accepted-label matches · same 202 photos and 2,356 candidate names</caption><thead><tr><th scope="col">Model</th><th scope="col">First name</th><th scope="col">First 6 names</th></tr></thead><tbody><tr><th scope="row">CLIP ViT-B/32</th><td>67 / 202 · 33.2%</td><td>137 / 202 · 67.8%</td></tr><tr><th scope="row">Tested SigLIP 2</th><td>47 / 202 · 23.3%</td><td>77 / 202 · 38.1%</td></tr></tbody></table>
         <figure class="report"><a href="food-ai-assets/model-ranking.png" aria-label="Enlarge food-name ranking comparison"><img src="food-ai-assets/model-ranking.png" width="1280" height="704" alt="Historical comparison on 202 Food-101 photos: CLIP top-1, top-3 and top-6 name matches of 33.2%, 55.4% and 67.8%; tested SigLIP 2 matches of 23.3%, 31.7% and 38.1%" loading="lazy" decoding="async"></a><figcaption><h3>Figure 1. Comparing food-name ranking</h3><p>Generated from the saved aggregate experiment. Higher means more accepted-label matches within the first one, three, or six suggestions. This model-selection sample is not an untouched final test set.</p></figcaption></figure>
+        <h3 class="report-subheading">Recorded example: the match was second</h3>
+        <figure class="prediction-example">
+          <img src="food-ai-assets/boiled-egg.webp" width="512" height="341" alt="DiaCare development fixture showing a hard-boiled egg cut in half on a plate" loading="lazy" decoding="async">
+          <div>
+            <ol class="example-flow">
+              <li><strong>Input.</strong> A boiled-egg development asset, shown here.</li>
+              <li><strong>Recorded suggestions.</strong> The CLIP research note places “hard boiled eggs” second. The separate open-ended run returned “hard-boiled egg” and “egg”.</li>
+              <li><strong>Review · illustrated.</strong> Choose the specific food, or search manually if the suggestions are wrong; correct the serving yourself.</li>
+              <li><strong>Confirmation · illustrated.</strong> Save only after confirming the food record and serving.</li>
+            </ol>
+          </div>
+          <figcaption>Figure 2. Development fixture and saved October 3 output. Review and confirmation illustrate the intended workflow; no user correction or final log was recorded. The full CLIP ranking was not retained in the summary. <a href="food-ai-evidence.html#prediction-example">Source and exact recorded fields ↗</a></figcaption>
+        </figure>
         <details class="supporting-reports"><summary>Supporting evidence: open-ended names and implementation checks <span aria-hidden="true">+</span></summary><div class="supporting-content">
-          <p class="technology-line">A separate historical open-ended naming experiment returned an accepted first name on 56.9% of the same 202 Food-101 photos and any accepted name on 61.4%. Its component-name lists differ from CLIP’s alternative whole-meal rankings, so these are not interchangeable metrics. Across all 209 requests, including seven additional fixtures, 13 failed and were counted as misses without retries. This experiment did not establish a completed signed-in iPhone camera round trip.</p>
-          <p class="technology-line">On October 24, 2026, <strong>35 backend tests and 38 focused Flutter tests passed</strong>. These exercise response handling, ranking and evaluation logic, upload boundaries, consent presentation, cancellation, deadlines, and portion conversion. Model inference and provider calls are mocked in backend tests; the historical image comparison was not rerun. The <a href="food-ai-evidence.html">technical evidence summary</a> explains the scope and includes downloadable aggregate results.</p>
+          <p class="technology-line">The open-ended experiment returned an accepted first name on 56.9% of the same 202 photos. Its component-name lists differ from CLIP’s ranked alternative dish names, and the experiment recorded 13 failures across 209 requests. These results do not establish which approach is better for the complete app. A shared workflow evaluation covering catalogue resolution, user corrections, failures, latency, and cost is still needed.</p>
+          <p class="technology-line"><strong>35 backend tests and 38 focused Flutter tests passed</strong> on October 24, 2026. The <a href="food-ai-evidence.html">evidence summary</a> documents their coverage, mocks, and limits, alongside the historical experiment results.</p>
         </div></details>
       </section>
       <section class="report-section data-notes" aria-labelledby="data-notes">
         <h2 id="data-notes"><span class="section-number" aria-hidden="true">04</span>Limits &amp; next steps</h2>
-        <p>The benchmark has two selected photos per Food-101 category and does not represent DiaCare’s cuisines, mixed plates, or everyday camera conditions. App artwork used in earlier regression tests informed development and is not independent accuracy evidence. No held-out representative DiaCare camera benchmark or measured nutrient-estimation accuracy is established here.</p>
-        <p>The backend processes uploads in memory, but that does not establish a blanket zero-retention promise for external providers. Food names and portions require confirmation. Neither model comparison nor the focused tests demonstrate clinical benefit, reliable recognition of every food, or a verified production camera workflow.</p>
-        <p><strong>Takeaway &amp; next step.</strong> A newer image model did not automatically rank the right names better, and a larger catalogue did not by itself establish accuracy. Next, I would reserve a consented, independently labelled camera-photo test set before further model selection, with regional dishes, look-alikes, packaged foods, mixed plates, and nonfood examples evaluated separately.</p>
+        <p>The small, selected sample has limited cuisine coverage, and there is no independent camera-workflow benchmark or validated portion or nutrient estimation. Food and serving still require confirmation. External-provider retention depends on the provider; in-memory handling by this backend does not establish zero retention elsewhere.</p>
+        <p><strong>Takeaway &amp; next step.</strong> A newer image model did not automatically rank the right names better, and a larger catalogue did not by itself establish accuracy. Next, I would reserve a consented, independently labelled camera-photo test set before further model selection, with regional dishes, look-alikes, packaged foods, mixed plates, and nonfood examples evaluated separately. I would also measure correction effort and time to a confirmed entry before claiming practical benefit.</p>
         <p class="evidence-links">Evidence: <a href="food-ai-evidence.html">experiment &amp; test summary</a> · <a href="food-ai-assets/model-comparison.json">saved aggregate comparison</a> · <a href="https://diacare.health/">DiaCare product website</a> · <a href="diacare.html">application workflow report</a>.</p>
       </section>
       <footer class="report-footer"><a href="food-ai-evidence.html">Inspect the evidence ↗</a><a href="mailto:tansari7@uwo.ca">Discuss the project ↗</a><a href="./#work">Back to portfolio</a></footer>

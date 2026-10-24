@@ -1,0 +1,8 @@
+/* One compact recorded example within the existing report column. */
+.prediction-example { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 14px 20px; align-items: start; margin-top: 14px; }
+.prediction-example > img { display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 4px; }
+.example-flow { margin: 0; padding-left: 18px; color: #46556b; font-size: 12px; line-height: 1.65; }
+.example-flow li { padding-left: 3px; margin-bottom: 7px; }
+.example-flow li::marker { color: #3778c8; }
+.prediction-example figcaption { grid-column: 1 / -1; color: #6b788d; font-size: 11px; line-height: 1.65; padding-left: 12px; border-left: 2px solid #b8d1f3; }
+@media (max-width: 540px) { .prediction-example { grid-template-columns: 1fr; gap: 14px; } .prediction-example > img { max-width: 180px; } .example-flow { font-size: 13px; } }

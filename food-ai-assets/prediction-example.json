@@ -1,0 +1,30 @@
+{
+  "experiment_date": "2026-10-03",
+  "fixture": {
+    "published_image": "boiled-egg.webp",
+    "source_image": "boiled_egg.webp",
+    "type": "DiaCare development asset; not a user camera photo"
+  },
+  "open_ended_output": {
+    "source": "vertex_evaluation_2026_10_03.json, egg_fixtures[0]",
+    "recorded_fields": {
+      "image": "boiled_egg.webp",
+      "labels": [
+        "hard-boiled egg",
+        "egg"
+      ]
+    }
+  },
+  "clip_summary": {
+    "source": "RESEARCH.md, egg review update",
+    "accepted_label": "hard boiled eggs",
+    "recorded_rank": 2,
+    "full_ranking_available_in_record": false
+  },
+  "workflow": {
+    "review_and_confirmation": "Illustration of intended application steps, not a recorded user session",
+    "recorded_user_correction": null,
+    "recorded_final_log": null,
+    "recorded_portion": null
+  }
+}
