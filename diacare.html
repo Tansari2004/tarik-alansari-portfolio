@@ -7,12 +7,12 @@
   <meta name="description" content="DiaCare application case study by Tarik Alansari: connecting meal planning, food logging and grocery preparation with Flutter and Firebase.">
   <link rel="canonical" href="https://tansari2004.github.io/tarik-alansari-portfolio/diacare.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="DiaCare · Application Engineering · Tarik Alansari">
+  <meta property="og:title" content="DiaCare — Meal Planning, Logging &amp; Grocery Workflows · Tarik Alansari">
   <meta property="og:description" content="A product-engineering report on meal planning, food logging, shared application state and photo-analysis workflows.">
   <meta property="og:url" content="https://tansari2004.github.io/tarik-alansari-portfolio/diacare.html">
   <meta property="og:image" content="https://tansari2004.github.io/tarik-alansari-portfolio/diacare-button.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <title>DiaCare · Application Engineering · Tarik Alansari</title>
+  <title>DiaCare — Meal Planning, Logging &amp; Grocery Workflows · Tarik Alansari</title>
   <link rel="stylesheet" href="banking-pipeline.css?v=report-engineering-1">
   <link rel="stylesheet" href="diacare-report.css?v=1">
   <script src="banking-pipeline.js?v=case-study-1" defer></script>
@@ -24,16 +24,16 @@
     <main id="main" class="project-report">
       <header class="report-header">
         <p class="eyebrow">Project report · Application engineering</p>
-        <h1>DiaCare<br><span class="title-accent">From plans to daily actions</span></h1>
-        <p class="standfirst">Connecting meal planning, food logging, and grocery preparation in one application.</p>
+        <h1>DiaCare<br><span class="title-accent">Meal Planning, Logging<br>&amp; Grocery Workflows</span></h1>
+        <p class="standfirst">From plans to daily actions.</p>
         <p class="byline">Developed by Tarik Alansari</p>
         <p class="technology-line"><strong>Technologies</strong> Flutter · Dart · Firebase · Cloud Functions</p>
         <nav class="report-contents" aria-label="Report sections"><a href="#overview">Overview</a><a href="#approach">Approach</a><a href="#implementation">Implementation</a><a href="#scope">Scope &amp; next steps</a></nav>
       </header>
       <section class="report-section" aria-labelledby="overview">
         <h2 id="overview"><span class="section-number" aria-hidden="true">01</span>Project overview</h2>
-        <p>I developed DiaCare to connect the steps between planning a meal and recording what someone actually ate. The application brings together personal meal plans, food and medication logs, grocery preparation, and messaging with a care professional.</p>
-        <p>My focus in this report is the application engineering behind those workflows: keeping shared records consistent, making food suggestions reviewable, and handling interrupted requests. The screens below show the implemented meal-plan and grocery interfaces, rather than generated product mockups.</p>
+        <p>I developed the Flutter interfaces, shared meal-log data layer, and photo-analysis workflow that connect planning a meal to recording what someone actually ate. The work described here spans meal selection, logging, portion handling, and grocery preparation.</p>
+        <p>DiaCare also includes medication tracking and professional messaging; this report focuses on the meal-planning, logging, and grocery workflows.</p>
       </section>
       <section class="report-section" aria-labelledby="approach">
         <h2 id="approach"><span class="section-number" aria-hidden="true">02</span>How I built it</h2>
@@ -43,23 +43,23 @@
           <li><strong>Keep photo suggestions editable.</strong> Ask for consent before sending a food photo for analysis, then let the user confirm foods and portions before logging. Search and manual entry provide alternative paths.</li>
         </ol>
         <h3 class="report-subheading">Engineering decisions</h3>
-        <p>A shared repository gives the planner and manual log one source of truth. Meal entries retain base nutrient values and a portion multiplier so repeated portion edits do not keep scaling already-adjusted values. Missing optional nutrient values remain distinct from zero.</p>
-        <p>Photo analysis uses a shared deadline across its asynchronous stages and a cancellation mechanism that lets the interface stop waiting for an in-flight request. Cancellation does not imply that a remote request has stopped. Account-boundary handling separates user data from the small set of device preferences that may persist.</p>
+        <p>The planner and manual logger use the same data layer, keeping meal entries consistent across both workflows. Nutrients are calculated from base values and portion size, preventing repeated edits from compounding the calculation. Missing optional nutrients stay distinct from zero so unavailable information is not treated as a measured absence.</p>
+        <p>Photo analysis has one time budget across its stages, so a stalled step cannot leave the interface waiting indefinitely. Cancellation stops the interface waiting, although the remote request may continue. Normal sign-out preserves local data for the returning account and stops private reminders; switching to a different account clears account-scoped caches and rejects the previous account’s identity. Device preferences such as language can remain.</p>
       </section>
       <section class="report-section" aria-labelledby="implementation">
         <h2 id="implementation"><span class="section-number" aria-hidden="true">03</span>Implementation &amp; verification</h2>
-        <p>The implemented flow connects meal choices to logging and grocery preparation. The screenshots show example meals, nutrition values, and a grocery estimate; these values illustrate the interface rather than a clinical outcome or a recommended diet.</p>
+        <p>The implemented flow connects meal choices to logging and grocery preparation. These are actual app interfaces with example data.</p>
         <div class="app-figures">
           <figure class="report"><a href="diacare-assets/meal-plan.webp" aria-label="Enlarge DiaCare meal plan screenshot"><img src="diacare-assets/meal-plan.webp" width="708" height="1535" alt="Actual DiaCare meal plan screen showing meal nutrition details and Log and Swap actions" loading="lazy" decoding="async"></a><figcaption><h3>Figure 1. Meal plan</h3><p>Review a meal, log it, or swap it. Select the screenshot to enlarge.</p></figcaption></figure>
           <figure class="report"><a href="diacare-assets/grocery-list.webp" aria-label="Enlarge DiaCare grocery list screenshot"><img src="diacare-assets/grocery-list.webp" width="708" height="1535" alt="Actual DiaCare grocery screen showing ingredient categories and a clearly labelled estimated total" loading="lazy" decoding="async"></a><figcaption><h3>Figure 2. Grocery preparation</h3><p>Organised ingredients with an estimated catalogue total.</p></figcaption></figure>
         </div>
-        <p class="verification-note">Repository tests cover photo cancellation, late errors after cancellation, analysis timeouts, a shared deadline across stages, portion conversions, and navigation from the meal plan to groceries. These checks address implementation behaviour; they do not establish food-recognition accuracy, usability, or health benefits.</p>
+        <p class="verification-note">A focused local run passed <strong>22 tests</strong> covering cancellation and late errors, stalled analysis and shared deadlines, portion conversions, and account cleanup and identity ownership. The <a href="diacare-engineering-notes.html">public technical evidence note</a> describes the checks, implementation boundaries, and verification status without exposing production code.</p>
       </section>
       <section class="report-section data-notes" aria-labelledby="scope">
         <h2 id="scope"><span class="section-number" aria-hidden="true">04</span>Scope &amp; next steps</h2>
-        <p>This case study describes the implementation in the project repository. Available product features may vary by release or enrolment. Food suggestions and portion estimates require user review, and catalogue prices are estimates. No usage, clinical-effectiveness, or diagnostic-performance result is claimed here.</p>
+        <p>Screens show example data. Food suggestions and portions require confirmation, prices are estimates, and available features may vary by release or enrolment. Measured user outcomes and food-recognition accuracy have not yet been established in this case study.</p>
         <p><strong>Takeaway &amp; next step.</strong> The difficult part is making a plan, a log, and a grocery list behave as one coherent experience when users edit entries or a request fails. Next, I would evaluate those complete tasks with users and measure completion and recovery behaviour before making usability claims.</p>
-        <p class="evidence-links">Explore the product: <a href="https://diacare.health/">DiaCare website</a>. Screenshots are actual app screens; example values are not outcome evidence.</p>
+        <p class="evidence-links">Evidence: <a href="diacare-engineering-notes.html">implementation &amp; test summary</a> · <a href="https://diacare.health/">product website</a>.</p>
       </section>
       <footer class="report-footer"><a href="https://diacare.health/">Visit DiaCare ↗</a><a href="mailto:tansari7@uwo.ca">Discuss the project ↗</a><a href="./#work">Back to portfolio</a></footer>
     </main>

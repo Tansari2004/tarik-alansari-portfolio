@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Sanitised implementation and focused test evidence for DiaCare meal logging, photo workflows and account boundaries.">
+  <link rel="canonical" href="https://tansari2004.github.io/tarik-alansari-portfolio/diacare-engineering-notes.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DiaCare — Implementation &amp; Test Evidence · Tarik Alansari">
+  <meta property="og:description" content="A product-engineering report on meal planning, food logging, shared application state and photo-analysis workflows.">
+  <meta property="og:url" content="https://tansari2004.github.io/tarik-alansari-portfolio/diacare-engineering-notes.html">
+  <meta property="og:image" content="https://tansari2004.github.io/tarik-alansari-portfolio/diacare-button.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>DiaCare — Implementation &amp; Test Evidence · Tarik Alansari</title>
+  <link rel="stylesheet" href="banking-pipeline.css?v=report-engineering-1">
+  <link rel="stylesheet" href="diacare-report.css?v=1">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to technical evidence</a>
+  <div class="page">
+    <nav class="project-nav" aria-label="Project navigation"><a href="diacare.html">← DiaCare report</a><a class="author" href="./">Tarik Alansari</a><a href="https://diacare.health/">Product website ↗</a></nav>
+    <main class="project-report" id="main">
+      <header class="report-header"><p class="eyebrow">DiaCare · Technical evidence</p><h1>Implementation<br><span class="title-accent">&amp; test summary</span></h1><p class="standfirst">A sanitised account of the behaviour behind the application screens.</p><p class="byline">Verification date: October 24, 2026 · Local implementation</p></header>
+      <section class="report-section" aria-labelledby="verification"><h2 id="verification">Verification status</h2><p><strong>22 focused tests passed across six existing test files.</strong> The run used Flutter’s test runner with mocked preferences and secure storage where required. It did not use production accounts, patient data, or production services.</p><p>The checks below combine direct behavioural tests and source-contract assertions. A contract assertion checks that an implementation path contains the expected calls; it is weaker evidence than executing the complete flow on a device.</p></section>
+      <section class="report-section" aria-labelledby="behaviours"><h2 id="behaviours">Behaviours inspected</h2>
+        <ol class="approach-list">
+          <li><strong>Photo cancellation — 3 tests.</strong> Cancelling ends the interface’s wait before the request completes; normal completion still returns a result; a late request error after cancellation is handled. This does not demonstrate remote request termination.</li>
+          <li><strong>Shared analysis deadline — 3 tests.</strong> A completed stage returns, a stalled stage times out, and later stages share the first stage’s time budget.</li>
+          <li><strong>Portion conversion — 4 tests.</strong> Confirmed item weight and count determine grams; liquid volume is not silently treated as weight; a known reference supports food-specific conversion; invalid references do not produce a loggable portion.</li>
+          <li><strong>Local-data cleanup — 4 tests.</strong> Account cleanup removes known and newly added account preferences while preserving approved device settings; it detects legacy account data, resets registered in-memory state, and supports explicitly retained account-owned profile data.</li>
+          <li><strong>Identity ownership — 6 tests.</strong> Cached identity and role are checked against the active account; a matching email cannot override a different owner ID; same-account identity remains available, and a signed-out session cannot use an account-name cache.</li>
+          <li><strong>Normal logout — 2 tests.</strong> A session-state fixture retains account data until explicit account cleanup. A source-contract check confirms that normal sign-out flushes pending plan synchronisation, stops medication reminders, and avoids destructive account cleanup.</li>
+        </ol>
+      </section>
+      <section class="report-section" aria-labelledby="state"><h2 id="state">Shared meal state: source review</h2><p>The meal-log repository is documented and implemented as the shared source for planner and manual-log entries. Entries retain base nutrient values, portion multipliers, and nullable optional nutrients. This supports consistent entries and avoids repeatedly scaling already-adjusted values.</p><p>The 22-test run did not directly prove full planner-to-log synchronisation or repeated nutrient-edit behaviour end to end. The portion tests above exercise conversion rules, not the entire meal editor. Those workflow-level checks remain distinct from this focused evidence.</p></section>
+      <section class="report-section" aria-labelledby="reproduction"><h2 id="reproduction">Test references</h2><p>The private application repository contains these existing files; the names identify the inspected coverage without publishing application source or raw logs.</p><ul class="approach-list"><li>photo_analysis_cancellation_test.dart</li><li>photo_analysis_deadline_test.dart</li><li>portion_estimate_test.dart</li><li>local_account_preferences_test.dart</li><li>account_switch_identity_test.dart</li><li>normal_logout_retains_account_data_test.dart</li></ul><p>The focused command was <code>flutter test --no-pub</code> followed by those six paths under <code>test/</code>. The local runner reported successful completion with no failed tests.</p></section>
+      <section class="report-section data-notes" aria-labelledby="boundaries"><h2 id="boundaries">Evidence boundaries</h2><p>This note is a summary of a local run and source inspection, not independently reproducible public source evidence or a security audit. It does not establish Firebase access-rule enforcement, real-device sign-in and notification behaviour, recognition accuracy, usability, clinical effectiveness, or performance of a released build.</p><p>Normal sign-out retains the returning account’s data. A different account triggers account-scoped cleanup and ownership checks; approved device preferences can remain. Retention and isolation are separate behaviours and should not be described as deleting all data on every logout.</p></section>
+      <footer class="report-footer"><a href="diacare.html">Back to DiaCare report</a><a href="mailto:tansari7@uwo.ca">Discuss implementation ↗</a></footer>
+    </main>
+  </div>
+</body>
+</html>
