@@ -1,21 +1,23 @@
 const viewer = document.querySelector('.image-viewer');
-const viewerImage = viewer.querySelector('img');
+const viewerImage = viewer.querySelector('.viewer-image img');
 const zoomButton = viewer.querySelector('.zoom-button');
 let returnFocus;
 
 document.querySelectorAll('.report a').forEach(link => {
   link.addEventListener('click', event => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (typeof viewer.showModal !== 'function') return;
     event.preventDefault();
     returnFocus = link;
     viewerImage.src = link.href;
     viewerImage.alt = link.querySelector('img').alt;
-    document.querySelector('#viewer-title').textContent = link.closest('figure').querySelector('h3').textContent;
+    viewer.querySelector('#viewer-title').textContent = link.closest('figure').querySelector('h3').textContent;
     viewer.classList.remove('zoomed');
     zoomButton.textContent = 'Zoom in';
     zoomButton.setAttribute('aria-pressed', 'false');
     viewer.showModal();
     document.body.classList.add('viewer-open');
+    viewer.querySelector('.viewer-image').scrollTo(0, 0);
   });
 });
 
@@ -30,5 +32,7 @@ viewer.addEventListener('close', () => {
   returnFocus?.focus({ preventScroll: true });
 });
 viewer.addEventListener('click', event => {
-  if (event.target === viewer) viewer.close();
+  if (event.target !== viewer) return;
+  const bounds = viewer.getBoundingClientRect();
+  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) viewer.close();
 });
