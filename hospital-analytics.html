@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="Hospital Patient Flow &amp; Capacity Analytics by Tarik Alansari: a reproducible NHS England analysis and a comparison of next-month admission forecasts.">
+  <meta name="description" content="Hospital Demand &amp; Bed Capacity Analytics by Tarik Alansari: a reproducible NHS England analysis and a comparison of next-month admission forecasts.">
   <link rel="canonical" href="https://tansari2004.github.io/tarik-alansari-portfolio/hospital-analytics.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Hospital Patient Flow &amp; Capacity Analytics · Tarik Alansari">
+  <meta property="og:title" content="Hospital Demand &amp; Bed Capacity Analytics · Tarik Alansari">
   <meta property="og:description" content="A project report on NHS emergency demand, bed occupancy, and why a seasonal baseline outperformed a random forest.">
   <meta property="og:url" content="https://tansari2004.github.io/tarik-alansari-portfolio/hospital-analytics.html">
   <meta property="og:image" content="https://tansari2004.github.io/tarik-alansari-portfolio/hospital-patient-flow-button.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <title>Hospital Patient Flow &amp; Capacity Analytics · Tarik Alansari</title>
-  <link rel="stylesheet" href="banking-pipeline.css?v=report-engineering-1">
+  <title>Hospital Demand &amp; Bed Capacity Analytics · Tarik Alansari</title>
+  <link rel="stylesheet" href="banking-pipeline.css?v=report-findings-1">
   <script src="banking-pipeline.js?v=case-study-1" defer></script>
 </head>
 <body>
@@ -23,7 +23,7 @@
     <main id="main" class="project-report">
       <header class="report-header">
         <p class="eyebrow">Project report · Healthcare analytics</p>
-        <h1>Hospital Patient Flow<br><span class="title-accent">&amp; Capacity Analytics</span></h1>
+        <h1>Hospital Demand<br><span class="title-accent">&amp; Bed Capacity Analytics</span></h1>
         <p class="standfirst">Understanding emergency demand, bed pressure, and the limits of a more complex forecast.</p>
         <p class="byline">Built by Tarik Alansari</p>
         <p class="technology-line"><strong>Technologies</strong> Python · SQL · SQLite · scikit-learn · Power BI</p>
@@ -31,7 +31,7 @@
       </header>
       <section class="report-section" aria-labelledby="overview">
         <h2 id="overview"><span class="section-number" aria-hidden="true">01</span>Project overview</h2>
-        <p>I built a reproducible pipeline and three-page Power BI report using published NHS England statistics. The work connects source-file ingestion, SQLite analysis, forecast evaluation, and reporting to answer two questions: how has emergency demand changed, and how well can next month’s admissions be estimated?</p>
+        <p>I built a reproducible pipeline and three-page Power BI report using published NHS England statistics. The work connects source-file ingestion, SQLite analysis, forecast evaluation, and reporting to examine changes in emergency demand and bed occupancy, then test how well next month’s admissions can be estimated.</p>
         <p>The analysis covers <strong>127 months of emergency demand</strong>, <strong>45 quarters of bed data</strong>, and a latest capacity snapshot of <strong>153 NHS trusts</strong>. These are aggregate hospital statistics, with no individual patient records.</p>
       </section>
       <section class="report-section" aria-labelledby="approach">
@@ -47,19 +47,21 @@
       </section>
       <section class="report-section" aria-labelledby="results">
         <h2 id="results"><span class="section-number" aria-hidden="true">03</span>Results</h2>
-        <p>The <strong>same-month-last-year baseline performed better</strong>: its mean absolute error was <strong>9,874 admissions per month</strong>, compared with <strong>15,501</strong> for the random forest. Adding a more complex model did not improve accuracy on this test period.</p>
-        <table class="results-table"><caption>September 2024–August 2026 · 24 test months · lower error is better</caption><thead><tr><th scope="col">Forecast method</th><th scope="col">Mean absolute error<br>Admissions / month</th></tr></thead><tbody><tr><th scope="row">Random forest</th><td>15,501.42</td></tr><tr><th scope="row">Same month last year · preferred</th><td>9,874.21</td></tr></tbody></table>
+        <p>The seasonal baseline produced approximately <strong>36% lower mean absolute error</strong> than the random forest across the 24-month test period. Its average absolute error was <strong>9,874 admissions per month</strong>, compared with <strong>15,501</strong> for the random forest.</p>
+        <p><strong>Demand and admission delays.</strong> August 2026 emergency admissions were 517,868, down <strong>1.6%</strong> from 526,399 in August 2025. Over the same comparison, waits exceeding 12 hours after a decision to admit rose from 35,909 to <strong>44,951 (+25.2%)</strong>. Fewer admissions therefore did not coincide with fewer long admission delays.</p>
+        <p><strong>Bed capacity.</strong> General-and-acute overnight occupancy averaged <strong>90.85% in April–June 2026</strong>, compared with 91.45% a year earlier, a decrease of <strong>0.60 percentage points</strong>. Around 91 of every 100 available beds remained occupied on average; this does not describe spare capacity at a particular hospital or time. These separate series do not establish that occupancy caused admission delays.</p>
+        <table class="results-table preferred-first"><caption>September 2024–August 2026 · 24 test months · lower error is better</caption><thead><tr><th scope="col">Forecast method</th><th scope="col">Mean absolute error<br>Admissions / month</th></tr></thead><tbody><tr><th scope="row">Same month last year · preferred</th><td>9,874.21</td></tr><tr><th scope="row">Random forest</th><td>15,501.42</td></tr></tbody></table>
         <figure class="report"><a href="hospital-assets/admissions-forecast.png" aria-label="Enlarge admission forecast report"><img src="hospital-assets/admissions-forecast.png" width="2880" height="1635" alt="Actual Power BI report comparing observed emergency admissions with seasonal baseline and random forest forecasts and their errors" loading="lazy" decoding="async"></a><figcaption><h3>Figure 1. Forecast comparison</h3><p>Actual admissions, both forecast methods, and forecast errors. Select the screenshot to enlarge.</p></figcaption></figure>
         <details class="supporting-reports"><summary>Supporting reports: emergency demand and bed pressure <span aria-hidden="true">+</span></summary><div class="supporting-content">
-          <figure class="report"><a href="hospital-assets/emergency-demand.png" aria-label="Enlarge emergency demand report"><img src="hospital-assets/emergency-demand.png" width="2880" height="1635" alt="Actual Power BI report of monthly emergency admissions and counts of waits over 12 hours after a decision to admit" loading="lazy" decoding="async"></a><figcaption><h3>Figure 2. Emergency demand</h3><p>August 2026 recorded 517,868 emergency admissions and 44,951 waits over 12 hours after a decision to admit. These waits are threshold counts, not average waiting times or total time in the emergency department.</p></figcaption></figure>
-          <figure class="report"><a href="hospital-assets/bed-pressure.png" aria-label="Enlarge bed pressure report"><img src="hospital-assets/bed-pressure.png" width="2880" height="1635" alt="Actual Power BI report showing quarterly general-and-acute overnight bed occupancy and the latest trust-level capacity snapshot" loading="lazy" decoding="async"></a><figcaption><h3>Figure 3. Bed pressure</h3><p>General-and-acute overnight occupancy was 90.85% for April–June 2026: average occupied beds divided by average available beds. This quarter is separate from the August emergency-demand figures.</p></figcaption></figure>
+          <figure class="report"><a href="hospital-assets/emergency-demand.png" aria-label="Enlarge emergency demand report"><img src="hospital-assets/emergency-demand.png" width="2880" height="1635" alt="Actual Power BI report of monthly emergency admissions and counts of waits over 12 hours after a decision to admit" loading="lazy" decoding="async"></a><figcaption><h3>Figure 2. Emergency demand and admission delays</h3><p>Monthly emergency admissions and counts of waits exceeding 12 hours after a decision to admit. These are threshold counts, not average waiting times or total time in the emergency department.</p></figcaption></figure>
+          <figure class="report"><a href="hospital-assets/bed-pressure.png" aria-label="Enlarge bed pressure report"><img src="hospital-assets/bed-pressure.png" width="2880" height="1635" alt="Actual Power BI report showing quarterly general-and-acute overnight bed occupancy and the latest trust-level capacity snapshot" loading="lazy" decoding="async"></a><figcaption><h3>Figure 3. Bed occupancy and trust capacity</h3><p>Quarterly general-and-acute overnight occupancy and the latest trust-level bed snapshot. Occupancy is average occupied beds divided by average available beds.</p></figcaption></figure>
         </div></details>
       </section>
       <section class="report-section data-notes" aria-labelledby="data-notes">
         <h2 id="data-notes"><span class="section-number" aria-hidden="true">04</span>Data, limitations &amp; next steps</h2>
         <p>Emergency demand covers February 2016–August 2026; bed data covers June 2015–June 2026. Provider coverage, reporting changes, and the pandemic affect comparisons over time. The report describes national demand and capacity rather than individual patient flow or improvements in care.</p>
         <p>The baseline’s September 2026 forecast of 535,580 admissions uses information through August 2026. It is a historical forecast, and the Power BI screenshots are saved report views. The 24-month evaluation does not establish performance for other periods or individual hospitals.</p>
-        <p><strong>Takeaway &amp; next step.</strong> A useful forecasting project needs a credible baseline and clearly defined measures before it needs a more complex model. Next, I would test performance across multiple historical forecast origins and add prediction intervals to communicate uncertainty alongside the point estimate.</p>
+        <p><strong>Takeaway &amp; next step.</strong> A useful forecasting project needs a credible baseline and clearly defined measures before it needs a more complex model. Next, I would test performance across multiple training cutoffs with an expanding-window backtest and add prediction intervals to communicate uncertainty alongside the point estimate.</p>
         <p class="evidence-links">Technical evidence: <a href="https://github.com/Tansari2004/nhs-emergency-demand-analytics/blob/main/src/forecast.py">forecast implementation</a> · <a href="https://github.com/Tansari2004/nhs-emergency-demand-analytics/blob/main/src/validate.py">reconciliation checks</a> · <a href="https://github.com/Tansari2004/nhs-emergency-demand-analytics/tree/main/powerbi/data">published results</a> · <a href="https://github.com/Tansari2004/nhs-emergency-demand-analytics/blob/main/powerbi/NHS-Emergency-Demand-Capacity-Analytics.pdf">report PDF</a>.</p>
         <p class="evidence-links">Original sources: <a href="https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/">NHS England emergency statistics</a> · <a href="https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/bed-data-overnight/">overnight bed statistics</a>.</p>
       </section>
