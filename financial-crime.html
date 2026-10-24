@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f2f6ff">
+  <meta name="theme-color" content="#ffffff">
   <meta name="description" content="Financial Crime Analytics by Tarik Alansari. A case-ranking system built across 5.08 million synthetic transactions with PostgreSQL, Python, machine learning and Power BI.">
   <link rel="canonical" href="https://tansari2004.github.io/tarik-alansari-portfolio/financial-crime.html">
   <meta property="og:title" content="Financial Crime Analytics · Tarik Alansari">
@@ -12,65 +12,59 @@
   <meta property="og:url" content="https://tansari2004.github.io/tarik-alansari-portfolio/financial-crime.html">
   <meta property="og:image" content="https://tansari2004.github.io/tarik-alansari-portfolio/financial-crime-button.webp">
   <title>Financial Crime Analytics · Tarik Alansari</title>
-  <link rel="stylesheet" href="banking-pipeline.css?v=3">
-  <link rel="stylesheet" href="financial-crime.css?v=3">
-  <link rel="stylesheet" href="project-polish.css?v=1">
-  <script src="banking-pipeline.js" defer></script>
+  <link rel="stylesheet" href="banking-pipeline.css?v=report-engineering-1">
+  <script src="banking-pipeline.js?v=case-study-1" defer></script>
 </head>
-<body class="crime-page">
-  <main class="page">
-    <nav class="nav" aria-label="Project navigation"><a href="./" class="back">← Back to portfolio</a><span>Tarik Alansari</span></nav>
-
-    <header class="hero">
-      <p class="eyebrow">A PROJECT BY TARIK ALANSARI</p>
-      <h1>Financial Crime<br><span>Analytics</span></h1>
-      <p class="lead">A bank cannot manually check every payment. I built a tool that suggests which payments to look at first, with reasons for each suggestion. A person still decides whether to investigate.</p>
-      <div class="tools" aria-label="Project tools"><span>PostgreSQL</span><span>SQL</span><span>Python</span><span>NumPy</span><span>Power BI</span></div>
-      <div class="hero-actions"><a class="button" href="#report">See the results <span aria-hidden="true">↓</span></a><a class="secondary" href="https://github.com/Tansari2004/financial-crime-investigation-analytics" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">↗</span></a></div>
-    </header>
-
-    <section class="results" aria-label="Verified project results">
-      <div><strong>5.08M</strong><span>simulated payments analyzed</span></div>
-      <div><strong>1,000</strong><span>highest-ranked test payments checked against the dataset’s answers</span></div>
-      <div><strong>199</strong><span>of those payments marked as money laundering in the dataset</span></div>
-    </section>
-
-    <section class="section" aria-labelledby="flow">
-      <p class="eyebrow">THE IDEA</p><h2 id="flow">Make a long list of payments easier to check.</h2>
-      <p class="section-intro">Each record is a simulated payment between accounts: who sent it, who received it, when, and how much. IBM’s dataset marks some payments as money laundering—an attempt to hide the illegal origin of money. Those marks let me test the tool; they are not given to it as clues.</p>
-      <ol class="steps">
-        <li><span class="number">01</span><h3>Look at the payments</h3><p>Use SQL to examine amounts, payment methods, and the account’s earlier activity.</p></li>
-        <li><span class="number">02</span><h3>Choose what to check first</h3><p>A machine-learning model learns from older payments, then orders newer ones by how suspicious they look.</p></li>
-        <li><span class="number">03</span><h3>Explain each flag</h3><p>The dashboard shows the payment details and which factors raised its score. A person decides what to investigate.</p></li>
-      </ol>
-    </section>
-
-    <section class="section" id="report" aria-labelledby="report-title">
-      <div class="section-heading"><div><p class="eyebrow">THE RESULTS</p><h2 id="report-title">What did the first 1,000 suggestions find?</h2></div><span class="quiet">Tested on later payments</span></div>
-      <aside class="context"><strong>199 matched the dataset’s money-laundering marks. 801 did not.</strong><p>Think of the output as a “check these first” list, not a list of confirmed crimes. Most suggestions still needed checking and were not marked as money laundering.</p><p>There were 1,611 marked payments in the full test period. The first 1,000 suggestions found 199 of them—about 12%. Many marked payments remained outside that shortlist.</p></aside>
-      <p class="section-intro">The dashboard below shows 10,000 payments in review order. For each one, it shows the payment details, its score, and the factors that raised that score.</p>
-      <p class="image-hint">Tap a screenshot to view it larger.</p>
-      <figure class="report wide"><a href="crime-assets/review-queue.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size ranked review queue screenshot"><img src="crime-assets/review-queue.png" width="2880" height="1800" alt="Power BI financial crime review queue showing ranked synthetic transactions, model scores, explanations, amounts and currencies" loading="lazy" decoding="async"></a><figcaption><h3>How to read the review list</h3><p>Start at the top: higher scores mean earlier review. Check the amount, currency, and explanation beside each payment. The score is a way to order the list—not the probability that a crime occurred.</p></figcaption></figure>
-      <details class="more additional-report"><summary>See the currency dashboard <span aria-hidden="true">+</span></summary>
-      <figure class="report"><a href="crime-assets/currency-dashboard.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size case counts by currency screenshot"><img src="crime-assets/currency-dashboard.png" width="2880" height="1800" alt="Power BI dashboard chart showing ranked review cases by payment currency" loading="lazy" decoding="async"></a><figcaption><h3>Cases by currency</h3><p>A simple dashboard view helps investigators understand how the ranked sample is distributed across payment currencies.</p></figcaption></figure>
-      </details>
-      <details class="more evaluation"><summary>Model details & verified results <span aria-hidden="true">+</span></summary>
-        <div class="detail-content">
-          <h3>Tested on later dates</h3><p>The class-weighted logistic regression was built with NumPy. Training uses dates before September 8, 2022; validation uses September 8; testing uses September 9 onward. Historical features use earlier calendar days, and laundering labels are excluded from model inputs.</p>
-          <h3>Results at different review capacities</h3>
-          <div class="table-scroll"><table><caption>Later-period test results</caption><thead><tr><th scope="col">Cases reviewed</th><th scope="col">Labels found</th><th scope="col">Precision</th><th scope="col">Recall</th></tr></thead><tbody><tr><th scope="row">100</th><td>35</td><td>35.0%</td><td>2.17%</td></tr><tr><th scope="row">500</th><td>103</td><td>20.6%</td><td>6.39%</td></tr><tr><th scope="row">1,000</th><td>199</td><td>19.9%</td><td>12.35%</td></tr><tr><th scope="row">5,000</th><td>592</td><td>11.84%</td><td>36.75%</td></tr></tbody></table></div>
-          <p>The test set contains 863,900 transactions, with 0.1865% positive labels. Precision at 1,000 is about 107× that base rate. PR-AUC is 0.1016 and ROC-AUC is 0.9330.</p>
-          <h3>Data & reporting scope</h3><p>The IBM HI-Small dataset contains 5,078,345 synthetic transactions, 5,177 positive labels, 15 currencies, and 7 payment formats across September 1–18, 2022. The Power BI report shows the top 10,000 test cases; the currency chart is also saved as a dashboard tile. A separate local browser dashboard supports case filters and explanations.</p>
-          <h3>Current limits</h3><p>Results describe an 18-day synthetic dataset. Later dates have a higher positive-label rate. The model has no external validation, probability calibration, or real investigator feedback. The screenshots show a saved report in a private workspace.</p>
-          <nav class="sources" aria-label="Project evidence"><a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/blob/main/reports/model_report.md" target="_blank" rel="noopener noreferrer">Model report ↗</a><a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/blob/main/docs/findings.md" target="_blank" rel="noopener noreferrer">Data findings ↗</a><a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/blob/main/docs/power_bi_build.md" target="_blank" rel="noopener noreferrer">Power BI details ↗</a></nav>
-        </div>
-      </details>
-      <p class="note">All payments and money-laundering marks are simulated—not real customer records. This is a project about organizing investigation work, not proof of real financial crime.</p>
-    </section>
-
-    <footer><div><h2>Interested in the work?</h2><p>Explore the code, or get in touch.</p></div><div class="footer-links"><a class="button" href="https://github.com/Tansari2004/financial-crime-investigation-analytics" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="email" href="mailto:tansari7@uwo.ca">Email Tarik ↗</a></div></footer>
-  </main>
-
-  <dialog class="image-viewer" aria-labelledby="viewer-title"><div class="viewer-bar"><h2 id="viewer-title">Report screenshot</h2><div class="viewer-controls"><button type="button" class="zoom-button" aria-pressed="false">Zoom in</button><button type="button" class="close-viewer" aria-label="Close screenshot">✕</button></div></div><div class="viewer-image"><img alt=""></div><p class="viewer-hint">Use Zoom in, then scroll to explore the report.</p></dialog>
+<body>
+  <a class="skip-link" href="#main">Skip to project report</a>
+  <div class="page">
+    <nav class="project-nav" aria-label="Project navigation"><a href="./#work">← Portfolio</a><a class="author" href="./">Tarik Alansari</a><a href="https://github.com/Tansari2004/financial-crime-investigation-analytics">GitHub ↗</a></nav>
+    <main id="main" class="project-report">
+      <header class="report-header">
+        <p class="eyebrow">Project report · Financial analytics</p>
+        <h1>Financial Crime<br><span class="title-accent">Analytics</span></h1>
+        <p class="standfirst">Turning a long list of payments into an explainable review queue.</p>
+        <p class="byline">Built by Tarik Alansari</p>
+        <p class="technology-line"><strong>Technologies</strong> PostgreSQL · SQL · Python · NumPy · Power BI</p>
+        <nav class="report-contents" aria-label="Report sections"><a href="#overview">Overview</a><a href="#approach">Approach</a><a href="#results">Results</a><a href="#data-notes">Data notes</a></nav>
+      </header>
+      <section class="report-section" aria-labelledby="overview">
+        <h2 id="overview"><span class="section-number" aria-hidden="true">01</span>Project overview</h2>
+        <p>I built a transaction-ranking system using <strong>5,078,345 simulated payments</strong> from IBM’s HI-Small dataset. The objective was to help a reviewer decide which payments to inspect first, with an explanation for each suggestion.</p>
+        <p>The project combines SQL analysis, a class-weighted logistic regression model built with NumPy, and a Power BI review report. The model ranks payments for human review; it does not confirm money laundering or make investigation decisions.</p>
+      </section>
+      <section class="report-section" aria-labelledby="approach">
+        <h2 id="approach"><span class="section-number" aria-hidden="true">02</span>How I built it</h2>
+        <ol class="approach-list">
+          <li><strong>Understand the payments.</strong> Use SQL to examine payment amounts, formats, currencies, and account activity, then build features from the payment and its sender’s earlier history.</li>
+          <li><strong>Learn from earlier dates.</strong> Train the model on payments before September 8, 2022, validate on September 8, and test on September 9 onward.</li>
+          <li><strong>Explain the review order.</strong> Export the top 10,000 test payments with their scores and feature-contribution explanations to a saved Power BI report. A separate local browser dashboard supports filters and explanations.</li>
+        </ol>
+        <h3 class="report-subheading">Modelling decisions</h3>
+        <p>The chronological split tests the model on later payments instead of randomly mixing dates. Historical features use <strong>earlier calendar days</strong>, and laundering labels are excluded from model inputs; labels are used as training targets and evaluation answers.</p>
+        <p>Class weighting gives rare labelled payments more influence during training. I evaluate the ranking at fixed review capacities because a team can only inspect a limited number of cases. Explanations show feature contributions to the model score, not causes of wrongdoing. The score is <strong>not a calibrated probability of crime</strong>.</p>
+      </section>
+      <section class="report-section" aria-labelledby="results">
+        <h2 id="results"><span class="section-number" aria-hidden="true">03</span>Results</h2>
+        <p>The test period contains <strong>863,900 payments</strong>, including <strong>1,611 labelled positives</strong>. Of the first 1,000 suggestions, <strong>199 matched the dataset’s laundering labels and 801 did not</strong>. This is 19.9% precision and 12.35% recall: most flagged payments were not labelled positives, and most labelled positives remained outside that shortlist.</p>
+        <table class="results-table"><caption>Later-period test results by review capacity</caption><thead><tr><th scope="col">Reviewed</th><th scope="col">Labels found</th><th scope="col">Precision</th><th scope="col">Recall</th></tr></thead><tbody><tr><th scope="row">100</th><td>35</td><td>35.0%</td><td>2.17%</td></tr><tr><th scope="row">500</th><td>103</td><td>20.6%</td><td>6.39%</td></tr><tr><th scope="row">1,000</th><td>199</td><td>19.9%</td><td>12.35%</td></tr><tr><th scope="row">5,000</th><td>592</td><td>11.84%</td><td>36.75%</td></tr></tbody></table>
+        <p style="margin-top:16px">PR-AUC was <strong>0.1016</strong> and ROC-AUC was <strong>0.9330</strong>. A score cutoff of 0.5 produced 116,179 false positives, which is why review-capacity results are more useful here than treating the score as a yes/no alert.</p>
+        <figure class="report main-figure"><a href="crime-assets/review-queue.png" aria-label="Enlarge ranked review queue report"><img src="crime-assets/review-queue.png" width="2880" height="1800" alt="Actual Power BI review queue showing ranked synthetic payments, model scores, explanations, amounts and currencies" loading="lazy" decoding="async"></a><figcaption><h3>Figure 1. Ranked review queue</h3><p>Higher scores mean earlier review. Read the payment details and explanation alongside each score. Select the figure to enlarge it.</p></figcaption></figure>
+        <details class="supporting-reports"><summary>Supporting evidence: currency dashboard and evaluation details <span aria-hidden="true">+</span></summary><div class="supporting-content">
+          <figure class="report"><a href="crime-assets/currency-dashboard.png" aria-label="Enlarge cases by currency report"><img src="crime-assets/currency-dashboard.png" width="2880" height="1800" alt="Actual Power BI dashboard showing ranked review cases grouped by payment currency" loading="lazy" decoding="async"></a><figcaption><h3>Figure 2. Cases by currency</h3><p>Distribution of the ranked review sample across currencies. Case counts are not monetary totals or confirmed crimes.</p></figcaption></figure>
+          <p class="technology-line">The test positive-label rate is 0.1865%. Precision at 1,000 is about 107 times that base rate within this synthetic time split. This measures enrichment in the sample, not business impact or performance at a real bank. Full split counts and evaluation metrics are in the <a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/blob/main/reports/model_report.md">model report</a>.</p>
+        </div></details>
+      </section>
+      <section class="report-section data-notes" aria-labelledby="data-notes">
+        <h2 id="data-notes"><span class="section-number" aria-hidden="true">04</span>Data &amp; limitations</h2>
+        <p>The dataset covers 18 simulated days, 15 currencies, and 7 payment formats. Later dates contain a higher share of labelled positives, limiting how broadly the test results can be interpreted. There is no external validation, probability calibration, or real investigator feedback.</p>
+        <p>Currency and payment-format associations may reflect the simulator. The analysis import uses NUMERIC(18,2), which can round source values with greater precision, including Bitcoin; source precision needs auditing before asset-level financial analysis. Amount comparisons must respect currency boundaries.</p>
+        <p>The Power BI screenshots show a saved report in a private workspace, not a live monitoring service. All payments and labels are synthetic. Neither high scores nor feature explanations establish that a crime occurred.</p>
+        <p class="evidence-links">Technical evidence: <a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/blob/main/reports/model_report.md">model evaluation</a> · <a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/blob/main/docs/findings.md">SQL findings</a> · <a href="https://github.com/Tansari2004/financial-crime-investigation-analytics/blob/main/docs/power_bi_build.md">Power BI handoff</a></p>
+      </section>
+      <footer class="report-footer"><a href="https://github.com/Tansari2004/financial-crime-investigation-analytics">Explore the code ↗</a><a href="mailto:tansari7@uwo.ca">Discuss the project ↗</a><a href="./#work">Back to portfolio</a></footer>
+    </main>
+  </div>
+  <dialog class="image-viewer" aria-labelledby="viewer-title" aria-describedby="viewer-hint"><div class="viewer-bar"><h2 id="viewer-title">Report screenshot</h2><div class="viewer-controls"><button type="button" class="zoom-button" aria-pressed="false">Zoom in</button><button type="button" class="close-viewer" aria-label="Close screenshot">✕</button></div></div><div class="viewer-image"><img alt=""></div><p class="viewer-hint" id="viewer-hint">Zoom in, then scroll to explore the report. Press Escape to close.</p></dialog>
 </body>
 </html>
