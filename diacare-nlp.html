@@ -43,7 +43,7 @@
         </ol>
         <h3 class="report-subheading">Engineering decisions</h3>
         <p>Separate classifiers let topic and priority be evaluated independently. Weak priority results led me to stop making automatic priority decisions in the current endpoint. The keyword override is visible in the response through a <code>gate_triggered</code> field, so a reviewer can distinguish a rule match from model output.</p>
-        <p>In the retained priority experiment, process liveness and readiness are separate: <code>/health</code> reports <code>models_loaded</code>, while <code>/ready</code> and prediction requests return HTTP 503 when models are unavailable. Model responses expose separate category and priority confidence fields; rule responses identify the matched phrases and leave both confidence fields empty.</p>
+        <p>Process liveness and model readiness are separate. The current <code>/classify</code> endpoint and <code>/ready</code> require only the category artifact; a missing legacy priority model cannot disable category suggestions. The deprecated <code>/triage</code> endpoint still requires both models and returns separate category/priority confidence fields. Its keyword responses identify matched phrases and leave both confidence fields empty.</p>
       </section>
       <section class="report-section" aria-labelledby="results">
         <h2 id="results"><span class="section-number" aria-hidden="true">03</span>Results</h2>
